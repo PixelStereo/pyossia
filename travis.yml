@@ -1,0 +1,28 @@
+sudo: required
+dist: trusty
+language: python
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+install:
+- sudo apt-get update
+- sudo apt-get -qq install python-setuptools
+- pip install --upgrade pip
+- pip install -r requirements.txt
+- pip install coverage
+- pip install codacy-coverage
+- pip install https://github.com/Syntaf/travis-sphinx/archive/master.zip
+script:
+- cd tests
+- coverage run --omit ../pyossia/_version.py --include=../pyossia/"*" test_.py
+- if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then coverage xml; fi
+- if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then coverage report -m; fi
+- if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then python-codacy-coverage -r coverage.xml; fi
+- cd ../
+- travis-sphinx build
+after_success:
+- travis-sphinx deploy
+- cd tests
+- coveralls
