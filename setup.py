@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from distutils.core import setup
+from distutils.core import setup, Extension
 import versioneer
 import os, sys
 sys.path.append(os.path.abspath('./pyossia'))
@@ -20,6 +20,7 @@ setup(
   author = 'Pixel Stereo',
   url='https://github.com/PixelStereo/pyossia',
   download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
+  ext_modules=[Extension("ossia-python", ["src/ossia-python.cpp"])],
   classifiers = [
     'Development Status :: 2 - Pre-Alpha',
     'Intended Audience :: Developers',
