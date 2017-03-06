@@ -1,0 +1,109 @@
+{
+    "Children": [
+        {
+            "AddressSettings": {
+                "ClipMode": "Free",
+                "Domain": {
+                },
+                "Extended": {
+                },
+                "Name": "test",
+                "RepetitionFilter": false,
+                "Type": "None",
+                "Unit": "none",
+                "Value": null
+            },
+            "Children": [
+                {
+                    "AddressSettings": {
+                        "ClipMode": "Free",
+                        "Domain": {
+                        },
+                        "Extended": {
+                        },
+                        "Name": "value",
+                        "RepetitionFilter": false,
+                        "Type": "None",
+                        "Unit": "none",
+                        "Value": null
+                    },
+                    "Children": [
+                        {
+                            "AddressSettings": {
+                                "ClipMode": "Free",
+                                "Domain": {
+                                },
+                                "Extended": {
+                                },
+                                "Name": "int",
+                                "RepetitionFilter": false,
+                                "Type": "Float",
+                                "Unit": "none",
+                                "Value": 0,
+                                "ioType": "<->"
+                            },
+                            "Children": [
+                            ]
+                        },
+                        {
+                            "AddressSettings": {
+                                "ClipMode": "Free",
+                                "Domain": {
+                                },
+                                "Extended": {
+                                },
+                                "Name": "float",
+                                "RepetitionFilter": false,
+                                "Type": "Float",
+                                "Unit": "none",
+                                "Value": 0.623931884765625,
+                                "ioType": "<->"
+                            },
+                            "Children": [
+                            ]
+                        },
+                        {
+                            "AddressSettings": {
+                                "ClipMode": "Free",
+                                "Domain": {
+                                },
+                                "Extended": {
+                                },
+                                "Name": "bool",
+                                "RepetitionFilter": false,
+                                "Type": "Bool",
+                                "Unit": "none",
+                                "Value": true,
+                                "ioType": "<->"
+                            },
+                            "Children": [
+                            ]
+                        },
+                        {
+                            "AddressSettings": {
+                                "ClipMode": "Free",
+                                "Domain": {
+                                },
+                                "Extended": {
+                                },
+                                "Name": "string",
+                                "RepetitionFilter": false,
+                                "Type": "String",
+                                "Unit": "none",
+                                "Value": "t",
+                                "ioType": "<->"
+                            },
+                            "Children": [
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "DeviceSettings": {
+        "Host": "ws://127.0.0.1:5678",
+        "Name": "newDevice",
+        "Protocol": "1187fefe-0468-49d1-9eb7-92d7f4e11f6f"
+    }
+}

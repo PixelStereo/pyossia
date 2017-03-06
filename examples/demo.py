@@ -4,37 +4,57 @@
 import os, sys
 from time import sleep
 sys.path.append(os.path.abspath(".."))
-from pyossia import __version__, new_device
 
-print(__version__)
+from pyossia import my_device
 
-my_device = new_device('my test app')
-my_device._localdevice.create_oscquery_server(3456, 5678)
-test = my_device.new_parameter('test')
-print(test)
+from PyQt5.QtCore import QAbstractItemModel, QFile, QIODevice, QModelIndex, Qt
+from PyQt5.QtWidgets import QApplication, QTreeView
+from PyQt5.QtGui import QStandardItemModel, QStandardItem 
 
-while True:
-	test = 1
-	sleep(0.5)
-	test = 0
-	sleep(0.5)
+"""view = QTreeView()
+view.setSelectionBehavior(QAbstractItemView.SelectRows)
+model = QStandardItemModel()
+model.setHorizontalHeaderLabels(['col1', 'col2', 'col3'])
+view.setModel(model)
+view.setUniformRowHeights(True)
+"""
+class TreeModel(QStandardItemModel):
+	"""
+	docstring for TreeModel
+	"""
+	def __init__(self, root):
+		super(TreeModel, self).__init__()
+		self.root = root
+		root_item = QStandardItem(str(root))
+		nodes = root.children()
+		for node in nodes:
+			child = QStandardItem(str(node))
+			if node.get_address():
+				print('param : ' + str(node))
+			else:
+				print('node : ' + str(node))
+	        root_item.appendRow(child)
+	        children = node.children()
+	        for ch in children:
+	        	chi = QStandardItem(str(node))
+	        	child.appendRow(chi)
+		self.appendRow(root_item)
 
-quit()
+if __name__ == '__main__':
 
+    import sys
 
+    app = QApplication(sys.argv)
 
-
-props = [stuff for stuff in dir(my_device) if not stuff.startswith('__')]
-print('-- methods')
-for stuff in props:
-	print('-- -- ' + stuff)
-
-print('my_device', my_device)
-print('add_node', my_device.add_node('lala'))
-print('find_node', my_device.find_node('lala'))
-print(my_device.find_node('lala'), type(my_device.find_node('lala')))
-print('get_root_node', my_device.get_root_node())
-print(my_device.get_root_node())
-
-while True:
-	pass
+    import json
+    from pprint import pprint
+    #with open('device.device') as data_file:    
+    #	data = json.load(data_file)
+    #	pprint(data)
+    root = my_device.get_root_node()
+    model = TreeModel(root)
+    view = QTreeView()
+    view.setModel(model)
+    view.setWindowTitle("OSCQuery Explorer")
+    view.show()
+    sys.exit(app.exec_())
