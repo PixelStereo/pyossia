@@ -4,7 +4,7 @@
 import os, sys
 from time import sleep
 sys.path.append(os.path.abspath(".."))
-
+print(sys.version)
 from pyossia import my_device
 
 from PyQt5.QtCore import QAbstractItemModel, QFile, QIODevice, QModelIndex, Qt
@@ -33,12 +33,12 @@ class TreeModel(QStandardItemModel):
 				print('param : ' + str(node))
 			else:
 				print('node : ' + str(node))
-	        root_item.appendRow(child)
-	        children = node.children()
-	        for ch in children:
-	        	chi = QStandardItem(str(node))
-	        	child.appendRow(chi)
-		self.appendRow(root_item)
+			root_item.appendRow(child)
+			children = node.children()
+			for ch in children:
+				chi = QStandardItem(str(ch))
+				child.appendRow(chi)
+			self.appendRow(root_item)
 
 if __name__ == '__main__':
 
@@ -48,9 +48,10 @@ if __name__ == '__main__':
 
     import json
     from pprint import pprint
-    #with open('device.device') as data_file:    
-    #	data = json.load(data_file)
-    #	pprint(data)
+    with open('device.device') as data_file:    
+    	data = json.load(data_file)
+    	data = data['Children']
+    	pprint(data)
     root = my_device.get_root_node()
     model = TreeModel(root)
     view = QTreeView()
