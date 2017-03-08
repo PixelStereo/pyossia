@@ -25,20 +25,22 @@ class TreeModel(QStandardItemModel):
 	def __init__(self, root):
 		super(TreeModel, self).__init__()
 		self.root = root
-		root_item = QStandardItem(str(root))
-		nodes = root.children()
-		for node in nodes:
-			child = QStandardItem(str(node))
-			if node.get_address():
-				print('param : ' + str(node))
-			else:
-				print('node : ' + str(node))
-			root_item.appendRow(child)
-			children = node.children()
-			for ch in children:
-				chi = QStandardItem(str(ch))
-				child.appendRow(chi)
-			self.appendRow(root_item)
+		self.root_item = QStandardItem(str(root))
+
+		self.iterate_children(root, self.root_item)
+
+	def iterate_children(self, node, parent):
+		"""
+		recursive method to explore children until the end
+		"""
+		for nod in node.children():
+			child = QStandardItem(str(nod).split('/')[-1])
+			parent.appendRow(child)
+			self.iterate_children(nod, child)
+		self.appendRow(self.root_item)
+
+	
+
 
 if __name__ == '__main__':
 
@@ -48,14 +50,11 @@ if __name__ == '__main__':
 
     import json
     from pprint import pprint
-    with open('device.device') as data_file:    
-    	data = json.load(data_file)
-    	data = data['Children']
-    	pprint(data)
     root = my_device.get_root_node()
     model = TreeModel(root)
     view = QTreeView()
     view.setModel(model)
+    view.expandAll()
     view.setWindowTitle("OSCQuery Explorer")
     view.show()
     sys.exit(app.exec_())
