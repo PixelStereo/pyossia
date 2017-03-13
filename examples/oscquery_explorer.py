@@ -1,5 +1,7 @@
 #! /usr/bin/env python
-import ossia_python as ossia
+import sys, os
+sys.path.append(os.path.abspath(".."))
+import pyossia
 import time
 
 ### REMOTE DEVICE SETUP
