@@ -58,7 +58,7 @@ ossia.LocalDevice.get_params = get_params
 # create the OSSIA Device with the name provided
 # here for test purpose
 my_device = ossia.LocalDevice('PyOssia Device')
-my_device.expose(protocol='oscquery', udp_port=3456, wsport=5678)
+my_device.expose(protocol='oscquery', udp_port=3456, ws_port=5678)
 my_device.add_param('test/value/int', datatype=ossia.ValueType.Int)
 my_device.add_param('test/value/float', datatype=ossia.ValueType.Float)
 my_device.add_param('test/value/bool', datatype=ossia.ValueType.Bool)
