@@ -10,6 +10,10 @@ __version__ = get_versions()['version']
 del get_versions
 __release__ = __version__
 
+# append pyossia path
+import sys, os
+sys.path.append(os.path.abspath("../../3rdparty/libossia/build"))
+
 # Import libossia python bindings
 import ossia_python as ossia
 
