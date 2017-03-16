@@ -1,22 +1,28 @@
 language: python
 osx_image: xcode8.2
-
+    
+  - os: osx
+    env: BUILD_TYPE=Release OSSIA_STATIC=0
 matrix:
     include:
     - os: linux
       sudo: required
       python: 2.7
       env: TOXENV=py27
+      env: BUILD_TYPE=Debug OSSIA_STATIC=1
     - os: linux
       sudo: required
       python: 3.6
       env: TOXENV=py36
+      env: BUILD_TYPE=Debug OSSIA_STATIC=1
     - os: osx
       language: generic
       env: TOXENV=py27
+      env: BUILD_TYPE=Debug OSSIA_STATIC=1
     - os: osx
       language: generic
       env: TOXENV=py36
+      env: BUILD_TYPE=Debug OSSIA_STATIC=1
 
 before_install:
 - "./3rdParty/libossia/travis/deps.sh"
