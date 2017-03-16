@@ -10,7 +10,7 @@ case "${TOXENV}" in
         ;;
     py35)
         sudo apt-get install python3
-        pip3 install git+https://github.com/{$OWNER}/{$REPO}/tree/{$TRAVIS_BRANCH}
+        pip3 install git+https://github.com/$OWNER/$REPO/tree/$TRAVIS_BRANCH
         ;;
 esac
 
