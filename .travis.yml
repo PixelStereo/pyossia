@@ -1,4 +1,5 @@
 language: python
+osx_image: xcode8.2
 
 matrix:
     include:
@@ -17,6 +18,9 @@ matrix:
       language: generic
       env: TOXENV=py36
 
+before_install:
+- "./3rdParty/libossia/travis/deps.sh"
+- "./3rdParty/libossia/travis/build.sh"
 install:
     - ./scripts/install.sh
     - source ./scripts/split_repo_slug.sh
