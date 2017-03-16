@@ -2,12 +2,23 @@ language: python
 
 matrix:
     include:
+    - os: linux
+      sudo: required
+      python: 2.7
+      env: TOXENV=py27
+    - os: linux
+      sudo: required
+      python: 3.5
+    - os: linux
+      sudo: required
+      python: 3.6
+      env: TOXENV=py33
     - os: osx
-        language: generic
-        env: TOXENV=py27
+      language: generic
+      env: TOXENV=py27
     - os: osx
-        language: generic
-        env: TOXENV=py33
+      language: generic
+      env: TOXENV=py33
 
 install: ./scripts/install.sh
 
@@ -18,8 +29,7 @@ deploy:
     skip_cleanup: true
     api_key:
         secure: "${SECURE_KEY}"
-    file: 
-        - "src/dist/${REPO}_${TRAVIS_TAG}_${TRAVIS_OS_NAME}.zip"
+    file:  "src/dist/${REPO}_${TRAVIS_TAG}_${TRAVIS_OS_NAME}.zip"
     on:
         tags: true
         all_branches: true
