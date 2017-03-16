@@ -58,7 +58,7 @@ import re
 
 import versioneer
 import os, sys
-sys.path.append(os.path.abspath('./pyossia'))
+sys.path.append(os.path.abspath('pyossia'))
 from _version import get_versions
 __version__ = get_versions()['version']
 del get_versions
@@ -395,12 +395,12 @@ def copy_file(src, dst):
 def clean_dist():
     """re-create the dist folder
     """
-    dist_dir = os.path.join(script_dir, "./dist")
+    dist_dir = os.path.join(script_dir, "dist")
     if os.path.exists(dist_dir):
         log.info('Removing distribution directory %s' % dist_dir)
         rmtree(dist_dir)
 
-    dist_dir = os.path.join(script_dir, "./dist/pyossia")
+    dist_dir = os.path.join(script_dir, "dist/pyossia")
     try:
         os.makedirs(dist_dir)
     except OSError:
@@ -416,18 +416,18 @@ class build(_build):
     def run(self):
         repackage = 'repackage' in options
         if not repackage:
-            #self.build_pyossia()
+            self.build_pyossia()
             pass
 
         # this is where the extension examples go
-        dist_dir_examples = os.path.join(script_dir, "./dist/pyossia")
+        dist_dir_examples = os.path.join(script_dir, "dist/pyossia")
         try:
             os.makedirs(dist_dir_examples)
         except OSError:
             pass
 
         # this is where the extension goes
-        dist_dir = os.path.join(script_dir, "./dist/pyossia")
+        dist_dir = os.path.join(script_dir, "dist/pyossia")
         log.info('Populating the distribution directory %s ...' % dist_dir)
 
         # create the module init files
@@ -440,12 +440,12 @@ class build(_build):
             pass
 
         # this is where the extension and Python examples are located
-        out_dir = os.path.join(script_dir, "./pyossia")
+        out_dir = os.path.join(script_dir, "pyossia")
         # copy ossia_python.so file from libossia/build to pyossia module folder
         if sys.version_info < (3, 0):
-            ossia_python_path = os.path.join(script_dir, "./3rdParty/libossia/build/ossia_python.so")
+            ossia_python_path = os.path.join(script_dir, "3rdParty/libossia/build/ossia_python.so")
         else:
-            ossia_python_path = os.path.join(script_dir, "./3rdParty/libossia/build/ossia_python.cpython-36m-darwin.so")
+            ossia_python_path = os.path.join(script_dir, "3rdParty/libossia/build/ossia_python.cpython-36m-darwin.so")
         copy_file(ossia_python_path, out_dir)
 
 
@@ -463,12 +463,13 @@ class build(_build):
             dstextname = os.path.join(dist_dir_examples, name)
 
             name, extension = os.path.splitext(name.lower())
-            print('LAOSR', extension, name)
             if extension in ['.py', '.txt']:
                 copy_file(srcname, dstextname)
             elif extension in dll_ext:
-                print('fsdfsdfdsfsdfsdfsfsdfsdfsdffsdffd')
-                if name.startswith('ossia_python.'):
+                log.info('')
+                log.info(name)
+                log.info('')
+                if name.startswith('ossia_python'):
                     ext_found = True
                 copy_file(srcname, dstname)
 
@@ -535,9 +536,10 @@ class build(_build):
             cmake_extra_arch += ['-DPYTHON_INCLUDE_DIR=' + inc_dir]
         if (lib_dir != None):
             cmake_extra_arch += ['-DCMAKE_LIBRARY_PATH=' + lib_dir]
-
-        if sys.version_info >= (3, 0):
-            cmake_extra_arch += ['-DPYTHON3=yes']
+        if not sys.version_info >= (3, 0):
+            cmake_extra_arch += ['-DPYTHON=no', '-DPYTHON_EXECUTABLE=/usr/local/bin/python']
+        else:
+            cmake_extra_arch += ['-DPYTHON3=yes', '-DPYTHON_EXECUTABLE=/usr/local/bin/python3']
 
         log.info("Detected platform: %s" % sys.platform)
         if sys.platform == "darwin":
@@ -562,7 +564,7 @@ class build(_build):
                     cmake_extra_arch += ['-DPYTHON_LIBRARY={lib}'.format(lib=py_lib)]
                     break
 
-        build_dir = os.path.join(script_dir, "./3rdParty/libossia/build")
+        build_dir = os.path.join(script_dir, "3rdParty/libossia/build")
         if os.path.exists(build_dir):
             log.info('Removing build directory %s' % build_dir)
             rmtree(build_dir)
@@ -578,7 +580,7 @@ class build(_build):
         cmake_cmd = [
             cmake_path,
             "..",
-            "-LA", "-DOSSIA_PD=0", "-DOSSIA_QT=0", "-DOSSIA_STATIC=1", "-DOSSIA_C=1", "-DOSSIA_NO_QT=1", "-DOSSIA_Zeroconf=0"
+            "-LA", "-DOSSIA_PD=0", "-DOSSIA_QT=0", "-DOSSIA_STATIC=1", "-DOSSIA_C=1", "-DOSSIA_NO_QT=1", "-DOSSIA_Zeroconf=1"
         ] + cmake_extra + cmake_extra_arch
         if run_process(cmake_cmd):
             raise DistutilsSetupError("cmake configuration failed!")
