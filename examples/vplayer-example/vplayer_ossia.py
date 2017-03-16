@@ -67,7 +67,7 @@ class VPlayer(object):
 
 # create the Video Player Device
 my_device = ossia.LocalDevice('Ossia V Player ')
-my_device.create_oscquery_server(22222, 33333)
+my_device.create_oscquery_server(5678, 9998)
 # create an instance of a video player
 vplayer = VPlayer(my_device)
 
