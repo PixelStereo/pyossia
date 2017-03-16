@@ -19,6 +19,4 @@ else
     sudo apt-get update
     sudo apt-get -o Dpkg::Options::='--force-confdef' --force-yes -fuy upgrade
     sudo apt-get install boost python
-
-
-
+fi
