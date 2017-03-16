@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ../scripts/split_repo_slug.sh
+
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
     # Install some custom requirements on OS X
@@ -10,15 +12,15 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     case "${TOXENV}" in
         py27)
 			brew install python
-            #pip update
             ;;
         py35)
             brew install python3
-            #pip3 update
             ;;
     esac
 else
     sudo apt-get update
     sudo apt-get -o Dpkg::Options::='--force-confdef' --force-yes -fuy upgrade
-    sudo apt-get install boost
-fi
+    sudo apt-get install boost python
+
+
+

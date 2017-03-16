@@ -79,10 +79,12 @@ def get_nodes(self, node, depth=0):
 	# return the filled list
 	return children
 
-def get_params(self, node):
+def get_params(self, node=None):
 	"""
 	return a list of all params for the device
 	"""
+	if not node:
+		node = self.get_root_node()
 	children = []
 	# a function to iterate on node's tree recursively
 	def iterate_on_children(node):

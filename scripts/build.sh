@@ -1,9 +1,22 @@
 #!/bin/bash
 
-cd 3rdParty/libossia
 ls -lisah
-mkdir -p build
-cd build
-cmake .. -DOSSIA_PD=0 -DOSSIA_QT=0 -DOSSIA_STATIC=1 -DOSSIA_C=0 -DOSSIA_NO_QT=1
 
-make -j4
+case "${TOXENV}" in
+    py27)
+        sudo apt-get install python
+        pip install git+https://github.com/{$OWNER}/{$REPO}/tree/{$TRAVIS_BRANCH}
+
+        ;;
+    py35)
+        sudo apt-get install python3
+        pip3 install git+https://github.com/{$OWNER}/{$REPO}/tree/{$TRAVIS_BRANCH}
+        ;;
+esac
+
+ls -lisah
+ls -lisah ./dist
+
+zip ./dist/${REPO}_${TRAVIS_TAG}_$TRAVIS_OS_NAME.zip ${REPO}_${TRAVIS_TAG}
+ls -lisah
+cd ../

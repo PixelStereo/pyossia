@@ -20,9 +20,7 @@ matrix:
         language: generic
         env: TOXENV=py33
 
-install:
-    - ./scripts/install.sh
-    - source scripts/split_repo_slug.sh
+install: ./scripts/install.sh
 
 script: ./scripts/build.sh
 
