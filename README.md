@@ -1,5 +1,5 @@
 # PyOssia
-PyOssia is a python module for [http://github.com/OSSIA/libossia](libossia)
+PyOssia is a python module for [libossia](http://github.com/OSSIA/libossia)
 It will use libossia thanks to pybind11
 
 # Installation
