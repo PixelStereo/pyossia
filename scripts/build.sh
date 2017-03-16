@@ -8,7 +8,7 @@ case "${TOXENV}" in
         pip install git+https://github.com/{$OWNER}/{$REPO}/tree/{$TRAVIS_BRANCH}
 
         ;;
-    py35)
+    py36)
         sudo apt-get install python3
         pip3 install git+https://github.com/$OWNER/$REPO/tree/$TRAVIS_BRANCH
         ;;
