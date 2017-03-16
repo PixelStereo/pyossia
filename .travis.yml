@@ -2,17 +2,6 @@ language: python
 
 matrix:
     include:
-    - os: linux
-        sudo: required
-        python: 2.7
-        env: TOXENV=py27
-    - os: linux
-        sudo: required
-        python: 3.5
-    - os: linux
-        sudo: required
-        python: 3.6
-        env: TOXENV=py33
     - os: osx
         language: generic
         env: TOXENV=py27
