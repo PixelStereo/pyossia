@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ../scripts/split_repo_slug.sh
-
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 
     # Install some custom requirements on OS X
