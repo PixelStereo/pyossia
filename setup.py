@@ -594,7 +594,7 @@ class build(_build):
             "--target", "install",
         ]
         """
-        cmake_cmd = ["make", "-j16"]
+        cmake_cmd = ["make"]
 
         if run_process(cmake_cmd):
             raise DistutilsSetupError("cmake build failed!")
