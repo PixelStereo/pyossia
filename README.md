@@ -12,7 +12,7 @@ pyossia does not have yet a stable version
 ## latest unstable (git master branch)
 `pip install git+https://github.com/PixelStereo/pyossia.git@master`
 
-## git repo
+## git repo (for pyossia contribution)
 `git clone https://github.com/PixelStereo/pyossia.git && git submodule update —-init`    
 
 `cd pyossia     `    
