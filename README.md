@@ -10,13 +10,13 @@ pip install will build libossia_python, and include it in a python module
 pyossia does not have yet a stable version
 
 ## latest unstable (git master branch)
-pip install git+https://github.com/PixelStereo/pyossia.git@master
+`pip install git+https://github.com/PixelStereo/pyossia.git@master`
 
 ## git repo
-git clone https://github.com/PixelStereo/pyossia.git && git submodule update —-init    
+`git clone https://github.com/PixelStereo/pyossia.git && git submodule update —-init    
 cd pyossia    
-pip install .    
+pip install .    `
     
 If you want to edit the module, editable option of pip is the one you need    
-pip install -e .    
+`pip install -e .    `
 
