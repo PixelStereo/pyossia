@@ -463,18 +463,6 @@ class build(_build):
             dstextname = os.path.join(dist_dir_examples, name)
 
             name, extension = os.path.splitext(name.lower())
-            if extension in ['.py', '.txt']:
-                copy_file(srcname, dstextname)
-            elif extension in dll_ext:
-                log.info('')
-                log.info(name)
-                log.info('')
-                if name.startswith('ossia_python'):
-                    ext_found = True
-                copy_file(srcname, dstname)
-
-        if not ext_found:
-            raise DistutilsSetupError("Cannot find built pyossia extension module.")
 
         return _build.run(self)
 
