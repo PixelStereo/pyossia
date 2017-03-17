@@ -15,8 +15,4 @@ pyossia does not have yet a stable version
 ## git repo
 `git clone https://github.com/PixelStereo/pyossia.git && git submodule update —-init    
 cd pyossia    
-pip install .    `
-    
-If you want to edit the module, editable option of pip is the one you need    
-`pip install -e .    `
-
+pip install .ve    `
