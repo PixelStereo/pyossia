@@ -13,6 +13,8 @@ pyossia does not have yet a stable version
 `pip install git+https://github.com/PixelStereo/pyossia.git@master`
 
 ## git repo
-`git clone https://github.com/PixelStereo/pyossia.git && git submodule update —-init    
-cd pyossia    
-pip install .ve    `
+`git clone https://github.com/PixelStereo/pyossia.git && git submodule update —-init`    
+
+`cd pyossia     `    
+
+`pip install .ve    `
