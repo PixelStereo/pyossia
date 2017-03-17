@@ -1,6 +1,9 @@
 # PyOssia
-PyOssia is a python module for [libossia](http://github.com/OSSIA/libossia)
-It will use libossia thanks to pybind11
+[![Build Status](https://travis-ci.org/PixelStereo/pyossia.svg?branch=master)](https://travis-ci.org/PixelStereo/pyossia)    
+    
+PyOssia is a python module for [libossia](http://github.com/OSSIA/libossia)    
+
+It will use libossia thanks to pybind11    
 
 # Installation
 
