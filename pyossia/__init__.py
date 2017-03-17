@@ -26,16 +26,18 @@ datatypes = {	'float':ossia.ValueType.Float,
 				'string':ossia.ValueType.String
 			}
 
-def add_device(self, *args, **kwargs):
+def add_device(name, **kwargs):
 	"""
 	create a node and make a create_address on the node
 	"""
 	# TODO :  raise an exception if mode is not provided as kwargs
 	mode = kwargs['mode']
 	if mode == 'local':
-		device = ossia.LocalDevice(**kwargs)
-	elif mode == 'mirror'
-		device = ossia.OSCQueryDevice(**kwargs)
+		device = ossia.LocalDevice(name)
+	elif mode == 'mirror':
+		target = kwargs['target']
+		udp_port = kwargs['udp_port']
+		device = ossia.OSCQueryDevice(name, target, udp_port)
 	else:
 		print(mode + ' is not implemented')
 	__devices__[mode].append(device)
@@ -49,12 +51,14 @@ def devices(device_type='local'):
 # Following functions will be add to libossia bindings
 ######################################################
 
-def add_param(self, name, datatype='float'):
+def add_param(self, name, **kwargs):
 	"""
 	create a node and make a create_address on the node
 	"""
 	node = self.add_node(name)
+	datatype = kwargs['datatype']
 	param = node.create_address(datatypes[datatype])
+	print('todo : ' + str(kwargs))
 	return param
 
 def expose(self, protocol='oscquery', udp_port=3456, ws_port=5678):
@@ -66,7 +70,7 @@ def expose(self, protocol='oscquery', udp_port=3456, ws_port=5678):
 	else:
 		print('ossia warning : ' + protocol + ' is not implemented')
 
-def get_nodes(self, node, depth=0):
+def get_nodes(self, node=None, depth=0):
 	"""
 	return a list of all nodes attached to the given <node>
 	<depth> argument allows a depth-specific list
@@ -75,12 +79,14 @@ def get_nodes(self, node, depth=0):
 	(only the children of the given <node>)
 	TODO : make depth levels in the code / it does not work for the moment
 	"""
+	if not node:
+		node = self.get_root_node()
 	# create an empty list to return
 	children = []
 	# counter is used to follow depth-leveled exploration
 	counter = 0
 	# a function to iterate on node's tree recursively
-	def iterate_on_children(node):
+	def iterate_on_children(node, counter):
 		"""
 		recursive exploration of the tree
 		"""
@@ -92,9 +98,9 @@ def get_nodes(self, node, depth=0):
 				break
 			# do the same for each child
 			counter += 1
-			iterate_on_children(child)
+			iterate_on_children(child, counter)
 	# do the research
-	iterate_on_children(node)
+	iterate_on_children(node, counter)
 	# return the filled list
 	return children
 
