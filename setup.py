@@ -446,7 +446,7 @@ class build(_build):
             ossia_python_path = os.path.join(script_dir, "3rdParty/libossia/build/ossia_python.so")
         else:
             ossia_python_path = os.path.join(script_dir, "3rdParty/libossia/build/ossia_python.cpython-36m-darwin.so")
-        copy_file(ossia_python_path, out_dir)
+        copy_file(ossia_python_path, dist_dir)
 
 
         # these are the created artifacts we want to package
