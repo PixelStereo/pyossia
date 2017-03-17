@@ -26,9 +26,28 @@ datatypes = {	'float':ossia.ValueType.Float,
 				'string':ossia.ValueType.String
 			}
 
+def add_device(self, *args, **kwargs):
+	"""
+	create a node and make a create_address on the node
+	"""
+	# TODO :  raise an exception if mode is not provided as kwargs
+	mode = kwargs['mode']
+	if mode == 'local':
+		device = ossia.LocalDevice(**kwargs)
+	elif mode == 'mirror'
+		device = ossia.OSCQueryDevice(**kwargs)
+	else:
+		print(mode + ' is not implemented')
+	__devices__[mode].append(device)
+	return device
+
 def devices(device_type='local'):
 	# return a list of device
 	return __devices__[device_type]
+
+######################################################
+# Following functions will be add to libossia bindings
+######################################################
 
 def add_param(self, name, datatype='float'):
 	"""
