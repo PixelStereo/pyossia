@@ -40,6 +40,8 @@ script: ./scripts/build.sh
 deploy:
   provider: releases
   skip_cleanup: true
+  api_key:
+    secure: ${SECURE_KEY}
   file: ./dist/${REPO}_${TRAVIS_TAG}_${TRAVIS_OS_NAME}.zip
   on:
     tags: true
