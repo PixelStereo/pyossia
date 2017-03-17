@@ -17,11 +17,11 @@ matrix:
     language: generic
     env: BUILD_TYPE=Debug OSSIA_STATIC=1
 before_install:
-- ./3rdParty/libossia/travis/deps.sh
-- ./3rdParty/libossia/travis/build.sh
-install:
-- source ./scripts/split_repo_slug.sh
-- ./scripts/install.sh
+- cd 3rdParty/libossia
+- ./travis/deps.sh
+- ./travis/build.sh
+- cd ../../
+install: source ./scripts/split_repo_slug.sh
 script: ./scripts/build.sh
 deploy:
   provider: releases
