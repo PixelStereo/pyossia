@@ -1,43 +1,34 @@
 language: python
 osx_image: xcode8.2
-
 matrix:
-    include:
-    - os: linux
-      sudo: required
-      python: 2.7
-      env: TOXENV=py27
-      env: BUILD_TYPE=Debug OSSIA_STATIC=1
-    - os: linux
-      sudo: required
-      python: 3.6
-      env: TOXENV=py36
-      env: BUILD_TYPE=Debug OSSIA_STATIC=1
-    - os: osx
-      language: generic
-      env: TOXENV=py27
-      env: BUILD_TYPE=Debug OSSIA_STATIC=1
-    - os: osx
-      language: generic
-      env: TOXENV=py36
-      env: BUILD_TYPE=Debug OSSIA_STATIC=1
-
+  include:
+  - os: linux
+    sudo: required
+    python: 2.7
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1
+  - os: linux
+    sudo: required
+    python: 3.6
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1
+  - os: osx
+    language: generic
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1
+  - os: osx
+    language: generic
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1
 before_install:
-- "./3rdParty/libossia/travis/deps.sh"
-- "./3rdParty/libossia/travis/build.sh"
+- ./3rdParty/libossia/travis/deps.sh
+- ./3rdParty/libossia/travis/build.sh
 install:
-    - ./scripts/install.sh
-    - source ./scripts/split_repo_slug.sh
-
+- source ./scripts/split_repo_slug.sh
+- ./scripts/install.sh
 script: ./scripts/build.sh
-
 deploy:
-    provider: releases
-    skip_cleanup: true
-    api_key:
-        secure: "${SECURE_KEY}"
-    file:  "src/dist/${REPO}_${TRAVIS_TAG}_${TRAVIS_OS_NAME}.zip"
-    on:
-        tags: true
-        all_branches: true
-        repo: ${TRAVIS_REPO_SLUG}
+  provider: releases
+  skip_cleanup: true
+  api_key: ${SECURE_KEY}
+  file: ./dist/${REPO}_${TRAVIS_TAG}_${TRAVIS_OS_NAME}.zip
+  on:
+    tags: true
+    all_branches: true
+    repo: PixelStereo/pyossia
