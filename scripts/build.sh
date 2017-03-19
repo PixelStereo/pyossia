@@ -2,7 +2,7 @@
 
 ls -lisah
 
-esac
+
 echo ''
 echo ''
 echo ''
@@ -49,7 +49,7 @@ case "${TOXENV}" in
         sudo apt-get install python3
         pip3 install -ve .
         ;;
-
+esac
 
 echo ''
 echo ''
