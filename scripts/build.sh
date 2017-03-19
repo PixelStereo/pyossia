@@ -5,12 +5,12 @@ ls -lisah
 case "${TOXENV}" in
     py27)
         sudo apt-get install python
-        pip install -v -e .
+        pip install -ve .
 
         ;;
     py36)
         sudo apt-get install python3
-        pip3 install -e -v .
+        pip3 install -ve .
         ;;
 esac
 
