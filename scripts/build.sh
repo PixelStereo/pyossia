@@ -11,7 +11,6 @@ esac
 
 echo ''
 echo ''
-echo ''
 echo '-------------------------------------'
 echo ' ----- Explore 3rdParty Folder ------'
 echo ''
@@ -19,22 +18,11 @@ echo ''
 ls -lisah ./3rdParty/
 echo ''
 echo ''
-echo ''
 echo '-------------------------------------'
 echo ' ----- Explore libossia Folder ------'
 echo ''
 echo ''
 ls -lisah ./3rdParty/libossia
-echo ''
-echo ''
-echo ''
-echo '-------------------------------------'
-echo ' ----- Explore build Folder ------'
-echo ''
-echo ''
-ls -lisah ./3rdParty/libossia/build
-
-echo ''
 echo ''
 echo ''
 echo '--------------------------------------'
@@ -68,5 +56,4 @@ python setup.py sdist
 
 ls -lisah ./dist
 
-echo ${REPO}-${TRAVIS_TAG}_$TRAVIS_OS_NAME
-echo ${REPO}-${TRAVIS_TAG}
+mv ./dist/${REPO}*.tar.gz ${REPO}-${TRAVIS_TAG}_$TRAVIS_OS_NAME.tar.gz

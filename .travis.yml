@@ -42,7 +42,7 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: ${SECURE_KEY}
-  file: ./dist/${REPO}_${TRAVIS_TAG}_${TRAVIS_OS_NAME}.zip
+  file: ./dist/${REPO}-${TRAVIS_TAG}_$TRAVIS_OS_NAME.tar.gz
   on:
     tags: true
     all_branches: true
