@@ -41,7 +41,7 @@ case "$TRAVIS_OS_NAME" in
   wget ${CMAKE_URL} --no-check-certificate
   mkdir cmake
   tar -xzf cmake-3.7.2.tar.gz -C cmake --strip-components=1
-  cd make
+  cd cmake
   ./configure
   make
   sudo make install
