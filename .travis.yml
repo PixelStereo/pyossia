@@ -36,9 +36,6 @@ matrix:
     env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
 
 before_install:
-#- cd 3rdParty/libossia
-#- ./travis/deps.sh
-#- cd ../../
 - source ./scripts/split_repo_slug.sh
 
 install: ./scripts/deps.sh
