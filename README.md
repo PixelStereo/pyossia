@@ -20,4 +20,4 @@ pyossia does not have yet a stable version
 
 `cd pyossia     `    
 
-`pip install .ve    `
+`pip install -ve .    `
