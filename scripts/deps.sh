@@ -27,7 +27,14 @@ case "$TRAVIS_OS_NAME" in
   ;;
 esac
 
-python --version
-python3 --version
-pip --version
-pip3 --version
+case "${TOXENV}" in
+    py27)
+      python --version
+      pip --version
+        ;;
+    py36)
+      python3 --version
+      pip3 --version
+        ;;
+esac
+
