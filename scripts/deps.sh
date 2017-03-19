@@ -41,12 +41,12 @@ esac
 
 case "$TRAVIS_OS_NAME" in
   linux)
-  CMAKE_URL="https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz"
+  CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.2.tar.gz"
   wget ${CMAKE_URL} --no-check-certificate
   mkdir cmake
   echo '--------------- BEFORE -------------------'
   ls -lisah
-  tar -xzf cmake-3.5.2.tar.gz -C cmake --strip-components=1
+  tar -xzf cmake-3.7.2.tar.gz -C cmake --strip-components=1
   echo '--------------- FIRST -------------------'
   ls -lisah
   cd cmake
