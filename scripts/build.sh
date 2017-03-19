@@ -1,7 +1,13 @@
 #!/bin/bash
 
-ls -lisah
-
+case "$TRAVIS_OS_NAME" in
+  linux)
+  export CMAKE_BIN=$(readlink -f "$(find cmake/bin -name cmake -type f )")
+  ;;
+  osx)
+  export CMAKE_BIN=$(which cmake)
+  ;;
+esac
 
 echo ''
 echo ''
