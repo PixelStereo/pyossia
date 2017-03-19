@@ -21,6 +21,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 import versioneer
 __version__ = versioneer.get_version()
 
+
 import os
 import re
 import sys
@@ -105,13 +106,13 @@ setup(
   # You can just specify the packages manually here if your project is
   # simple. Or you can use find_packages().
   packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
-  package_data={'ossia_python': ['ossia_python/*']},
+  # useless ?? package_data={'ossia_python': ['ossia_python/*']},
   install_requires=['zeroconf', 'pybind11>=1.7'],
   extras_require={
     'test': ['coverage']
     },
   download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
-  ext_package='pyossia',
+  ext_package='/usr/local/lib',
   ext_modules=[CMakeExtension('ossia_python', sourcedir='./3rdParty/libossia')],
   cmdclass=dict(build_ext=CMakeBuild),
   zip_safe=False,
