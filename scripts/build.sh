@@ -2,16 +2,6 @@
 
 ls -lisah
 
-case "${TOXENV}" in
-    py27)
-        sudo apt-get install python
-        pip install -ve .
-
-        ;;
-    py36)
-        sudo apt-get install python3
-        pip3 install -ve .
-        ;;
 esac
 echo ''
 echo ''
@@ -41,8 +31,31 @@ ls -lisah ./3rdparty/libossia/build
 echo ''
 echo ''
 echo ''
+echo '--------------------------------------'
+echo ' ----- INSTALL WITH PIP locally ------'
+echo ''
+echo ''
+
+
+
+
+case "${TOXENV}" in
+    py27)
+        sudo apt-get install python
+        pip install -ve .
+
+        ;;
+    py36)
+        sudo apt-get install python3
+        pip3 install -ve .
+        ;;
+
+
+echo ''
+echo ''
+echo ''
 echo '-------------------------------------'
-echo ' ----- END END END END END END ------'
+echo ' ----- MAKE THE WHEEL !!!!!!!! ------'
 echo ''
 echo ''
 python setup.py sdist
