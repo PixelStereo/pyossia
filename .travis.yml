@@ -34,6 +34,12 @@ matrix:
     python: 2.7
     env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py27
   - os: linux
+    python: 3.4
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py34
+  - os: linux
+    python: 3.5
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py35
+  - os: linux
     python: 3.6
     env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
   - os: osx
@@ -55,7 +61,7 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: N+MxeB2hREjSaWaEZbIpHnFZWb8UgV2HaZHVdY6Fe9j4TSutRRZy6WJN2QPb4UNkZs2B2MonVzHH2Y49olcKgFh9fAXsoMGQPJqAc53hxbuSwsCzdMDY71lK68zrET32VlH5HfCb3nhNkZnSqGilKeaySF2BRS316yoCDReMdY7pLqZc37zuMUCQQSr6mTZlYeyZmEwlhtBOemHFzjmVEykaEbaGRIZgUY8TIQ2Seao6xGDbddrL31d60wFUpf7YGett3BatBEHUVujc4tyL3nN25mel1lI5w/EcqQKcvD8ECW+YkRnM9dk3GKIHnd4wfORy/cAzolWSJ31gX8jf6yOBdPwcP+vseLKSpVSAFDQbCrBIAv7ln/zsVgFIQOl/iFtyfIKVXbrEVYUbef1ruy5A23ffq5qiQIQJLnKu86yYGJjSd3XGvMbdK26Dh8Ha2BY7nxeir8ZDToAz5ouLvXGx1/WJVW1zcXRysvF39o+MQGpoKE8xKnOUkoCgJmE1Vd6pluvk8FIYID3fAPOFlIHMvanG+dVLVJ01vCxVOFGJ9e7SAXmw5EqIt1QR1zltuDX2c9plYpbrt7KvOjUiQ78A1LYk6S42mIPCPh0cu639DE770UE4089M1/N12PiUV/04AML92gEteXlBxyHdezxHJCGm5A/ezoN0LMmpxrI=
-  file: ./dist/${REPO}-${TRAVIS_TAG}_$TRAVIS_OS_NAME.tar.gz
+  file: ./dist/${REPO}-${TRAVIS_TAG}_${TOXENV}_${TRAVIS_OS_NAME}.tar.gz
   on:
     tags: true
     all_branches: true

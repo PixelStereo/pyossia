@@ -6,6 +6,14 @@ case "${TOXENV}" in
         pip install -ve .
 
         ;;
+    py34)
+        sudo apt-get install python3
+        pip3 install -ve .
+        ;;
+    py35)
+        sudo apt-get install python3
+        pip3 install -ve .
+        ;;
     py36)
         sudo apt-get install python3
         pip3 install -ve .
@@ -24,6 +32,6 @@ python setup.py sdist
 
 ls -lisah ./dist
 
-mv ./dist/${REPO}-${TRAVIS_TAG}.tar.gz ./dist/${REPO}-${TRAVIS_TAG}_$TRAVIS_OS_NAME.tar.gz
+mv ./dist/${REPO}-${TRAVIS_TAG}.tar.gz ./dist/${REPO}-${TRAVIS_TAG}_${TOXENV_$TRAVIS_OS_NAME.tar.gz
 
 ls -lisah ./dist

@@ -7,7 +7,7 @@ with I/O communication provided by libossia
 """
 
 
-from pyossia import *
+import pyossia as ossia
 
 # create the OSSIA Device with the name provided
 # here for test purpose

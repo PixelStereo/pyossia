@@ -8,6 +8,12 @@ case "$TRAVIS_OS_NAME" in
         py27)
           sudo apt-get -y install python python-setuptools libpython2.7-dev 
             ;;
+        py34)
+          sudo apt-get -y install python3 python3-setuptools libpython3.4-dev 
+            ;;
+        py35)
+          sudo apt-get -y install python3 python3-setuptools libpython3.5-dev 
+            ;;
         py36)
           sudo apt-get -y install python3 python3-setuptools libpython3.6-dev 
             ;;
@@ -25,17 +31,6 @@ case "$TRAVIS_OS_NAME" in
             ;;
     esac
   ;;
-esac
-
-case "${TOXENV}" in
-    py27)
-      python --version
-      pip --version
-        ;;
-    py36)
-      python3 --version
-      pip3 --version
-        ;;
 esac
 
 
