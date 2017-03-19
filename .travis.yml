@@ -11,10 +11,15 @@ sudo: required
 addons:
   apt:
     sources:
-      - george-edison55-precise-backports
+    - cmake
+    - cmake-data
+    - sourceline: 'ppa:nschloe/cmake-nightly'
+
+addons:
+  apt:
     packages:
-      - cmake
-      - cmake-data
+    - cmake
+    - cmake-data
 
 matrix:
   exclude:
