@@ -11,7 +11,7 @@ del get_versions
 __release__ = __version__
 
 # Import libossia python bindings
-import ossia_python as ossia
+from pyossia.ossia_python import *
 
 # create a list of devices
 # access to __devices__ must be done only by using
@@ -33,11 +33,11 @@ def add_device(name, **kwargs):
 	# TODO :  raise an exception if mode is not provided as kwargs
 	mode = kwargs['mode']
 	if mode == 'local':
-		device = ossia.LocalDevice(name)
+		device = LocalDevice(name)
 	elif mode == 'mirror':
 		target = kwargs['target']
 		udp_port = kwargs['udp_port']
-		device = ossia.OSCQueryDevice(name, target, udp_port)
+		device = OSCQueryDevice(name, target, udp_port)
 	else:
 		print(mode + ' is not implemented')
 	__devices__[mode].append(device)
@@ -129,7 +129,7 @@ def get_params(self, node=None):
 # customize a bit LocalDevice
 # add a new_param /message / return method
 # with kwargs as desired (optional)
-ossia.LocalDevice.add_param = add_param
-ossia.LocalDevice.expose = expose
-ossia.LocalDevice.get_nodes = get_nodes
-ossia.LocalDevice.get_params = get_params
+LocalDevice.add_param = add_param
+LocalDevice.expose = expose
+LocalDevice.get_nodes = get_nodes
+LocalDevice.get_params = get_params
