@@ -13,12 +13,38 @@ case "${TOXENV}" in
         pip3 install -ve .
         ;;
 esac
-
-ls -lisah
+echo ''
+echo ''
+echo ''
+echo '-------------------------------------'
+echo ' ----- Explore 3rdparty Folder ------'
+echo ''
+echo ''
 ls -lisah ./3rdparty/
+echo ''
+echo ''
+echo ''
+echo '-------------------------------------'
+echo ' ----- Explore libossia Folder ------'
+echo ''
+echo ''
 ls -lisah ./3rdparty/libossia
+echo ''
+echo ''
+echo ''
+echo '-------------------------------------'
+echo ' ----- Explore build Folder ------'
+echo ''
+echo ''
 ls -lisah ./3rdparty/libossia/build
 
+echo ''
+echo ''
+echo ''
+echo '-------------------------------------'
+echo ' ----- END END END END END END ------'
+echo ''
+echo ''
 python setup.py sdist
 
 ls -lisah ./dist
