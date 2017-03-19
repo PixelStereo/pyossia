@@ -10,10 +10,17 @@ sudo: required
 
 addons:
   apt:
-    sources: 'ppa:nschloe/cmake-nightly'
+    sources
+    - 'ppa:nschloe/cmake-nightly'
+    - sourceline: 'deb http://ppa.launchpad.net/nschloe/cmake-nightly/ubuntu trusty main'
+    - sourceline: 'deb-src http://ppa.launchpad.net/nschloe/cmake-nightly/ubuntu trusty main'
+    - key_url: 'http://keyserver.ubuntu.com/pks/lookup?&op=get&search=0x870AE7423A7328FE0A1F1670ECD154D280FEB8AC'
+
+addons:
+  apt:
     packages:
     - cmake
-    - cmake-data
+    - time
 
 matrix:
   exclude:
