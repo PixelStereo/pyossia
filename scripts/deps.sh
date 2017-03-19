@@ -41,9 +41,17 @@ esac
 
 case "$TRAVIS_OS_NAME" in
   linux)
-  CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz"
-  mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
-  export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+  CMAKE_URL="http://www.cmake.org/files/v3.5/cmake-3.5.0-Linux-x86_64.tar.gz"
+  wget ${CMAKE_URL} --no-check-certificate
+  mkdir cmake
+  tar -xzf cmake-3.5.0-Linux-x86_64.tar.gz -C cmake --strip-components=1
+  ./configure
+  make
+  sudo make install
+  export PATH=/usr/local/bin:$PATH
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  cmake --version
+
 ;;
   osx)
   brew upgrade cmake || brew install cmake
@@ -51,3 +59,4 @@ case "$TRAVIS_OS_NAME" in
 esac
 
 cmake --version
+which cmake
