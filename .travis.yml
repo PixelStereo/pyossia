@@ -33,7 +33,7 @@ before_install:
 - cd ../../
 - source ./scripts/split_repo_slug.sh
 
-install: ./deps.sh
+install: ./scripts/deps.sh
 
 script: ./scripts/build.sh
 
