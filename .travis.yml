@@ -10,7 +10,7 @@ sudo: required
 
 addons:
   apt:
-    - sources: 'ppa:nschloe/cmake-nightly'
+    sources: 'ppa:nschloe/cmake-nightly'
     packages:
     - cmake
     - cmake-data
