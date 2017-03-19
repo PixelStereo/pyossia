@@ -29,11 +29,11 @@ matrix:
 
 before_install:
 - cd 3rdParty/libossia
-# - ./travis/deps.sh
-# - ./travis/build.sh
+- git submodule update --init
 - cd ../../
+- source ./scripts/split_repo_slug.sh
 
-install: source ./scripts/split_repo_slug.sh
+install: ./deps.sh
 
 script: ./scripts/build.sh
 
