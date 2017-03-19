@@ -16,16 +16,16 @@ matrix:
   include:
   - os: linux
     python: 2.7
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py27
   - os: linux
     python: 3.6
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
   - os: osx
     language: generic
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py27
   - os: osx
     language: generic
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
 
 before_install:
 - cd 3rdParty/libossia
