@@ -21,6 +21,9 @@ echo ''
 echo ''
 python setup.py sdist
 
+
 ls -lisah ./dist
 
-mv ./dist/${REPO}*.tar.gz ${REPO}-${TRAVIS_TAG}_$TRAVIS_OS_NAME.tar.gz
+mv ./dist/${REPO}-${TRAVIS_TAG}.tar.gz ./dist/${REPO}-${TRAVIS_TAG}_$TRAVIS_OS_NAME.tar.gz
+
+ls -lisah ./dist
