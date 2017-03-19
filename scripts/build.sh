@@ -7,10 +7,10 @@ echo ''
 echo ''
 echo ''
 echo '-------------------------------------'
-echo ' ----- Explore 3rdparty Folder ------'
+echo ' ----- Explore 3rdParty Folder ------'
 echo ''
 echo ''
-ls -lisah ./3rdparty/
+ls -lisah ./3rdParty/
 echo ''
 echo ''
 echo ''
@@ -18,7 +18,7 @@ echo '-------------------------------------'
 echo ' ----- Explore libossia Folder ------'
 echo ''
 echo ''
-ls -lisah ./3rdparty/libossia
+ls -lisah ./3rdParty/libossia
 echo ''
 echo ''
 echo ''
@@ -26,7 +26,7 @@ echo '-------------------------------------'
 echo ' ----- Explore build Folder ------'
 echo ''
 echo ''
-ls -lisah ./3rdparty/libossia/build
+ls -lisah ./3rdParty/libossia/build
 
 echo ''
 echo ''
