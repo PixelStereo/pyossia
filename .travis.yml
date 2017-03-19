@@ -29,8 +29,8 @@ matrix:
 
 before_install:
 - cd 3rdParty/libossia
-- ./travis/deps.sh
-- ./travis/build.sh
+# - ./travis/deps.sh
+# - ./travis/build.sh
 - cd ../../
 
 install: source ./scripts/split_repo_slug.sh
