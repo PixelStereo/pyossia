@@ -8,6 +8,14 @@ osx_image: xcode8.2
 dist: trusty
 sudo: required
 
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake
+      - cmake-data
+
 matrix:
   exclude:
     - os: linux
@@ -28,9 +36,9 @@ matrix:
     env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
 
 before_install:
-- cd 3rdParty/libossia
-- ./travis/deps.sh
-- cd ../../
+#- cd 3rdParty/libossia
+#- ./travis/deps.sh
+#- cd ../../
 - source ./scripts/split_repo_slug.sh
 
 install: ./scripts/deps.sh
