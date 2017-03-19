@@ -18,6 +18,7 @@ case "$TRAVIS_OS_NAME" in
           sudo apt-get -y install python3 python3-setuptools libpython3.6-dev 
             ;;
     esac
+    sudo apt-get -y install libboost-all-dev
   ;;
   osx)
     case "${TOXENV}" in
@@ -39,20 +40,16 @@ case "$TRAVIS_OS_NAME" in
   CMAKE_URL="https://cmake.org/files/v3.7/cmake-3.7.2.tar.gz"
   wget ${CMAKE_URL} --no-check-certificate
   mkdir cmake
-  echo '--------------- BEFORE -------------------'
-  ls -lisah
   tar -xzf cmake-3.7.2.tar.gz -C cmake --strip-components=1
-  echo '--------------- FIRST -------------------'
-  ls -lisah
-  cd cmake
-  echo '--------------- SECOND -------------------'
-  ls -lisah
   ./configure
   make
   sudo make install
   export PATH=/usr/local/bin:$PATH
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+
   cmake --version
+
+
 
 ;;
   osx)
