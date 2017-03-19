@@ -1,2 +1,2 @@
 include versioneer.py
-include pyossia/_version.py
+include pyossia/*

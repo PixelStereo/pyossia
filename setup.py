@@ -105,12 +105,13 @@ setup(
   # You can just specify the packages manually here if your project is
   # simple. Or you can use find_packages().
   packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
+  package_data={'ossia_python': ['ossia_python/*']},
   install_requires=['zeroconf', 'pybind11>=1.7'],
   extras_require={
     'test': ['coverage']
     },
   download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
-  ext_package='ossia_python',
+  ext_package='pyossia',
   ext_modules=[CMakeExtension('ossia_python', sourcedir='./3rdparty/libossia')],
   cmdclass=dict(build_ext=CMakeBuild),
   zip_safe=False,
