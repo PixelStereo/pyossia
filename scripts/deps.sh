@@ -27,7 +27,7 @@ case "$TRAVIS_OS_NAME" in
   ;;
 esac
 
-echo python --version
-echo python3 --version
-echo pip --version
-echo pip3 --version
+python --version
+python3 --version
+pip --version
+pip3 --version
