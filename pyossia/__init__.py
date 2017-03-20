@@ -13,9 +13,14 @@ __release__ = __version__
 # Import libossia python bindings
 from pyossia.ossia_python import *
 
+######################################################
+# Module Constants
+######################################################
+
 # create a list of devices
 # access to __devices__ must be done only by using
-# pyossia.devices()
+# add_device and pyossia.devices() (todo : add remove_device)
+
 __devices__ = {'local':[], 'mirror':[]}
 
 # create a list of datatypes available in OSSIA
@@ -25,6 +30,10 @@ datatypes = {	'float':ValueType.Float,
 				'bool':ValueType.Bool,
 				'string':ValueType.String
 			}
+
+######################################################
+# Module functions / shortcuts to access libossia
+######################################################
 
 def add_device(name, **kwargs):
 	"""
@@ -126,6 +135,19 @@ def get_params(self, node=None):
 	# return the filled list
 	return children
 
+
+def pull(self, callback):
+	"""
+	called when value changed
+	"""
+	self.add_callback(callback)
+
+def push(self, value):
+	"""
+	called to ossia.Address.push_value
+	"""
+	self.push_value(Value(value))
+
 # customize a bit LocalDevice
 # add a new_param /message / return method
 # with kwargs as desired (optional)
@@ -133,3 +155,5 @@ LocalDevice.add_param = add_param
 LocalDevice.expose = expose
 LocalDevice.get_nodes = get_nodes
 LocalDevice.get_params = get_params
+Address.pull = pull
+Address.push = push
