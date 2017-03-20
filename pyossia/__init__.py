@@ -20,10 +20,10 @@ __devices__ = {'local':[], 'mirror':[]}
 
 # create a list of datatypes available in OSSIA
 # maybe this is not necessary, just because 8'm a bit lazy
-datatypes = {	'float':ossia.ValueType.Float,
-				'int':ossia.ValueType.Int,
-				'bool':ossia.ValueType.Bool,
-				'string':ossia.ValueType.String
+datatypes = {	'float':ValueType.Float,
+				'int':ValueType.Int,
+				'bool':ValueType.Bool,
+				'string':ValueType.String
 			}
 
 def add_device(name, **kwargs):
