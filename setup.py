@@ -83,6 +83,19 @@ class CMakeBuild(build_ext):
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
+from distutils.command.install import install as _install
+
+
+def _post_install(dir):
+    from shutil import copyfile
+    copyfile('/usr/local/lib/ossia_python.so', here+'/pyossia/ossia_python.so' )
+
+class install(_install):
+    def run(self):
+        _install.run(self)
+        self.execute(_post_install, (self.install_lib,),
+                     msg="Running post install task")
+
 setup(
   name = 'pyossia',
   version=__version__,
@@ -114,6 +127,9 @@ setup(
   download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
   ext_package='/usr/local/lib',
   ext_modules=[CMakeExtension('ossia_python', sourcedir='./3rdParty/libossia')],
-  cmdclass=dict(build_ext=CMakeBuild),
+      cmdclass={
+      	build_ext: CMakeBuild,
+        'install': install,
+    },
   zip_safe=False,
 )
