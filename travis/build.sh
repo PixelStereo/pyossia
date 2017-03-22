@@ -27,7 +27,7 @@ case ${TOXENV} in
         ;;
 esac
 
-#python setup.py sdist
+python setup.py sdist
 
 
 #ls -lisah dist
