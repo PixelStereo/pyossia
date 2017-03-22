@@ -88,13 +88,17 @@ from distutils.command.install import install as _install
 
 def _post_install(dir):
     from shutil import copyfile
-    copyfile('/usr/local/lib/ossia_python.so', here+'/pyossia/ossia_python.so' )
+    if sys.version_info < (3, 0):
+    	copyfile('/usr/local/lib/ossia_python.so', here+'/pyossia/ossia_python.so' )
+    else:
+    	copyfile('/usr/local/lib/ossia_python.cpython-36m-darwin.so', here+'/pyossia/ossia_python.cpython-36m-darwin.so' )
 
 class install(_install):
     def run(self):
         _install.run(self)
         self.execute(_post_install, (self.install_lib,),
-                     msg="Running post install task")
+                          msg="Running post install task")
+
 
 setup(
   name = 'pyossia',
@@ -127,9 +131,9 @@ setup(
   download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
   ext_package='/usr/local/lib',
   ext_modules=[CMakeExtension('ossia_python', sourcedir='./3rdParty/libossia')],
-      cmdclass={
-      	build_ext: CMakeBuild,
-        'install': install,
-    },
+  cmdclass={
+    'build_ext': CMakeBuild,
+    'install': install,
+  	},
   zip_safe=False,
 )
