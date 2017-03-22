@@ -29,7 +29,6 @@ import platform
 import subprocess
 
 from setuptools.command.build_ext import build_ext
-from distutils.version import LooseVersion
 
 
 class CMakeExtension(Extension):
@@ -44,11 +43,6 @@ class CMakeBuild(build_ext):
         except OSError:
             raise RuntimeError("CMake must be installed to build the following extensions: " +
                                ", ".join(e.name for e in self.extensions))
-
-        if platform.system() == "Windows":
-            cmake_version = LooseVersion(re.search(r'version\s*([\d.]+)', out.decode()).group(1))
-            if cmake_version < '3.1.0':
-                raise RuntimeError("CMake >= 3.1.0 is required on Windows")
 
         for ext in self.extensions:
             self.build_extension(ext)
@@ -83,15 +77,16 @@ class CMakeBuild(build_ext):
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
-from distutils.command.install import install as _install
+from setuptools.command.install import install as _install
+from setuptools.command.develop import develop as _develop
 
 
 def _post_install(dir):
-    from shutil import copyfile
+    from shutil import move as movefile
     if sys.version_info < (3, 0):
-    	copyfile('/usr/local/lib/ossia_python.so', here+'/pyossia/ossia_python.so' )
+    	movefile('/usr/local/lib/ossia_python.so', here+'/pyossia/ossia_python.so' )
     else:
-    	copyfile('/usr/local/lib/ossia_python.cpython-36m-darwin.so', here+'/pyossia/ossia_python.cpython-36m-darwin.so' )
+    	movefile('/usr/local/lib/ossia_python.cpython-36m-darwin.so', here+'/pyossia/ossia_python.cpython-36m-darwin.so' )
 
 class install(_install):
     def run(self):
@@ -99,7 +94,11 @@ class install(_install):
         self.execute(_post_install, (self.install_lib,),
                           msg="Running post install task")
 
-
+class develop(_develop):
+    def run(self):
+        _develop.run(self)
+        self.execute(_post_install, (self.install_lib,),
+                          msg="Running post install task")
 setup(
   name = 'pyossia',
   version=__version__,
@@ -134,6 +133,7 @@ setup(
   cmdclass={
     'build_ext': CMakeBuild,
     'install': install,
+    'develop': develop,
   	},
   zip_safe=False,
 )
