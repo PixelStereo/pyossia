@@ -67,7 +67,7 @@ def add_param(self, name, **kwargs):
 	node = self.add_node(name)
 	datatype = kwargs['datatype']
 	param = node.create_address(datatypes[datatype])
-	print('todo : ' + str(kwargs))
+	#print('todo : ' + str(kwargs))
 	return param
 
 def expose(self, protocol='oscquery', udp_port=3456, ws_port=5678):
