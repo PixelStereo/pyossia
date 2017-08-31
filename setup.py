@@ -60,7 +60,7 @@ class CMakeBuild(build_ext):
                       '-DOSSIA_CI=1',
                       '-DOSSIA_TESTING=0',
                       '-DOSSIA_C=0',
-                      '-DQt5_DIR=/usr/local/Cellar/qt5/5.8.0_1/lib/cmake/Qt5']
+                      '-DQt5_DIR=/usr/local/Cellar/qt5/5.9.1/lib/cmake/Qt5']
 
         cfg = 'Debug' if self.debug else 'Release'
         build_args = ['--config', cfg]
