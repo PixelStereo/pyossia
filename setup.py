@@ -52,7 +52,13 @@ class CMakeBuild(build_ext):
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
                       '-DPYTHON_EXECUTABLE=' + sys.executable, 
                       '-DOSSIA_PD=0',
-                      '-DOSSIA_Qt=0',
+                      '-DOSSIA_MAX=0',
+                      '-DOSSIA_QT=0',
+                      '-DOSSIA_NO_QT=0',
+                      '-DOSSIA_EXAMPLES=0',
+                      '-DOSSIA_STATIC=1',
+                      '-DOSSIA_CI=1',
+                      '-DOSSIA_TESTING=0',
                       '-DOSSIA_C=0',
                       '-DQt5_DIR=/usr/local/Cellar/qt5/5.8.0_1/lib/cmake/Qt5']
 
