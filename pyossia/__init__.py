@@ -28,7 +28,8 @@ __devices__ = {'local':[], 'mirror':[]}
 datatypes = {	'float':ValueType.Float,
 				'int':ValueType.Int,
 				'bool':ValueType.Bool,
-				'string':ValueType.String
+				'string':ValueType.String,
+				'impulse':ValueType.Impulse
 			}
 
 ######################################################
