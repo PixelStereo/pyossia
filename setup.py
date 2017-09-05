@@ -60,6 +60,7 @@ class CMakeBuild(build_ext):
                       '-DOSSIA_PD=0',
                       '-DOSSIA_MAX=0',
                       '-DOSSIA_QT=0',
+                      '-DOSSIA_PYTHON=1',
                       '-DOSSIA_NO_QT=0',
                       '-DOSSIA_EXAMPLES=0',
                       '-DOSSIA_STATIC=1',

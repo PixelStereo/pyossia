@@ -7,7 +7,7 @@ with I/O communication provided by libossia
 """
 
 
-import pyossia as ossia
+from pyossia import *
 
 # create the OSSIA Device with the name provided
 # here for test purpose
@@ -40,12 +40,12 @@ while True:
 	my_float.push_value(ossia.Value(1.1))
 	my_string.push_value(ossia.Value('un uno'))
 	for param in my_device.get_params():
-		print(param.get_address().clone_value().get())
+		print(param.address.clone_value().get())
 	sleep(1)
 	my_bool.push_value(ossia.Value(True))
 	my_int.push_value(ossia.Value(2))
 	my_float.push_value(ossia.Value(2.2))
 	my_string.push_value(ossia.Value('do dos'))
 	for param in my_device.get_params():
-		print(param.get_address().clone_value().get())
+		print(param.address.clone_value().get())
 	sleep(1)

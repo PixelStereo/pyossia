@@ -11,7 +11,7 @@ del get_versions
 __release__ = __version__
 
 # Import libossia python bindings
-import ossia_python as ossia
+from pyossia import ossia_python as ossia
 
 ######################################################
 # Module Constants
@@ -38,16 +38,16 @@ datatypes = {	'float':ossia.ValueType.Float,
 
 def add_device(name, **kwargs):
 	"""
-	create a node and make a create_address on the node
+	create a node and make a create_parameter on the node
 	"""
 	# TODO :  raise an exception if mode is not provided as kwargs
 	mode = kwargs['mode']
 	if mode == 'local':
-		device = LocalDevice(name)
+		device = ossia.LocalDevice(name)
 	elif mode == 'mirror':
 		target = kwargs['target']
 		udp_port = kwargs['udp_port']
-		device = OSCQueryDevice(name, target, udp_port)
+		device = ossia.OSCQueryDevice(name, target, udp_port)
 	else:
 		print(mode + ' is not implemented')
 	__devices__[mode].append(device)
@@ -63,11 +63,11 @@ def devices(device_type='local'):
 
 def add_param(self, name, **kwargs):
 	"""
-	create a node and make a create_address on the node
+	create a node and make a create_parameter on the node
 	"""
 	node = self.add_node(name)
 	datatype = kwargs['datatype']
-	param = node.create_address(datatypes[datatype])
+	param = node.create_parameter(datatypes[datatype])
 	#print('todo : ' + str(kwargs))
 	return param
 
@@ -90,7 +90,7 @@ def get_nodes(self, node=None, depth=0):
 	TODO : make depth levels in the code / it does not work for the moment
 	"""
 	if not node:
-		node = self.get_root_node()
+		node = self.root_node
 	# create an empty list to return
 	children = []
 	# counter is used to follow depth-leveled exploration
@@ -119,14 +119,14 @@ def get_params(self, node=None):
 	return a list of all params for the device
 	"""
 	if not node:
-		node = self.get_root_node()
+		node = self.root_node
 	children = []
 	# a function to iterate on node's tree recursively
 	def iterate_on_children(node):
 		# check if there is children
 		for child in node.children():
 			# if the node is a param, it has an address
-			if child.get_address():
+			if child.address:
 				# add the child to the children list to return
 				children.append(child)
 			# do the same for each child

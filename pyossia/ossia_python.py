@@ -12,6 +12,7 @@ def __bootstrap__():
         __file__ = pkg_resources.resource_filename(__name__,'ossia_python.so')
     else:
         __file__ = pkg_resources.resource_filename(__name__,'ossia_python.cpython-36m-darwin.so')
+        print(__file__)
     __loader__ = None; del __bootstrap__, __loader__
     imp.load_dynamic(__name__,__file__)
 __bootstrap__()
