@@ -13,9 +13,14 @@ __release__ = __version__
 # Import libossia python bindings
 import ossia_python as ossia
 
+######################################################
+# Module Constants
+######################################################
+
 # create a list of devices
 # access to __devices__ must be done only by using
-# pyossia.devices()
+# add_device and pyossia.devices() (todo : add remove_device)
+
 __devices__ = {'local':[], 'mirror':[]}
 
 # create a list of datatypes available in OSSIA
@@ -23,8 +28,13 @@ __devices__ = {'local':[], 'mirror':[]}
 datatypes = {	'float':ossia.ValueType.Float,
 				'int':ossia.ValueType.Int,
 				'bool':ossia.ValueType.Bool,
-				'string':ossia.ValueType.String
+				'string':ossia.ValueType.String,
+				'impulse':ossia.ValueType.Impulse
 			}
+
+######################################################
+# Module functions / shortcuts to access libossia
+######################################################
 
 def add_device(name, **kwargs):
 	"""
@@ -33,11 +43,11 @@ def add_device(name, **kwargs):
 	# TODO :  raise an exception if mode is not provided as kwargs
 	mode = kwargs['mode']
 	if mode == 'local':
-		device = ossia.LocalDevice(name)
+		device = LocalDevice(name)
 	elif mode == 'mirror':
 		target = kwargs['target']
 		udp_port = kwargs['udp_port']
-		device = ossia.OSCQueryDevice(name, target, udp_port)
+		device = OSCQueryDevice(name, target, udp_port)
 	else:
 		print(mode + ' is not implemented')
 	__devices__[mode].append(device)
@@ -58,7 +68,7 @@ def add_param(self, name, **kwargs):
 	node = self.add_node(name)
 	datatype = kwargs['datatype']
 	param = node.create_address(datatypes[datatype])
-	print('todo : ' + str(kwargs))
+	#print('todo : ' + str(kwargs))
 	return param
 
 def expose(self, protocol='oscquery', udp_port=3456, ws_port=5678):
@@ -126,6 +136,19 @@ def get_params(self, node=None):
 	# return the filled list
 	return children
 
+
+def pull(self, callback):
+	"""
+	called when value changed
+	"""
+	self.add_callback(callback)
+
+def push(self, value):
+	"""
+	called to ossia.Address.push_value
+	"""
+	self.push_value(Value(value))
+
 # customize a bit LocalDevice
 # add a new_param /message / return method
 # with kwargs as desired (optional)
@@ -133,3 +156,5 @@ ossia.LocalDevice.add_param = add_param
 ossia.LocalDevice.expose = expose
 ossia.LocalDevice.get_nodes = get_nodes
 ossia.LocalDevice.get_params = get_params
+ossia.Address.pull = pull
+ossia.Address.push = push
