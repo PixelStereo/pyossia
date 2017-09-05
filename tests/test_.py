@@ -25,11 +25,16 @@ class TestAll(unittest.TestCase):
     def test_version(self):
         announcement(__version__)
 
+    def test_float(self):
+        self.assertEqual(my_float.value.get(), 0.0)
+        my_float.push(0.123456)
+        self.assertAlmostEqual(my_float.value.get_float(), 0.123456)
+
     def test_device(self):
         self.assertEqual(test_device.__class__.__name__, 'LocalDevice')
         # QUESTION : How to test the name of the device? Next one is node, but it might be Ossia Test Device
         # self.assertEqual(test_device.get_root_node().get_address(), 'Ossia Test Device')
-        self.assertEqual(len(test_device.get_root_node().children()), 1)
+        self.assertEqual(len(test_device.root_node.children()), 1)
         self.assertEqual(len(test_device.get_nodes()), 1)
         self.assertEqual(len(test_device.get_params()), 4)
 

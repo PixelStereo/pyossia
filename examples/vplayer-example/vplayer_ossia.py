@@ -5,7 +5,7 @@
 import sys, os
 sys.path.append(os.path.abspath("../.."))
 
-import pyossia as ossia
+from pyossia import *
 
 class VPlayer(object):
 	"""
@@ -15,13 +15,13 @@ class VPlayer(object):
 		super(VPlayer, self).__init__()
 		# init play property to False
 		self._play_status = device.add_node('play_status')
-		self._play_status = self._play_status.create_address(ossia.ValueType.Bool)
+		self._play_status = self._play_status.create_parameter(ossia.ValueType.Bool)
 		self._play_status.push_value(ossia.Value(False))
 		self._play = device.add_node('play')
-		self._play = self._play.create_address(ossia.ValueType.Bool)
+		self._play = self._play.create_parameter(ossia.ValueType.Bool)
 		self._elapsed = device.add_node('elapsed')
-		self._elapsed = self._elapsed.create_address(ossia.ValueType.Float)
-		self._elapsed.set_access_mode(ossia.AccessMode.Get)
+		self._elapsed = self._elapsed.create_parameter(ossia.ValueType.Float)
+		self._elapsed.access_mode = ossia.AccessMode.Get
 
 	def play(self):
 		"""

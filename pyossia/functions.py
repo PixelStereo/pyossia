@@ -73,7 +73,7 @@ def ossia_message(Class, key, OssiaNode):
 	ossia_node = OssiaNode.add_node(key)
 	# attach a value to this address
 	ossia_address = ossia_node.create_address(ossia.ValueType.Impulse)
-	ossia_address.set_access_mode(ossia.AccessMode.Set)
+	ossia_address.access_mode = ossia.AccessMode.Set
 	function_to_enhance = getattr(Class, key)
 	@wraps(function_to_enhance)
 	def new_wrapper(*args, **kwargs):
@@ -97,7 +97,7 @@ def ossia_return(Class, key, OssiaNode):
 	ossia_node = OssiaNode.add_node(key)
 	# attach a value to this address
 	ossia_address = ossia_node.create_address(ossia.ValueType.Float)
-	ossia_address.set_access_mode(ossia.AccessMode.Get)
+	ossia_address.access_mode = ossia.AccessMode.Get
 	# Override the Property of this parameter in the Original Class
 	puller = getattr(Class, key)
 	puller = getattr(puller, 'fget')

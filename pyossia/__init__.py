@@ -147,7 +147,7 @@ def push(self, value):
 	"""
 	called to ossia.Address.push_value
 	"""
-	self.push_value(Value(value))
+	self.push_value(ossia.Value(value))
 
 # customize a bit LocalDevice
 # add a new_param /message / return method
