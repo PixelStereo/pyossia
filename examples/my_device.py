@@ -11,7 +11,7 @@ import pyossia as ossia
 
 # create the OSSIA Device with the name provided
 # here for test purpose
-my_device = ossia.add_device('PyOssia Device', mode='local')
+my_device = ossia.LocalDevice('PyOssia Device')
 my_device.expose(protocol='oscquery', udp_port=3456, ws_port=5678)
 my_int = my_device.add_param('test/value/int', datatype='int')
 my_float = my_device.add_param('test/value/float', datatype='float')
