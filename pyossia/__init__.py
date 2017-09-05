@@ -23,13 +23,16 @@ from pyossia import ossia_python as ossia
 
 __devices__ = {'local':[], 'mirror':[]}
 
-# create a list of datatypes available in OSSIA
+# create a list of value_types available in OSSIA
 # maybe this is not necessary, just because 8'm a bit lazy
-datatypes = {	'float':ossia.ValueType.Float,
+value_types = {	'float':ossia.ValueType.Float,
 				'int':ossia.ValueType.Int,
 				'bool':ossia.ValueType.Bool,
 				'string':ossia.ValueType.String,
-				'impulse':ossia.ValueType.Impulse
+				'impulse':ossia.ValueType.Impulse,
+				'list':ossia.ValueType.List,
+				'tuple':ossia.ValueType.Tuple,
+				'vec3f':ossia.ValueType.Vec3f,
 			}
 
 ######################################################
@@ -66,8 +69,8 @@ def add_param(self, name, **kwargs):
 	create a node and make a create_parameter on the node
 	"""
 	node = self.add_node(name)
-	datatype = kwargs['datatype']
-	param = node.create_parameter(datatypes[datatype])
+	value_type = kwargs['value_type']
+	param = node.create_parameter(value_types[value_type])
 	#print('todo : ' + str(kwargs))
 	return param
 
@@ -126,7 +129,7 @@ def get_params(self, node=None):
 		# check if there is children
 		for child in node.children():
 			# if the node is a param, it has an parameter
-			if child.address:
+			if child.address.__class__.__name__ == 'Parameter':
 				# add the child to the children list to return
 				children.append(child)
 			# do the same for each child

@@ -12,8 +12,8 @@ my_device = ossia.LocalDevice('my_video_device')
 MyClass = ossia_model(MyClass, my_device)
 """
 
+from pyossia import ossia_python as ossia
 
-import ossia_python as ossia
 from functools import wraps
 
 
@@ -40,11 +40,11 @@ def add_pull(function_to_enhance, address=None):
     def new_wrapper(self):
         result = function_to_enhance(self)
         return result
-	self.add_callback(bool_value_callback)
     # attach a callback function to the boolean address
-    def bool_value_callback(v):
+    def value_callback(v):
     	result = v.get()
     	return result
+    address.add_callback(value_callback)
 	# return the new_wrapper when modify Original Class
     return new_wrapper
 
@@ -55,7 +55,7 @@ def ossia_param(Class, key, OssiaNode):
 	# create a node for this parameter
 	ossia_node = OssiaNode.add_node(key)
 	# attach a value to this address
-	ossia_address = ossia_node.create_address(ossia.ValueType.Bool)
+	ossia_address = ossia_node.create_parameter(ossia.ValueType.Bool)
 	# Override the Property of this parameter in the Original Class
 	puller = getattr(Class, key)
 	puller = getattr(puller, 'fget')
@@ -72,7 +72,7 @@ def ossia_message(Class, key, OssiaNode):
 	# create a node for this parameter
 	ossia_node = OssiaNode.add_node(key)
 	# attach a value to this address
-	ossia_address = ossia_node.create_address(ossia.ValueType.Impulse)
+	ossia_address = ossia_node.create_parameter(ossia.ValueType.Impulse)
 	ossia_address.access_mode = ossia.AccessMode.Set
 	function_to_enhance = getattr(Class, key)
 	@wraps(function_to_enhance)
@@ -96,7 +96,7 @@ def ossia_return(Class, key, OssiaNode):
 	# create a node for this parameter
 	ossia_node = OssiaNode.add_node(key)
 	# attach a value to this address
-	ossia_address = ossia_node.create_address(ossia.ValueType.Float)
+	ossia_address = ossia_node.create_parameter(ossia.ValueType.Float)
 	ossia_address.access_mode = ossia.AccessMode.Get
 	# Override the Property of this parameter in the Original Class
 	puller = getattr(Class, key)

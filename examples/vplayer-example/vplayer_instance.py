@@ -2,12 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
+# append pyossia path
+import sys, os
+sys.path.append(os.path.abspath("../.."))
+from pyossia import *
+
 from vplayer.player import VPlayer
 from pyossia.functions import ossia_model
-from ossia_python import LocalDevice
 
 # create a device for this python program
-ossia_device = LocalDevice("V Player")
+ossia_device = ossia.LocalDevice("V Player")
 # enable OSCQuery communication for our device
 ossia_device.create_oscquery_server(3456, 5678)
 
