@@ -31,7 +31,6 @@ value_types = {	'float':ossia.ValueType.Float,
 				'string':ossia.ValueType.String,
 				'impulse':ossia.ValueType.Impulse,
 				'list':ossia.ValueType.List,
-				'tuple':ossia.ValueType.Tuple,
 				'vec3f':ossia.ValueType.Vec3f,
 			}
 
