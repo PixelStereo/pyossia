@@ -125,7 +125,7 @@ def get_params(self, node=None):
 	def iterate_on_children(node):
 		# check if there is children
 		for child in node.children():
-			# if the node is a param, it has an address
+			# if the node is a param, it has an parameter
 			if child.address:
 				# add the child to the children list to return
 				children.append(child)
@@ -145,8 +145,9 @@ def pull(self, callback):
 
 def push(self, value):
 	"""
-	called to ossia.Address.push_value
+	called to ossia.parameter.push_value
 	"""
+	print(value)
 	self.push_value(ossia.Value(value))
 
 # customize a bit LocalDevice
@@ -156,5 +157,5 @@ ossia.LocalDevice.add_param = add_param
 ossia.LocalDevice.expose = expose
 ossia.LocalDevice.get_nodes = get_nodes
 ossia.LocalDevice.get_params = get_params
-ossia.Address.pull = pull
-ossia.Address.push = push
+ossia.Parameter.pull = pull
+ossia.Parameter.push = push

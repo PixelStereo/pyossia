@@ -22,7 +22,6 @@ my_bool.push_value(ossia.Value(True))
 my_float.push_value(ossia.Value(2.22))
 my_int.push_value(ossia.Value(222))
 my_string.push_value(ossia.Value('hello world!'))
-print(1)
 
 #my_device = ossia.LocalDevice('PyOssia Device')
 # add param will create a python property called my_string
@@ -37,15 +36,15 @@ from time import sleep
 while True:
 	my_bool.push_value(ossia.Value(False))
 	my_int.push_value(ossia.Value(1))
-	my_float.push_value(ossia.Value(1.1))
+	my_float.push_value(ossia.Value(1.12345678))
 	my_string.push_value(ossia.Value('un uno'))
 	for param in my_device.get_params():
-		print(param.address.clone_value().get())
-	sleep(1)
+		print(param.parameter.clone_value().get())
+	sleep(0.1)
 	my_bool.push_value(ossia.Value(True))
 	my_int.push_value(ossia.Value(2))
-	my_float.push_value(ossia.Value(2.2))
+	my_float.push_value(ossia.Value(2.2456732189))
 	my_string.push_value(ossia.Value('do dos'))
 	for param in my_device.get_params():
-		print(param.address.clone_value().get())
-	sleep(1)
+		print(param.parameter.clone_value().get())
+	sleep(0.1)
