@@ -60,8 +60,20 @@ def devices(device_type='local'):
 	# return a list of device
 	return __devices__[device_type]
 
+
+def expose(self, protocol='oscquery', udp_port=3456, ws_port=5678):
+	"""
+	expose the device to the given <protocol>
+	# TODO : Implement other protocol (serial, midi, osc, etc…)
+	"""
+	if protocol == 'oscquery':
+		self.create_oscquery_server(udp_port, ws_port)
+	else:
+		print('ossia warning : ' + protocol + ' is not implemented')
+
 ######################################################
-# Following functions will be add to libossia bindings
+# Following functions are here for conveniance over ossia_python bindings
+# and might be add to libossia bindings later.
 ######################################################
 
 def add_param(self, name, **kwargs):
@@ -71,17 +83,9 @@ def add_param(self, name, **kwargs):
 	node = self.add_node(name)
 	value_type = kwargs['value_type']
 	param = node.create_parameter(value_types[value_type])
-	#print('todo : ' + str(kwargs))
+	# TODO : Checks kwargs and please set value as required
+	# such as domain, clipmode, accessmode, default value etc…
 	return param
-
-def expose(self, protocol='oscquery', udp_port=3456, ws_port=5678):
-	"""
-	expose the device to the given <protocol>
-	"""
-	if protocol == 'oscquery':
-		self.create_oscquery_server(udp_port, ws_port)
-	else:
-		print('ossia warning : ' + protocol + ' is not implemented')
 
 def get_nodes(self, node=None, depth=0):
 	"""
@@ -91,6 +95,10 @@ def get_nodes(self, node=None, depth=0):
 	depth=1 means explore only the first level
 	(only the children of the given <node>)
 	TODO : make depth levels in the code / it does not work for the moment
+	# check the required depth
+	counter += 1
+	if depth == counter and depth != 0:
+		break
 	"""
 	if not node:
 		node = self.root_node
@@ -108,11 +116,7 @@ def get_nodes(self, node=None, depth=0):
 			if not child.address.__class__.__name__ == 'Parameter':
 				# add the child to the children list to return
 				children.append(child)
-				# check the required depth
-				if depth == counter and depth != 0:
-					break
-				# do the same for each child
-				counter += 1
+			# do the same for each child
 			iterate_nodes(child, counter)
 	# do the research
 	iterate_nodes(node, counter)
@@ -141,13 +145,6 @@ def get_parameters(self, node=None):
 	# return the filled list
 	return children
 
-
-def pull(self, callback):
-	"""
-	called when value changed
-	"""
-	self.add_callback(callback)
-
 def push(self, value):
 	"""
 	called to ossia.parameter.push_value
@@ -161,5 +158,4 @@ ossia.LocalDevice.add_param = add_param
 ossia.LocalDevice.expose = expose
 ossia.LocalDevice.get_nodes = get_nodes
 ossia.LocalDevice.get_parameters = get_parameters
-ossia.Parameter.pull = pull
 ossia.Parameter.push = push
