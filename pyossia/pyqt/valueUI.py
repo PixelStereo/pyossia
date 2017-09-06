@@ -57,7 +57,10 @@ class FloatUI(AbstractValue):
         super(FloatUI, self).__init__(*args, **kwargs)
         self.value = QSlider(Qt.Horizontal, None)
         self.layout.addWidget(self.value)
-        self.value.setRange(0, 32768)
+        if self.parameter.have_domain():
+            self.value.setRange(self.parameter.domain.min.get()*32768, self.parameter.domain.max.get()*32768)
+        else:
+            self.value.setRange(0, 32768)
         def parameter_push(value):
             value = float(value/32768)
             self.parameter.push(value)
@@ -77,7 +80,10 @@ class IntUI(AbstractValue):
         super(IntUI, self).__init__(*args, **kwargs)
         self.value = QSlider(Qt.Horizontal, None)
         self.layout.addWidget(self.value)
-        self.value.setRange(0, 100)
+        if self.parameter.have_domain():
+            self.value.setRange(self.parameter.domain.min.get(), self.parameter.domain.max.get())
+        else:
+            self.value.setRange(0, 100)
         self.value.valueChanged.connect(self.parameter.push)
         def parameter_pull(value):
             self.value.setValue(value.get())

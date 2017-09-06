@@ -83,6 +83,8 @@ def add_param(self, name, **kwargs):
 	node = self.add_node(name)
 	value_type = kwargs['value_type']
 	param = node.create_parameter(value_types[value_type])
+	if 'domain' in kwargs.keys():
+		param.make_domain(ossia.Value(kwargs['domain'][0]), ossia.Value(kwargs['domain'][1]))
 	# TODO : Checks kwargs and please set value as required
 	# such as domain, clipmode, accessmode, default value etc…
 	return param
