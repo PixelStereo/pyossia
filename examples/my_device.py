@@ -22,7 +22,7 @@ my_list = my_device.add_param('test/value/list', value_type='list', default=[441
 my_char = my_device.add_param('test/value/char', value_type='char', default=chr(97))
 
 print('---PARAMETERS---')
-for param in my_device.get_params():
+for param in my_device.get_parameters():
 	print(param)
 print('---NODES---')
 for node in my_device.get_nodes():
