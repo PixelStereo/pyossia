@@ -45,7 +45,7 @@ setup(
   # simple. Or you can use find_packages().
   packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
   # useless ?? package_data={'ossia_python': ['ossia_python/*']},
-  install_requires=['zeroconf', 'pybind11>=1.7', 'Cython', 'pyqt5'],
+  install_requires=['pyqt5'],
   extras_require={
     'test': ['coverage']
     },
