@@ -147,13 +147,6 @@ def get_parameters(self, node=None):
 	# return the filled list
 	return children
 
-
-def pull(self, callback):
-	"""
-	called when value changed
-	"""
-	self.add_callback(callback)
-
 def push(self, value):
 	"""
 	called to ossia.parameter.push_value
@@ -167,5 +160,4 @@ ossia.LocalDevice.add_param = add_param
 ossia.LocalDevice.expose = expose
 ossia.LocalDevice.get_nodes = get_nodes
 ossia.LocalDevice.get_parameters = get_parameters
-ossia.Parameter.pull = pull
 ossia.Parameter.push = push
