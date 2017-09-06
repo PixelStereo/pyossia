@@ -21,3 +21,5 @@ pyossia does not have yet a stable version
 `cd pyossia     `    
 
 `pip install -ve .    `
+
+'-e' option will just add the git repo to your python path
