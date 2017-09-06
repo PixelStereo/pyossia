@@ -33,7 +33,7 @@ def add_paramUI(ossia_parameter):
     elif ossia_parameter.value_type == ossia.ValueType.String:
         paramUI = StringUI(ossia_parameter)
     elif ossia_parameter.value_type == ossia.ValueType.Vec3f:
-        paramUI = StringUI(ossia_parameter)
+        paramUI = Vec3fUI(ossia_parameter)
     elif ossia_parameter.value_type == ossia.ValueType.List:
         paramUI = StringUI(ossia_parameter)
     elif ossia_parameter.value_type == ossia.ValueType.Char:

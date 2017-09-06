@@ -71,6 +71,42 @@ class FloatUI(AbstractValue):
         self.parameter.add_callback(parameter_pull)
         parameter_pull(self.parameter.clone_value())
 
+class Vec3fUI(AbstractValue):
+    """
+    docstring for Vec3f
+    """
+    def __init__(self, *args, **kwargs):
+        super(Vec3fUI, self).__init__(*args, **kwargs)
+        self.value1 = QDial()
+        self.value2 = QDial()
+        self.value3 = QDial()
+        self.value1.setValue(1)
+        self.value2.setValue(1)
+        self.value3.setValue(1)
+        self.value1.setFixedSize(35, 35)
+        self.value2.setFixedSize(35, 35)
+        self.value3.setFixedSize(35, 35)
+        self.value1.setRange(0, 32768)
+        self.value2.setRange(0, 32768)
+        self.value3.setRange(0, 32768)
+        def parameter_push():
+            self.parameter.push([self.value1.value()/32768, self.value2.value()/32768, self.value3.value()/32768])
+        self.value1.valueChanged.connect(parameter_push)
+        self.value2.valueChanged.connect(parameter_push)
+        self.value3.valueChanged.connect(parameter_push)
+        self.layout.addWidget(self.value1)
+        self.layout.addWidget(self.value2)
+        self.layout.addWidget(self.value3)
+        def parameter_pull(value):
+            value1 = value.get()[0]*32768
+            value2 = value.get()[1]*32768
+            value3 = value.get()[2]*32768
+            self.value1.setValue(value1)
+            self.value2.setValue(value2)
+            self.value3.setValue(value3)
+        self.parameter.add_callback(parameter_pull)
+        parameter_pull(self.parameter.clone_value())
+
 
 class IntUI(AbstractValue):
     """
@@ -99,6 +135,8 @@ class StringUI(AbstractValue):
         self.value = QLineEdit()
         self.value.setAttribute(Qt.WA_MacShowFocusRect, 0)
         self.layout.addWidget(self.value)
+        if self.parameter.have_domain():
+            print(self.parameter.domain.min)
         self.value.textEdited.connect(self.parameter.push)
         def parameter_pull(value):
             self.value.setText(str(value.get()))
