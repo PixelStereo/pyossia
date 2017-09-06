@@ -99,21 +99,23 @@ def get_nodes(self, node=None, depth=0):
 	# counter is used to follow depth-leveled exploration
 	counter = 0
 	# a function to iterate on node's tree recursively
-	def iterate_on_children(node, counter):
+	def iterate_nodes(node, counter):
 		"""
 		recursive exploration of the tree
 		"""
 		for child in node.children():
-			# add the child to the children list to return
-			children.append(child)
-			# check the required depth
-			if depth == counter:
-				break
-			# do the same for each child
-			counter += 1
-			iterate_on_children(child, counter)
+			# if the node is a param, it has an parameter
+			if not child.address.__class__.__name__ == 'Parameter':
+				# add the child to the children list to return
+				children.append(child)
+				# check the required depth
+				if depth == counter and depth != 0:
+					break
+				# do the same for each child
+				counter += 1
+			iterate_nodes(child, counter)
 	# do the research
-	iterate_on_children(node, counter)
+	iterate_nodes(node, counter)
 	# return the filled list
 	return children
 
@@ -125,7 +127,7 @@ def get_params(self, node=None):
 		node = self.root_node
 	children = []
 	# a function to iterate on node's tree recursively
-	def iterate_on_children(node):
+	def iterate_parameters(node):
 		# check if there is children
 		for child in node.children():
 			# if the node is a param, it has an parameter
@@ -133,9 +135,9 @@ def get_params(self, node=None):
 				# add the child to the children list to return
 				children.append(child)
 			# do the same for each child
-			iterate_on_children(child)
+			iterate_parameters(child)
 	# do the walk
-	iterate_on_children(node)
+	iterate_parameters(node)
 	# return the filled list
 	return children
 
@@ -150,7 +152,6 @@ def push(self, value):
 	"""
 	called to ossia.parameter.push_value
 	"""
-	print(value)
 	self.push_value(ossia.Value(value))
 
 # customize a bit LocalDevice

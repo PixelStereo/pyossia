@@ -21,6 +21,13 @@ my_vec3f = my_device.add_param('test/value/vec3f', value_type='vec3f', default=(
 my_list = my_device.add_param('test/value/list', value_type='list', default=[44100, "my_track.wav", 0.6])
 my_char = my_device.add_param('test/value/char', value_type='char', default=chr(97))
 
+print('---PARAMETERS---')
+for param in my_device.get_params():
+	print(param)
+print('---NODES---')
+for node in my_device.get_nodes():
+	print(node)
+
 from time import sleep
 while True:
 	pass
