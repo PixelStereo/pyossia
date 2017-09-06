@@ -32,6 +32,7 @@ value_types = {	'float':ossia.ValueType.Float,
 				'impulse':ossia.ValueType.Impulse,
 				'list':ossia.ValueType.List,
 				'vec3f':ossia.ValueType.Vec3f,
+				'char':ossia.ValueType.Char,
 			}
 
 ######################################################
