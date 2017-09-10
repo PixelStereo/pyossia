@@ -44,7 +44,22 @@ before_install:
 
 install: ./scripts/deps.sh
 
-script: ./scripts/build.sh
+script:
+  - ./scripts/build.sh
+  - cd tests
+  # codacy
+  - coverage run --omit ../pybush/_version.py --omit ../versioneer.py  --include=../pybush/"*" test_.py
+  - coverage xml
+  - coverage report -m
+  - python-codacy-coverage -r coverage.xml
+  # build the documentation
+  - cd ../
+  - travis-sphinx build
+
+after_success: 
+  - travis-sphinx deploy
+  - cd tests
+  - coveralls
 
 deploy:
   provider: releases

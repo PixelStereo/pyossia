@@ -7,6 +7,11 @@ case "$TRAVIS_OS_NAME" in
     case "${TOXENV}" in
         py27)
           sudo apt-get -y install python python-setuptools libpython2.7-dev 
+          pip install coverage
+          # install codacy tools
+          pip install codacy-coverage
+          # install to publish documentation from push or tag
+          pip install travis-sphinx
             ;;
         py34)
           sudo apt-get -y install python3 python3-setuptools libpython3.4-dev 
@@ -18,7 +23,6 @@ case "$TRAVIS_OS_NAME" in
           sudo apt-get -y install python3 python3-setuptools libpython3.6-dev 
             ;;
     esac
-    sudo apt-get -y install libboost-all-dev
   ;;
   osx)
     case "${TOXENV}" in
@@ -33,4 +37,3 @@ case "$TRAVIS_OS_NAME" in
     esac
   ;;
 esac
-
