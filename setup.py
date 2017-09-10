@@ -19,7 +19,9 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 # get current version
 import versioneer
+
 __version__ = versioneer.get_version()
+
 
 setup(
   name = 'pyossia',
@@ -28,6 +30,7 @@ setup(
   long_description=long_description,
   url='https://github.com/PixelStereo/pyossia',
   author = 'Pixel Stereo',
+  author_email = 'contact@pixelstereo.com',
   license='GPLv3+',
   classifiers = [
     'Development Status :: 2 - Pre-Alpha',
