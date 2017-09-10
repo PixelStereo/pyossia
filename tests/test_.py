@@ -4,7 +4,10 @@
 import unittest
 import os, sys
 
-from pyossia import __version__, add_device
+# import pyossia module
+from pyossia import *
+
+# load my_device example, which contains one instance of each type of parameter
 from examples.my_device import *
 
 
