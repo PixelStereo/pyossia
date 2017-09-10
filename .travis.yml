@@ -8,22 +8,6 @@ osx_image: xcode8.2
 dist: trusty
 sudo: required
 
-addons:
-  apt:
-    sources:
-    - cmake
-    - cmake-data
-    - sourceline: 'ppa:nschloe/cmake-nightly'
-    - sourceline: 'deb http://ppa.launchpad.net/nschloe/cmake-nightly/ubuntu trusty main'
-    - sourceline: 'deb-src http://ppa.launchpad.net/nschloe/cmake-nightly/ubuntu trusty main'
-    - key_url: 'http://keyserver.ubuntu.com/pks/lookup?&op=get&search=0x870AE7423A7328FE0A1F1670ECD154D280FEB8AC'
-
-addons:
-  apt:
-    packages:
-    - cmake
-    - cmake-data
-
 matrix:
   exclude:
     - os: linux
@@ -75,3 +59,6 @@ deploy:
     tags: true
     all_branches: true
     repo: PixelStereo/pyossia
+    condition: $TOXEN = py27
+    condition: $TRAVIS_OS_NAME = linux
+
