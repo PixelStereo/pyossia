@@ -21,8 +21,10 @@ import sphinx_rtd_theme
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../../..'))
-from pyossia import __version__, __release__
-
+from pyossia._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
+__release__ = __version__
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
