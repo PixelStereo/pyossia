@@ -4,7 +4,7 @@ case "${TOXENV}" in
     py27)
         sudo apt-get install python
         pip install -ve .
-
+        pandoc --from=markdown --to=rst --output=README README.md
         ;;
     py34)
         sudo apt-get install python3
@@ -20,7 +20,7 @@ case "${TOXENV}" in
         ;;
 esac
 
-pandoc --from=markdown --to=rst --output=README README.md
+
 
 echo ''
 echo ''
