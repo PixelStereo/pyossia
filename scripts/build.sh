@@ -22,12 +22,24 @@ esac
 
 echo ''
 echo ''
-echo ''
 echo '-------------------------------------'
 echo ' ----- MAKE THE WHEEL !!!!!!!! ------'
 echo ''
 echo ''
-python setup.py sdist
+
+case "${TOXENV}" in
+    py27)
+        python setup.py sdist
+        ;;
+    py34)
+        python3 setup.py sdist
+        ;;
+    py35)
+        python3 setup.py sdist
+        ;;
+    py36)
+        python3 setup.py sdist
+esac
 
 
 ls -lisah ./dist

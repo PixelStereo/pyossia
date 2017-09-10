@@ -52,7 +52,7 @@ matrix:
 before_install:
 - source ./scripts/split_repo_slug.sh
 
-install: ./scripts/deps.sh
+install: echo 'nothing to de now !'
 
 script: ./scripts/build.sh
 

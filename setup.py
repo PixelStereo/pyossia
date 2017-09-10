@@ -47,11 +47,11 @@ setup(
   # You can just specify the packages manually here if your project is
   # simple. Or you can use find_packages().
   packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
-  # useless ?? package_data={'ossia_python': ['ossia_python/*']},
+  package_data={'ossia_python': ['ossia_python.so']},
   install_requires=['pyqt5'],
   extras_require={
     'test': ['coverage']
     },
   download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
-  zip_safe=False,
+  zip_safe=True,
 )
