@@ -48,7 +48,7 @@ script:
   - ./scripts/build.sh
   - cd tests
   # codacy
-  - coverage run --omit ../pybush/_version.py --omit ../versioneer.py  --include=../pybush/"*" test_.py
+  - coverage run --omit ../${REPO}/_version.py --omit ../versioneer.py  --include=../${REPO}/"*" test_.py
   - coverage xml
   - coverage report -m
   - python-codacy-coverage -r coverage.xml
