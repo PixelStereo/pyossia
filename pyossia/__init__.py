@@ -5,12 +5,14 @@
 pyossia module will add usefull access for end users to C++ binded objects of libossia
 """
 
+# these few lines are used to get versionning from git
 from ._version import get_versions
 __version__ = get_versions()['version']
 del get_versions
 __release__ = __version__
 
 # Import libossia python bindings
+# the ossia_python.so file must be in the pyossia module
 from pyossia import ossia_python as ossia
 
 ######################################################
@@ -115,7 +117,7 @@ def get_nodes(self, node=None, depth=0):
 		"""
 		for child in node.children():
 			# if the node is a param, it has an parameter
-			if not child.address.__class__.__name__ == 'Parameter':
+			if not child.parameter.__class__.__name__ == 'Parameter':
 				# add the child to the children list to return
 				children.append(child)
 			# do the same for each child
@@ -137,7 +139,7 @@ def get_parameters(self, node=None):
 		# check if there is children
 		for child in node.children():
 			# if the node is a param, it has an parameter
-			if child.address.__class__.__name__ == 'Parameter':
+			if child.parameter.__class__.__name__ == 'Parameter':
 				# add the child to the children list to return
 				children.append(child)
 			# do the same for each child
@@ -152,6 +154,7 @@ def push(self, value):
 	called to ossia.parameter.push_value
 	"""
 	self.push_value(ossia.Value(value))
+
 
 # customize a bit LocalDevice
 # add a new_param /message / return method

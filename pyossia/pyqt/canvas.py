@@ -57,13 +57,16 @@ class Canvas(QGroupBox):
         self.layout.setContentsMargins(0, 0, 0, 0);
         self.device = None
         self.setLayout(self.layout)
+        self.setup(args, kwargs)
+
+    def setup(self, args, kwargs):
         if 'device' in kwargs.keys():
             self.device = kwargs['device']
             # set title for the 
             self.setTitle(str(self.device))
             #self.setTitle(str(self.device.get_nodes()[0]))
-            for param in self.device.get_parameters():
-                paramUI = add_paramUI(param.address)
+            for child in self.device.get_parameters():
+                paramUI = add_paramUI(child.parameter)
                 self.layout.addWidget(paramUI)
 
         # set width and height for this device/groupboxs
@@ -78,4 +81,3 @@ class Canvas(QGroupBox):
                     self.setFixedWidth(305)
                 else:
                     self.setFixedWidth(kwargs['width'])
-

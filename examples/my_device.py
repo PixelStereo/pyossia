@@ -25,7 +25,7 @@ print('--- -LIST ALL NODES AND PARAMETERS- ---')
 print()
 for node in my_device.get_nodes():
 	print('-- -NODE : ' + str(node))
-	for param in node.children():
-		if param.address:
-			print('------ -parameter : ' + str(param) + ' : ' + str(param.address.clone_value().get()))
+	for child in node.children():
+		if child.parameter:
+			print('------ -parameter : ' + str(child) + ' : ' + str(child.parameter.clone_value().get()))
 	print()
