@@ -12,7 +12,9 @@ from pyossia import *
 # create the OSSIA Device with the name provided
 # here for test purpose
 my_device = ossia.LocalDevice('PyOssia Device')
-my_device.expose(protocol='oscquery', udp_port=3456, ws_port=5678)
+my_device.expose(listening_port=3456, sending_port=5678)
+#my_device.expose(protocol='osc', listening_port=3456, sending_port=5678)
+#my_device.expose(protocol='osc', listening_port=9997, sending_port=9997)
 my_int = my_device.add_param('test/value/int', value_type='int', default_value=66, domain=[-100, 100])
 my_float = my_device.add_param('test/value/float', value_type='float', default=0.123456789, domain=[-2, 2])
 my_bool = my_device.add_param('test/value/bool', value_type='bool', default=True)
