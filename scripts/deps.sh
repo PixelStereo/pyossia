@@ -37,3 +37,18 @@ case "$TRAVIS_OS_NAME" in
     esac
   ;;
 esac
+
+case "${TOXENV}" in
+    py27)
+		pip install -ve .
+		;;
+	py34)
+		pip3 install -ve .
+		;;
+	py35)
+		pip3 install -ve .
+		;;
+	py36)
+		pip3 install -ve .
+    ;;
+esac
