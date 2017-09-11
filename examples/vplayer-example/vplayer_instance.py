@@ -24,10 +24,10 @@ vplayer = VPlayer()
 # Just a test
 from time import sleep
 while True:
-	pass
-	vplayer.play_status = True
-	print(vplayer.play_status)
-	sleep(1)
-	vplayer.play_status = False
-	print(vplayer.play_status)
-	sleep(1)
+    pass
+    vplayer.play_status = True
+    print(vplayer.play_status)
+    sleep(1)
+    vplayer.play_status = False
+    print(vplayer.play_status)
+    sleep(1)

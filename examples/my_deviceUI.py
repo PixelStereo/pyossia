@@ -6,7 +6,7 @@ This file is an example of a device
 with I/O communication provided by libossia with pyqt5 GUI
 """
 
-from pyossia.pyqt.canvas import Canvas
+from pyossia.pyqt.panel import Panel
 
 import sys
 
@@ -30,10 +30,10 @@ class MainWindow(QMainWindow):
         self.setStyleSheet(qss)
         self.setAutoFillBackground(True)
         # Draw an UI for my_device
-        self.canvas = Canvas(device=my_device, width='auto', height='auto')
+        self.panel = Panel(device=my_device, width='auto', height='auto')
         # assign this device to the mainwindow
-        self.setCentralWidget(self.canvas)
-        #self.setMinimumSize(self.canvas.width() + 10, self.canvas.height() + 10)
+        self.setCentralWidget(self.panel)
+        #self.setMinimumSize(self.panel.width() + 10, self.panel.height() + 10)
         self.move(0, 40)
         self.setFixedSize(self.centralWidget().width(), self.centralWidget().height())
 

@@ -8,7 +8,7 @@ it will automagically display the coreespondant UI for the address
 """
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QPushButton, QGroupBox, QLabel, QHBoxLayout, QSlider, QDial, QLineEdit
 from PyQt5.QtGui import QFont
 
 
@@ -20,7 +20,7 @@ class AbstractValue(QGroupBox):
     bool : QCheckBox
     todo : tuples : depend of the unit (color, spatial, etc…)
     """
-    def __init__(self, parameter, **kwargs):
+    def __init__(self, parameter):
         super(AbstractValue, self).__init__()
         self.parameter = parameter
         # Create label with parameter
@@ -38,8 +38,8 @@ class BoolUI(AbstractValue):
     """
     docstring for BoolUI
     """
-    def __init__(self, *args, **kwargs):
-        super(BoolUI, self).__init__(*args, **kwargs)
+    def __init__(self, parameter):
+        super(BoolUI, self).__init__(parameter)
         self.value = QPushButton(str(self.parameter))
         self.value.setCheckable(True)
         self.layout.addWidget(self.value)
@@ -55,12 +55,14 @@ class FloatUI(AbstractValue):
     """
     docstring for FloatUI
     """
-    def __init__(self, *args, **kwargs):
-        super(FloatUI, self).__init__(*args, **kwargs)
+    def __init__(self, parameter):
+        super(FloatUI, self).__init__(parameter)
         self.value = QSlider(Qt.Horizontal, None)
         self.layout.addWidget(self.value)
         if self.parameter.have_domain():
-            self.value.setRange(self.parameter.domain.min.get()*32768, self.parameter.domain.max.get()*32768)
+            range_min = self.parameter.domain.min.get()*32768
+            range_max = self.parameter.domain.max.get()*32768
+            self.value.setRange(range_min, range_max)
         else:
             self.value.setRange(0, 32768)
         def parameter_push(value):
@@ -77,8 +79,8 @@ class Vec3fUI(AbstractValue):
     """
     docstring for Vec3f
     """
-    def __init__(self, *args, **kwargs):
-        super(Vec3fUI, self).__init__(*args, **kwargs)
+    def __init__(self, parameter):
+        super(Vec3fUI, self).__init__(parameter)
         self.value1 = QDial()
         self.value2 = QDial()
         self.value3 = QDial()
@@ -92,7 +94,10 @@ class Vec3fUI(AbstractValue):
         self.value2.setRange(0, 32768)
         self.value3.setRange(0, 32768)
         def parameter_push():
-            self.parameter.push([self.value1.value()/32768, self.value2.value()/32768, self.value3.value()/32768])
+            value_1 = self.value1.value()/32768
+            value_2 = self.value2.value()/32768
+            value_3 = self.value3.value()/32768
+            self.parameter.push([value_1, value_2, value_3])
         self.value1.valueChanged.connect(parameter_push)
         self.value2.valueChanged.connect(parameter_push)
         self.value3.valueChanged.connect(parameter_push)
@@ -114,8 +119,8 @@ class IntUI(AbstractValue):
     """
     docstring for FloatUI
     """
-    def __init__(self, *args, **kwargs):
-        super(IntUI, self).__init__(*args, **kwargs)
+    def __init__(self, parameter):
+        super(IntUI, self).__init__(parameter)
         self.value = QSlider(Qt.Horizontal, None)
         self.layout.addWidget(self.value)
         if self.parameter.have_domain():
@@ -133,8 +138,8 @@ class StringUI(AbstractValue):
     """
     docstring for StringUI
     """
-    def __init__(self, *args, **kwargs):
-        super(StringUI, self).__init__(*args, **kwargs)
+    def __init__(self, parameter):
+        super(StringUI, self).__init__(parameter)
         self.value = QLineEdit()
         self.value.setAttribute(Qt.WA_MacShowFocusRect, 0)
         self.layout.addWidget(self.value)

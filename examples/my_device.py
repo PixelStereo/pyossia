@@ -24,8 +24,8 @@ my_char = my_device.add_param('test/value/char', value_type='char', default=chr(
 print('--- -LIST ALL NODES AND PARAMETERS- ---')
 print()
 for node in my_device.get_nodes():
-	print('-- -NODE : ' + str(node))
-	for child in node.children():
-		if child.parameter:
-			print('------ -parameter : ' + str(child) + ' : ' + str(child.parameter.clone_value().get()))
-	print()
+    print('-- -NODE : ' + str(node))
+    for child in node.children():
+        if child.parameter:
+            print('------ -parameter : ' + str(child) + ' : ' + str(child.parameter.clone_value().get()))
+    print()
