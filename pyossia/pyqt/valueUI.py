@@ -3,6 +3,8 @@
 
 """
 pyossia-pyqt module add Graphical User Interface for libossia devices
+TODO : create a generic panel with an address attribute
+it will automagically display the coreespondant UI for the address
 """
 
 from PyQt5.QtCore import Qt
@@ -18,9 +20,9 @@ class AbstractValue(QGroupBox):
     bool : QCheckBox
     todo : tuples : depend of the unit (color, spatial, etc…)
     """
-    def __init__(self,  *args, **kwargs):
+    def __init__(self, parameter, **kwargs):
         super(AbstractValue, self).__init__()
-        self.parameter = args[0]
+        self.parameter = parameter
         # Create label with parameter
         self.label = QLabel(str(self.parameter.node))
         self.label.setFixedSize(100, 20)
@@ -33,20 +35,20 @@ class AbstractValue(QGroupBox):
 
 
 class BoolUI(AbstractValue):
-	"""
-	docstring for BoolUI
-	"""
-	def __init__(self, *args, **kwargs):
-		super(BoolUI, self).__init__(*args, **kwargs)
-		self.value = QPushButton(str(self.parameter))
-		self.value.setCheckable(True)
-		self.layout.addWidget(self.value)
-		self.value.toggled.connect(self.parameter.push)
-		def parameter_pull(value):
-			self.value.setChecked(value.get())
-			self.value.setText(str(self.parameter))
-		self.parameter.add_callback(parameter_pull)
-		parameter_pull(self.parameter.clone_value())
+    """
+    docstring for BoolUI
+    """
+    def __init__(self, *args, **kwargs):
+        super(BoolUI, self).__init__(*args, **kwargs)
+        self.value = QPushButton(str(self.parameter))
+        self.value.setCheckable(True)
+        self.layout.addWidget(self.value)
+        self.value.toggled.connect(self.parameter.push)
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        self.value.setChecked(value.get())
+        self.value.setText(str(self.parameter))
 
 
 class FloatUI(AbstractValue):
@@ -65,11 +67,11 @@ class FloatUI(AbstractValue):
             value = float(value/32768)
             self.parameter.push(value)
         self.value.valueChanged.connect(parameter_push)
-        def parameter_pull(value):
-            value = value.get()*32768
-            self.value.setValue(value)
-        self.parameter.add_callback(parameter_pull)
-        parameter_pull(self.parameter.clone_value())
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        value = value.get()*32768
+        self.value.setValue(value)
 
 class Vec3fUI(AbstractValue):
     """
@@ -97,15 +99,15 @@ class Vec3fUI(AbstractValue):
         self.layout.addWidget(self.value1)
         self.layout.addWidget(self.value2)
         self.layout.addWidget(self.value3)
-        def parameter_pull(value):
-            value1 = value.get()[0]*32768
-            value2 = value.get()[1]*32768
-            value3 = value.get()[2]*32768
-            self.value1.setValue(value1)
-            self.value2.setValue(value2)
-            self.value3.setValue(value3)
-        self.parameter.add_callback(parameter_pull)
-        parameter_pull(self.parameter.clone_value())
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        value1 = value.get()[0]*32768
+        value2 = value.get()[1]*32768
+        value3 = value.get()[2]*32768
+        self.value1.setValue(value1)
+        self.value2.setValue(value2)
+        self.value3.setValue(value3)
 
 
 class IntUI(AbstractValue):
@@ -121,10 +123,11 @@ class IntUI(AbstractValue):
         else:
             self.value.setRange(0, 100)
         self.value.valueChanged.connect(self.parameter.push)
-        def parameter_pull(value):
-            self.value.setValue(value.get())
-        self.parameter.add_callback(parameter_pull)
-        parameter_pull(self.parameter.clone_value())
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        self.value.setValue(value.get())
+
 
 class StringUI(AbstractValue):
     """
@@ -138,7 +141,7 @@ class StringUI(AbstractValue):
         if self.parameter.have_domain():
             print(self.parameter.domain.min)
         self.value.textEdited.connect(self.parameter.push)
-        def parameter_pull(value):
-            self.value.setText(str(value.get()))
-        self.parameter.add_callback(parameter_pull)
-        parameter_pull(self.parameter.clone_value())
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        self.value.setText(str(value.get()))
