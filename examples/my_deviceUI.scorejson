@@ -2,7 +2,7 @@
     "Document": {
         "BaseScenario": {
             "Constraint": {
-                "Center": 2473.8023359452486,
+                "Center": 7140.039422535212,
                 "Components": [
                 ],
                 "DefaultDuration": 130002,
@@ -53,10 +53,13 @@
                                     },
                                     {
                                         "Process": 5
+                                    },
+                                    {
+                                        "Process": 6
                                     }
                                 ],
                                 "GuiDuration": 53799.393530192436,
-                                "HeightPercentage": 0.022,
+                                "HeightPercentage": 0.02199999988079071,
                                 "MaxDuration": 1591.0491751636578,
                                 "MaxInf": false,
                                 "Metadata": {
@@ -87,7 +90,7 @@
                                                 {
                                                     "End": [
                                                         1,
-                                                        1
+                                                        0
                                                     ],
                                                     "Following": null,
                                                     "ObjectName": "CurveSegmentModel",
@@ -136,7 +139,7 @@
                                                 {
                                                     "End": [
                                                         1,
-                                                        0.87
+                                                        0.8700000047683716
                                                     ],
                                                     "Following": null,
                                                     "ObjectName": "CurveSegmentModel",
@@ -326,19 +329,82 @@
                                         "Unit": "none",
                                         "id": 5,
                                         "uuid": "aa569e11-03a9-4023-92c2-b590e88fec90"
+                                    },
+                                    {
+                                        "Address": {
+                                            "Accessors": [
+                                            ],
+                                            "Unit": "none",
+                                            "address": {
+                                                "Device": "PyOssia_Device",
+                                                "Path": "test/value/vec3f"
+                                            }
+                                        },
+                                        "Components": [
+                                        ],
+                                        "Curve": {
+                                            "ObjectName": "CurveModel",
+                                            "Segments": [
+                                                {
+                                                    "End": [
+                                                        1,
+                                                        1
+                                                    ],
+                                                    "Following": null,
+                                                    "ObjectName": "CurveSegmentModel",
+                                                    "Power": 11.05,
+                                                    "Previous": null,
+                                                    "Start": [
+                                                        0,
+                                                        0
+                                                    ],
+                                                    "id": 1,
+                                                    "uuid": "1e7cb83f-4e47-4b14-814d-2242a9c75991"
+                                                }
+                                            ],
+                                            "id": 45345
+                                        },
+                                        "Duration": 1591.0491751636578,
+                                        "End": {
+                                            "Vec3f": [
+                                                0.707855224609375,
+                                                0.93377685546875,
+                                                0.023834228515625
+                                            ]
+                                        },
+                                        "Height": 300,
+                                        "Metadata": {
+                                            "Color": "Base1",
+                                            "Comment": "",
+                                            "Label": "",
+                                            "ScriptingName": "Interpolation.6"
+                                        },
+                                        "ObjectName": "Interpolation",
+                                        "Start": {
+                                            "Vec3f": [
+                                                0.44537353515625,
+                                                0.128753662109375,
+                                                0.812713623046875
+                                            ]
+                                        },
+                                        "Tween": false,
+                                        "Unit": "none",
+                                        "id": 6,
+                                        "uuid": "aa569e11-03a9-4023-92c2-b590e88fec90"
                                     }
                                 ],
                                 "Rigidity": true,
                                 "SmallViewRack": [
                                     {
                                         "Height": 50,
-                                        "Process": 5,
+                                        "Process": 6,
                                         "Processes": [
                                             1,
                                             2,
                                             3,
                                             4,
-                                            5
+                                            5,
+                                            6
                                         ]
                                     }
                                 ],
@@ -464,7 +530,7 @@
                                                                     ],
                                                                     "Unit": "none",
                                                                     "User": {
-                                                                        "Char": "a"
+                                                                        "Char": "\u0000"
                                                                     }
                                                                 },
                                                                 {
@@ -624,7 +690,9 @@
                                                                 2,
                                                                 0
                                                             ],
-                                                            "Unit": "none"
+                                                            "Unit": "none",
+                                                            "User": {
+                                                            }
                                                         }
                                                     ],
                                                     "Following": [
@@ -637,7 +705,9 @@
                                                         2,
                                                         0
                                                     ],
-                                                    "Unit": "none"
+                                                    "Unit": "none",
+                                                    "User": {
+                                                    }
                                                 }
                                             ],
                                             "Following": [
@@ -711,7 +781,7 @@
                                                                         {
                                                                             "Process": 1,
                                                                             "Value": {
-                                                                                "Float": 1
+                                                                                "Float": 0
                                                                             }
                                                                         }
                                                                     ],
@@ -722,7 +792,7 @@
                                                                     ],
                                                                     "Unit": "none",
                                                                     "User": {
-                                                                        "Char": "z"
+                                                                        "Char": "\u0001"
                                                                     }
                                                                 },
                                                                 {
@@ -841,9 +911,9 @@
                                                                     "Unit": "none",
                                                                     "User": {
                                                                         "Vec3f": [
-                                                                            0.44537353515625,
-                                                                            0.128753662109375,
-                                                                            0.812713623046875
+                                                                            0.707855224609375,
+                                                                            0.93377685546875,
+                                                                            0.023834228515625
                                                                         ]
                                                                     }
                                                                 },
@@ -882,7 +952,9 @@
                                                                 2,
                                                                 0
                                                             ],
-                                                            "Unit": "none"
+                                                            "Unit": "none",
+                                                            "User": {
+                                                            }
                                                         }
                                                     ],
                                                     "Following": [
@@ -895,7 +967,9 @@
                                                         2,
                                                         0
                                                     ],
-                                                    "Unit": "none"
+                                                    "Unit": "none",
+                                                    "User": {
+                                                    }
                                                 }
                                             ],
                                             "Following": [
@@ -1007,7 +1081,7 @@
                 "SmallViewShown": false,
                 "StartDate": 0,
                 "StartState": 0,
-                "Zoom": 6.978285855980955,
+                "Zoom": 20.141154929577468,
                 "id": 0
             },
             "EndEvent": {
@@ -1214,7 +1288,8 @@
                                 },
                                 "Name": "test",
                                 "RepetitionFilter": false,
-                                "Unit": "none"
+                                "Unit": "none",
+                                "ioType": "<->"
                             },
                             "Children": [
                                 {
@@ -1226,7 +1301,8 @@
                                         },
                                         "Name": "value",
                                         "RepetitionFilter": false,
-                                        "Unit": "none"
+                                        "Unit": "none",
+                                        "ioType": "<->"
                                     },
                                     "Children": [
                                         {
@@ -1240,7 +1316,7 @@
                                                 },
                                                 "Extended": {
                                                 },
-                                                "Int": -1,
+                                                "Int": 74,
                                                 "Name": "int",
                                                 "RepetitionFilter": false,
                                                 "Unit": "none",
@@ -1260,7 +1336,7 @@
                                                 },
                                                 "Extended": {
                                                 },
-                                                "Float": 0.52777099609375,
+                                                "Float": 0.361114501953125,
                                                 "Name": "float",
                                                 "RepetitionFilter": false,
                                                 "Unit": "none",
@@ -1271,7 +1347,7 @@
                                         },
                                         {
                                             "AddressSettings": {
-                                                "Bool": false,
+                                                "Bool": true,
                                                 "ClipMode": "Free",
                                                 "Domain": {
                                                 },
@@ -1294,7 +1370,7 @@
                                                 },
                                                 "Name": "string",
                                                 "RepetitionFilter": false,
-                                                "String": "qfd qsd",
+                                                "String": "one thing to say",
                                                 "Unit": "none",
                                                 "ioType": "<->"
                                             },
@@ -1333,15 +1409,14 @@
                                                     }
                                                 },
                                                 "Extended": {
-                                                    "extended_type": "vecf"
                                                 },
                                                 "Name": "vec3f",
                                                 "RepetitionFilter": false,
                                                 "Unit": "none",
                                                 "Vec3f": [
-                                                    0.20831298828125,
-                                                    0.675872802734375,
-                                                    0.812713623046875
+                                                    0.707855224609375,
+                                                    0.93377685546875,
+                                                    0.023834228515625
                                                 ],
                                                 "ioType": "<->"
                                             },
@@ -1354,17 +1429,12 @@
                                                 "Domain": {
                                                 },
                                                 "Extended": {
-                                                    "extended_type": "list"
                                                 },
                                                 "Name": "list",
                                                 "RepetitionFilter": false,
                                                 "Tuple": [
                                                     {
-                                                        "Tuple": [
-                                                            {
-                                                                "String": ""
-                                                            }
-                                                        ]
+                                                        "String": "one two three"
                                                     }
                                                 ],
                                                 "Unit": "none",
