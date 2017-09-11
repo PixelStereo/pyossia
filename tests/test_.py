@@ -5,7 +5,7 @@ import unittest
 import os, sys
 
 # import pyossia module
-from pyossia import *
+import pyossia
 
 # load my_device example, which contains one instance of each type of parameter
 from examples.my_device import *
@@ -19,7 +19,7 @@ def announcement(test):
 class TestAll(unittest.TestCase):
 
     def test_version(self):
-        announcement(__version__)
+        announcement(pyossia.__version__)
 
     def test_float(self):
         self.assertEqual(my_float.value.get(), 0.0)
