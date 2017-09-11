@@ -29,6 +29,7 @@ esac
 
 case "${TOXENV}" in
     py2)
+        pip install sphinx_rtd_theme
         pip install coverage
         # install codacy tools
         pip install codacy-coverage
@@ -37,6 +38,7 @@ case "${TOXENV}" in
         pip install -ve .
         ;;
     py3)
+        pip3 install sphinx_rtd_theme
         pip3 install coverage
         # install codacy tools
         pip3 install codacy-coverage

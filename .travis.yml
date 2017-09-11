@@ -54,7 +54,7 @@ script:
   - python-codacy-coverage -r coverage.xml
   # build the documentation
   - cd ../
-  - travis-sphinx build docs/source/source
+  - travis-sphinx -s docs/source/source/ build
 
 after_success: 
   - travis-sphinx deploy
