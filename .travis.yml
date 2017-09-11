@@ -16,28 +16,28 @@ matrix:
   include:
   - os: linux
     python: 2.7
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py27
+    env: TOXENV=py27
   - os: linux
     python: 3.4
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py34
+    env: TOXENV=py34
   - os: linux
     python: 3.5
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py35
+    env: TOXENV=py35
   - os: linux
     python: 3.6
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
+    env: TOXENV=py36
   - os: osx
     python: 2.7
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py27
+    env: TOXENV=py27
   - os: osx
     python: 3.4
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py34
+    env: TOXENV=py34
   - os: osx
     python: 3.5
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py35
+    env: TOXENV=py35
   - os: osx
     python: 3.6
-    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
+    env: TOXENV=py36
 
 before_install:
 - source ./scripts/split_repo_slug.sh
