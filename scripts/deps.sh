@@ -6,7 +6,7 @@ case "$TRAVIS_OS_NAME" in
   linux)
     case "${TOXENV}" in
         py27)
-          sudo apt-get -y install python python-setuptools libpython2.7-dev 
+          sudo apt-get -y install python python-setuptools libpython2.7
           pip install coverage
           # install codacy tools
           pip install codacy-coverage
@@ -14,13 +14,13 @@ case "$TRAVIS_OS_NAME" in
           pip install travis-sphinx
             ;;
         py34)
-          sudo apt-get -y install python3 python3-setuptools libpython3.4-dev 
+          sudo apt-get -y install python3 python3-setuptools libpython3.4 
             ;;
         py35)
-          sudo apt-get -y install python3 python3-setuptools libpython3.5-dev 
+          sudo apt-get -y install python3 python3-setuptools libpython3.5
             ;;
         py36)
-          sudo apt-get -y install python3 python3-setuptools libpython3.6-dev 
+          sudo apt-get -y install python3 python3-setuptools libpython3.6
             ;;
     esac
   ;;
