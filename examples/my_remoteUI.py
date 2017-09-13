@@ -3,14 +3,15 @@
 
 """
 This file is an example of a device
-with I/O communication provided by libossia with pyqt5 GUI
+with I/O communication provided by libossia
 """
 
-from pyossia.pyqt.device_view import DeviceView
 
+from pyossia import ossia, add_param
+from pyossia.pyqt.panel import Panel
 import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox
 
-from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
 # create the OSSIA Device and some parameters
@@ -29,13 +30,32 @@ class MainWindow(QMainWindow):
         qss = open("style.qss", "r").read()
         self.setStyleSheet(qss)
         self.setAutoFillBackground(True)
-        # Draw an UI for my_device
-        self.panel = DeviceView(device=my_device, width='auto', height='auto')
-        # assign this device to the mainwindow
-        self.setCentralWidget(self.panel)
         #self.setMinimumSize(self.panel.width() + 10, self.panel.height() + 10)
         self.move(0, 40)
-        self.setFixedSize(self.centralWidget().width(), self.centralWidget().height())
+        if self.centralWidget():
+        	self.setFixedSize(self.centralWidget().width(), self.centralWidget().height())
+
+        # Looking for oscquery devices on the network
+        print('\nSCAN FOR OSC_QUERY DEVICES\n')
+        devices = QComboBox()
+        for data in ossia.list_oscquery_devices():
+            devices.addItem(data.name)
+            print(data.name + ": host = " + data.host + ", port = " + str(data.port))
+
+
+class DeviceUI(object):
+    """docstring for DeviceUI"""
+    def __init__(self, arg):
+        super(DeviceUI, self).__init__()
+        self.arg = arg
+        
+        # Draw an UI for my_device
+        self.panel = Panel(device=my_device, width='auto', height='auto')
+        # assign this device to the mainwindow
+        self.setCentralWidget(self.panel)
+
+
+
 
 
 if __name__ == "__main__":

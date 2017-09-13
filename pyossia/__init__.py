@@ -172,4 +172,9 @@ ossia.LocalDevice.add_param = add_param
 ossia.LocalDevice.expose = expose
 ossia.LocalDevice.get_nodes = get_nodes
 ossia.LocalDevice.get_parameters = get_parameters
+
+ossia.OSCQueryDevice.expose = expose
+ossia.OSCQueryDevice.get_nodes = get_nodes
+ossia.OSCQueryDevice.get_parameters = get_parameters
+
 ossia.Parameter.push = push
