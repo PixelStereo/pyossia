@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-A Panel is a 
+A Panel is a Group of widget designed to add Parameter remotes
 """
 
 from PyQt5.QtWidgets import QGroupBox, QVBoxLayout
@@ -46,4 +46,5 @@ class Panel(QGroupBox):
         else:
             print('ERROR 999', parameter.value_type)
             remote = StringUI(parameter)
+        self.layout.addWidget(remote)
         return remote

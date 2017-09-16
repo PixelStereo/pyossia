@@ -9,16 +9,6 @@ It is designed to display instruments through remotes
 from pyossia.pyqt.panel import Panel
 
 
-# Import libossia python bindings
-from pyossia import ossia_python as ossia
-from pyossia.pyqt.remote import FloatUI, BoolUI, IntUI, StringUI, Vec3fUI, ListUI, CharUI
-
-
-######################################################
-# Module functions / shortcuts to create pyossia GUI
-######################################################
-
-
 class DeviceView(Panel):
     """
     PyQt DeviceView that display all params of a device

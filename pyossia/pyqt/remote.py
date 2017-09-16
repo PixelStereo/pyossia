@@ -150,7 +150,7 @@ class CharUI(AbstractValue):
 
     def parameter_update(self, value):
         # TODO : please format is as a chat
-        self.value.setText(str(value.get()))
+        self.value.setText(str(value))
 
 
 class ListUI(AbstractValue):
@@ -169,7 +169,7 @@ class ListUI(AbstractValue):
 
     def parameter_update(self, value):
         # TODO : please remove brackets from list here
-        self.value.setText(str(value.get()))
+        self.value.setText(str(value))
 
 
 class StringUI(AbstractValue):
