@@ -22,9 +22,9 @@ class TestAll(unittest.TestCase):
         announcement(pyossia.__version__)
 
     def test_float(self):
-        self.assertEqual(my_float.value.get(), 0.0)
-        my_float.push(0.123456)
-        self.assertAlmostEqual(my_float.value.get_float(), 0.123456)
+        self.assertEqual(my_float.value, 0.0)
+        my_float.push_value(0.123456)
+        self.assertAlmostEqual(my_float.value, 0.123456)
 
     def test_device(self):
         self.assertEqual(my_device.__class__.__name__, 'LocalDevice')

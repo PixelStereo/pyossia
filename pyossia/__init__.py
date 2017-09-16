@@ -35,7 +35,9 @@ __value_types__ = {'float':ossia.ValueType.Float,
                    'string':ossia.ValueType.String,
                    'impulse':ossia.ValueType.Impulse,
                    'list':ossia.ValueType.List,
+                   'vec2f':ossia.ValueType.Vec2f,
                    'vec3f':ossia.ValueType.Vec3f,
+                   'vec4f':ossia.ValueType.Vec4f,
                    'char':ossia.ValueType.Char,
                   }
 
@@ -73,9 +75,9 @@ def expose(self, protocol='oscquery', listening_port=3456, sending_port=5678):
     # TODO : Implement other protocol (serial, midi, osc, etc…)
     """
     if protocol == 'oscquery':
-        self.create_oscquery_server(listening_port, sending_port)
+        self.create_oscquery_server(listening_port, sending_port, False)
     elif protocol == 'osc':
-        self.create_osc_server(listening_port, sending_port)
+        self.create_osc_server('localhost', listening_port, sending_port, False)
     else:
         print('ossia warning : ' + protocol + ' is not implemented')
 
@@ -92,7 +94,7 @@ def add_param(self, name, **kwargs):
     value_type = kwargs['value_type']
     param = node.create_parameter(__value_types__[value_type])
     if 'domain' in kwargs.keys():
-        param.make_domain(ossia.Value(kwargs['domain'][0]), ossia.Value(kwargs['domain'][1]))
+        param.make_domain(kwargs['domain'][0], kwargs['domain'][1])
     # TODO : Checks kwargs and please set value as required
     # such as domain, clipmode, accessmode, default value etc…
     return param
@@ -110,6 +112,7 @@ def get_nodes(self, node=None, depth=0):
     if depth == counter and depth != 0:
         break
     """
+    node = self.root_node
     if not node:
         node = self.root_node
     # create an empty list to return
@@ -158,12 +161,6 @@ def get_parameters(self, node=None):
     # return the filled list
     return children
 
-def push(self, value):
-    """
-    called to ossia.parameter.push_value
-    """
-    self.push_value(ossia.Value(value))
-
 
 # customize a bit LocalDevice
 # add a new_param /message / return method
@@ -172,4 +169,3 @@ ossia.LocalDevice.add_param = add_param
 ossia.LocalDevice.expose = expose
 ossia.LocalDevice.get_nodes = get_nodes
 ossia.LocalDevice.get_parameters = get_parameters
-ossia.Parameter.push = push

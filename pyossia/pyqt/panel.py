@@ -19,26 +19,6 @@ from pyossia.pyqt.remote import FloatUI, BoolUI, IntUI, StringUI, Vec3fUI
 # Module functions / shortcuts to create pyossia GUI
 ######################################################
 
-def add_remote(ossia_parameter):
-    """
-    Add a QWidget for the current Value
-    """
-    if ossia_parameter.value_type == ossia.ValueType.Float:
-        remote = FloatUI(ossia_parameter)
-    elif ossia_parameter.value_type == ossia.ValueType.Bool:
-        remote = BoolUI(ossia_parameter)
-    elif ossia_parameter.value_type == ossia.ValueType.Int:
-        remote = IntUI(ossia_parameter)
-    elif ossia_parameter.value_type == ossia.ValueType.String:
-        remote = StringUI(ossia_parameter)
-    elif ossia_parameter.value_type == ossia.ValueType.Vec3f:
-        remote = Vec3fUI(ossia_parameter)
-    elif ossia_parameter.value_type == ossia.ValueType.List:
-        remote = StringUI(ossia_parameter)
-    elif ossia_parameter.value_type == ossia.ValueType.Char:
-        remote = StringUI(ossia_parameter)
-    return remote
-
 
 class Panel(QGroupBox):
     """
@@ -59,6 +39,26 @@ class Panel(QGroupBox):
         self.setup(args, kwargs)
         self.resize(args, kwargs)
 
+    def add_remote(self, parameter):
+        """
+        Add a QWidget for the current Value
+        """
+        if parameter.value_type == ossia.ValueType.Float:
+            remote = FloatUI(parameter)
+        elif parameter.value_type == ossia.ValueType.Bool:
+            remote = BoolUI(parameter)
+        elif parameter.value_type == ossia.ValueType.Int:
+            remote = IntUI(parameter)
+        elif parameter.value_type == ossia.ValueType.String:
+            remote = StringUI(parameter)
+        elif parameter.value_type == ossia.ValueType.Vec3f:
+            remote = Vec3fUI(parameter)
+        elif parameter.value_type == ossia.ValueType.List:
+            remote = StringUI(parameter)
+        elif parameter.value_type == ossia.ValueType.Char:
+            remote = StringUI(parameter)
+        return remote
+
     def setup(self, args, kwargs):
         """
         create a Remote for each parameter
@@ -66,10 +66,10 @@ class Panel(QGroupBox):
         if 'device' in kwargs.keys():
             self.device = kwargs['device']
             # set title for the panel
-            self.setTitle(str(self.device))
+            self.setTitle(self.device.name)
             #self.setTitle(str(self.device.get_nodes()[0]))
             for child in self.device.get_parameters():
-                remote = add_remote(child.parameter)
+                remote = self.add_remote(child.parameter)
                 self.layout.addWidget(remote)
 
     def resize(self, args, kwargs):

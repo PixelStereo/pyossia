@@ -55,7 +55,7 @@ class VPlayer(object):
         True make it play
         False make it stop
         """
-        return self._play_status.fetch_value().get()
+        return self._play_status.fetch_value()
     @play_status.setter
     def play_status(self, play_status):
         self._play_status.push_value(ossia.Value(play_status))

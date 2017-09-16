@@ -42,7 +42,7 @@ def add_pull(function_to_enhance, address=None):
         return result
     # attach a callback function to the boolean address
     def value_callback(v):
-        result = v.get()
+        result = v
         return result
     address.add_callback(value_callback)
     # return the new_wrapper when modify Original Class
@@ -81,7 +81,7 @@ def ossia_message(Class, key, OssiaNode):
         return result
     # attach a callback function to the boolean address
     def bool_value_callback(v):
-        result = v.get()
+        result = v
         return result
     ossia_address.add_callback(bool_value_callback)
 
