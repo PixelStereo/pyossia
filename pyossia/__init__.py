@@ -69,7 +69,7 @@ def devices(device_type='local'):
     return __devices__[device_type]
 
 
-def expose(self, protocol='oscquery', ip='localhost', listening_port=3456, sending_port=5678, logger=False):
+def expose(self, protocol='oscquery', host='localhost', listening_port=3456, sending_port=5678, logger=False):
     """
     expose the device to the given <protocol>
     # TODO : Implement other protocol (serial, midi, osc, etc…)
@@ -77,7 +77,7 @@ def expose(self, protocol='oscquery', ip='localhost', listening_port=3456, sendi
     if protocol == 'oscquery':
         self.create_oscquery_server(listening_port, sending_port, logger)
     elif protocol == 'osc':
-        self.create_osc_server(ip, listening_port, sending_port, logger)
+        self.create_osc_server(host, listening_port, sending_port, logger)
     else:
         print('ossia warning : ' + protocol + ' is not implemented')
 
