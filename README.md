@@ -6,7 +6,7 @@ It will use libossia thanks to pybind11
 
 # Installation
 
-You need to copy manually ossia_python.so into pyossia/pyossia folder    
+You need to copy manually ```ossia_python.so``` into ```pyossia/pyossia``` folder    
 
 ## latest stable
 pyossia does not have yet a stable version
@@ -14,11 +14,16 @@ pyossia does not have yet a stable version
 ## latest unstable (git master branch)
 `pip install git+https://github.com/PixelStereo/pyossia.git@master`    
 
-## git repo (for pyossia contribution)
-`git clone https://github.com/PixelStereo/pyossia.git    
+## git repo (for pyossia contribution)    
 
-`cd pyossia     `    
+```git clone https://github.com/PixelStereo/pyossia.git```
 
-`pip install -ve .    `
+```cd pyossia    ```
 
-'-e' option will just add the git repo to your python path
+```pip install -ve .```
+
+```-e``` option will just add the git repo to your python path
+
+# Credits
+
+Pyossia is written by Pixel Stereo, under GPL 3 licence

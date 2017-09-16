@@ -134,6 +134,44 @@ class IntUI(AbstractValue):
         self.value.setValue(value)
 
 
+class CharUI(AbstractValue):
+    """
+    docstring for StringUI
+    """
+    def __init__(self, parameter):
+        super(CharUI, self).__init__(parameter)
+        self.value = QLineEdit()
+        self.value.setAttribute(Qt.WA_MacShowFocusRect, 0)
+        self.layout.addWidget(self.value)
+        if self.parameter.have_domain():
+            print(self.parameter.domain.min)
+        self.value.textEdited.connect(self.parameter.push)
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        # TODO : please format is as a chat
+        self.value.setText(str(value.get()))
+
+
+class ListUI(AbstractValue):
+    """
+    docstring for StringUI
+    """
+    def __init__(self, parameter):
+        super(ListUI, self).__init__(parameter)
+        self.value = QLineEdit()
+        self.value.setAttribute(Qt.WA_MacShowFocusRect, 0)
+        self.layout.addWidget(self.value)
+        if self.parameter.have_domain():
+            print(self.parameter.domain.min)
+        self.value.textEdited.connect(self.parameter.push)
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        # TODO : please remove brackets from list here
+        self.value.setText(str(value.get()))
+
+
 class StringUI(AbstractValue):
     """
     docstring for StringUI
