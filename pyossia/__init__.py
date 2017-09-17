@@ -42,20 +42,6 @@ __release__ = __version__
 # add_device and pyossia.devices() (todo : add remove_device)
 __devices__ = {'local':[], 'mirror':[]}
 
-# create a list of value_types available in OSSIA
-# maybe this is not necessary, just because 8'm a bit lazy
-__value_types__ = {'float':ossia.ValueType.Float,
-                   'int':ossia.ValueType.Int,
-                   'bool':ossia.ValueType.Bool,
-                   'string':ossia.ValueType.String,
-                   'impulse':ossia.ValueType.Impulse,
-                   'list':ossia.ValueType.List,
-                   'vec2f':ossia.ValueType.Vec2f,
-                   'vec3f':ossia.ValueType.Vec3f,
-                   'vec4f':ossia.ValueType.Vec4f,
-                   'char':ossia.ValueType.Char,
-                  }
-
 ######################################################
 # Module functions / shortcuts to access libossia
 ######################################################
@@ -106,6 +92,19 @@ def add_param(self, name, **kwargs):
     """
     create a node and make a create_parameter on the node
     """
+    # create a list of value_types available in OSSIA
+    # maybe this is not necessary, just because 8'm a bit lazy
+    __value_types__ = {'float':ossia.ValueType.Float,
+                       'int':ossia.ValueType.Int,
+                       'bool':ossia.ValueType.Bool,
+                       'string':ossia.ValueType.String,
+                       'impulse':ossia.ValueType.Impulse,
+                       'list':ossia.ValueType.List,
+                       'vec2f':ossia.ValueType.Vec2f,
+                       'vec3f':ossia.ValueType.Vec3f,
+                       'vec4f':ossia.ValueType.Vec4f,
+                       'char':ossia.ValueType.Char,
+                      }
     node = self.add_node(name)
     value_type = kwargs['value_type']
     param = node.create_parameter(__value_types__[value_type])
