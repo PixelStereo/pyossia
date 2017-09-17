@@ -6,7 +6,7 @@ It will use libossia thanks to pybind11
 
 # Installation
 
-You need to copy manually ```ossia_python.so``` into ```pyossia/pyossia``` folder    
+You need to copy manually ```ossia_python.cpython-36m-darwin.so``` into ```pyossia/pyossia``` folder    
 
 ## latest stable
 pyossia does not have yet a stable version
