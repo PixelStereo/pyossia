@@ -185,6 +185,7 @@ ossia.LocalDevice.expose = expose
 ossia.LocalDevice.get_nodes = get_nodes
 ossia.LocalDevice.get_parameters = get_parameters
 
-ossia.OSCQueryDevice.expose = expose
+# OSCQueryDevice is a mirror
+# your cannot create nodes and parameters
 ossia.OSCQueryDevice.get_nodes = get_nodes
 ossia.OSCQueryDevice.get_parameters = get_parameters
