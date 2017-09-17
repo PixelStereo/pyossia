@@ -55,3 +55,6 @@ case "${TOXENV}" in
 esac
 
 mv "ossia-python/ossia_python.cpython-36m-darwin.so" "pyossia/ossia_python.cpython-36m-darwin.so"
+ls .
+ls pyossia
+ls scrpts
