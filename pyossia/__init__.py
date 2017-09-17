@@ -2,7 +2,23 @@
 # -*- coding: utf-8 -*-
 
 """
+Introduction
+============
 pyossia module will add usefull access for end users to C++ binded objects of libossia
+
+It is currently broken, due to last changes in ossia_python.cpp binding file
+that introduce some bugs related to get and set parameter values
+
+Change log
+==========
+0.0.* aka the first
+*******************
+First version of pyossia, still in alpha develeopment.
+Not available for now
+
+
+pyossia usefull functions
+=========================
 """
 
 
@@ -24,7 +40,6 @@ __release__ = __version__
 # create a list of devices
 # access to __devices__ must be done only by using
 # add_device and pyossia.devices() (todo : add remove_device)
-
 __devices__ = {'local':[], 'mirror':[]}
 
 # create a list of value_types available in OSSIA
@@ -47,7 +62,7 @@ __value_types__ = {'float':ossia.ValueType.Float,
 
 def add_device(name, **kwargs):
     """
-    create a node and make a create_parameter on the node
+    create a local device a node and make a create_parameter on the node
     """
     # TODO :  raise an exception if mode is not provided as kwargs
     mode = kwargs['mode']
@@ -72,6 +87,7 @@ def devices(device_type='local'):
 def expose(self, protocol='oscquery', host='localhost', listening_port=3456, sending_port=5678, logger=False):
     """
     expose the device to the given <protocol>
+    
     # TODO : Implement other protocol (serial, midi, osc, etc…)
     """
     if protocol == 'oscquery':
@@ -108,9 +124,9 @@ def get_nodes(self, node=None, depth=0):
     (only the children of the given <node>)
     TODO : make depth levels in the code / it does not work for the moment
     # check the required depth
-    counter += 1
-    if depth == counter and depth != 0:
-        break
+    #counter += 1
+    #if depth == counter and depth != 0:
+    #    break
     """
     node = self.root_node
     if not node:

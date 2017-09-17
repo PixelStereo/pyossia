@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QGroupBox, QVBoxLayout
 
 # Import libossia python bindings
 from pyossia import ossia_python as ossia
-from pyossia.pyqt.remote import FloatUI, BoolUI, IntUI, StringUI, Vec3fUI
+from pyossia.pyqt.remote import FloatUI, BoolUI, IntUI, StringUI, Vec2fUI, Vec3fUI, Vec4fUI
 
 
 class Panel(QGroupBox):
@@ -37,8 +37,12 @@ class Panel(QGroupBox):
             remote = IntUI(parameter)
         elif parameter.value_type == ossia.ValueType.String:
             remote = StringUI(parameter)
+        elif parameter.value_type == ossia.ValueType.Vec2f:
+            remote = Vec2fUI(parameter)
         elif parameter.value_type == ossia.ValueType.Vec3f:
             remote = Vec3fUI(parameter)
+        elif parameter.value_type == ossia.ValueType.Vec4f:
+            remote = Vec4fUI(parameter)
         elif parameter.value_type == ossia.ValueType.List:
             remote = ListUI(parameter)
         elif parameter.value_type == ossia.ValueType.Char:

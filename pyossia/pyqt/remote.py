@@ -43,12 +43,18 @@ class BoolUI(AbstractValue):
         self.value = QPushButton(str(self.parameter))
         self.value.setCheckable(True)
         self.layout.addWidget(self.value)
-        self.value.toggled.connect(self.parameter.push_value)
+        self.value.toggled.connect(self.parameter_push)
         self.parameter.add_callback(self.parameter_update)
 
     def parameter_update(self, value):
+        print(value)
         self.value.setChecked(value)
         self.value.setText(str(self.parameter))
+
+    def parameter_push(self):
+        value = self.value.isChecked()
+        print(value, self.parameter.__class__.__name__, dir(self.parameter.value))
+        setattr(self.parameter, 'value', value)
 
 
 class FloatUI(AbstractValue):
@@ -74,6 +80,36 @@ class FloatUI(AbstractValue):
     def parameter_update(self, value):
         value = value*32768
         self.value.setValue(value)
+
+class Vec2fUI(AbstractValue):
+    """
+    docstring for Vec3f
+    """
+    def __init__(self, parameter):
+        super(Vec2fUI, self).__init__(parameter)
+        self.value1 = QDial()
+        self.value2 = QDial()
+        self.value1.setValue(1)
+        self.value2.setValue(1)
+        self.value1.setFixedSize(35, 35)
+        self.value2.setFixedSize(35, 35)
+        self.value1.setRange(0, 32768)
+        self.value2.setRange(0, 32768)
+        def parameter_push():
+            value_1 = self.value1.value()/32768
+            value_2 = self.value2.value()/32768
+            self.parameter.push_value([value_1, value_2])
+        self.value1.valueChanged.connect(parameter_push)
+        self.value2.valueChanged.connect(parameter_push)
+        self.layout.addWidget(self.value1)
+        self.layout.addWidget(self.value2)
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        value1 = value[0]*32768
+        value2 = value[1]*32768
+        self.value1.setValue(value1)
+        self.value2.setValue(value2)
 
 class Vec3fUI(AbstractValue):
     """
@@ -114,6 +150,53 @@ class Vec3fUI(AbstractValue):
         self.value2.setValue(value2)
         self.value3.setValue(value3)
 
+class Vec4fUI(AbstractValue):
+    """
+    docstring for Vec3f
+    """
+    def __init__(self, parameter):
+        super(Vec4fUI, self).__init__(parameter)
+        self.value1 = QDial()
+        self.value2 = QDial()
+        self.value3 = QDial()
+        self.value4 = QDial()
+        self.value1.setValue(1)
+        self.value2.setValue(1)
+        self.value3.setValue(1)
+        self.value4.setValue(1)
+        self.value1.setFixedSize(35, 35)
+        self.value2.setFixedSize(35, 35)
+        self.value3.setFixedSize(35, 35)
+        self.value4.setFixedSize(35, 35)
+        self.value1.setRange(0, 32768)
+        self.value2.setRange(0, 32768)
+        self.value3.setRange(0, 32768)
+        self.value4.setRange(0, 32768)
+        def parameter_push():
+            value_1 = self.value1.value()/32768
+            value_2 = self.value2.value()/32768
+            value_3 = self.value3.value()/32768
+            value_4 = self.value4.value()/32768
+            self.parameter.push_value([value_1, value_2, value_3, value_4])
+        self.value1.valueChanged.connect(parameter_push)
+        self.value2.valueChanged.connect(parameter_push)
+        self.value3.valueChanged.connect(parameter_push)
+        self.value4.valueChanged.connect(parameter_push)
+        self.layout.addWidget(self.value1)
+        self.layout.addWidget(self.value2)
+        self.layout.addWidget(self.value3)
+        self.layout.addWidget(self.value4)
+        self.parameter.add_callback(self.parameter_update)
+
+    def parameter_update(self, value):
+        value1 = value[0]*32768
+        value2 = value[1]*32768
+        value3 = value[2]*32768
+        value4 = value[3]*32768
+        self.value1.setValue(value1)
+        self.value2.setValue(value2)
+        self.value3.setValue(value3)
+        self.value4.setValue(value4)
 
 class IntUI(AbstractValue):
     """

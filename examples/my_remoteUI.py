@@ -8,19 +8,16 @@ with I/O communication provided by libossia
 
 
 from pyossia import ossia, add_param
-from pyossia.pyqt.device_view import DeviceView
+from pyossia.pyqt.panel import Panel
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox
+from PyQt5.Qt import QThread
+from PyQt5.QtWidgets import QApplication, QMainWindow, QListWidget, QGridLayout, QGroupBox, QLabel, QListWidgetItem
 
-
-
-# create the OSSIA Device and some parameters
-from my_device import my_device
 
 # create the UI now
 # this could be another app that control the Pyossia Test Device
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, QThread):
     """
     Main Window Doc String
     """
@@ -30,29 +27,33 @@ class MainWindow(QMainWindow):
         qss = open("style.qss", "r").read()
         self.setStyleSheet(qss)
         self.setAutoFillBackground(True)
-        #self.setMinimumSize(self.panel.width() + 10, self.panel.height() + 10)
+        # create a layout for widgets
+        self.gui = QGroupBox('osc query explorer')
+        self.layout().addWidget(self.gui)
+        self.gui_layout = QGridLayout()
+        self.gui.setLayout(self.gui_layout)
+        devices = QListWidget()
+        try:
+            device = ossia.OSCQueryDevice('my_device', 'ws://localhost:3456', 5678)
+            devices.addItem('test device')
+            device.update()
+        except RuntimeError:
+            print('no devices found on the network')
+        panel = Panel('test device remote')
+        if len(devices) > 0:
+            devices.setCurrentRow(0)
+            for node in device.get_parameters():
+                panel.add_remote(node.parameter)
+        self.gui_layout.addWidget(QLabel('devices found on the network'), 0, 0)
+        self.gui_layout.addWidget(devices, 1, 0)
+        self.gui_layout.addWidget(QLabel('device remote'), 0, 1)
+        self.gui_layout.addWidget(panel, 1, 1)
+        devices.currentItemChanged.connect(self.selection_changed)
         self.move(0, 40)
-        if self.centralWidget():
-        	self.setFixedSize(self.centralWidget().width(), self.centralWidget().height())
+        self.setMinimumSize(self.gui.size())
 
-        # Looking for oscquery devices on the network
-        print('\nSCAN FOR OSC_QUERY DEVICES\n')
-        devices = QComboBox()
-        for data in ossia.list_oscquery_devices():
-            devices.addItem(data.name)
-            print(data.name + ": host = " + data.host + ", port = " + str(data.port))
-
-
-class DeviceUI(object):
-    """docstring for DeviceUI"""
-    def __init__(self, arg):
-        super(DeviceUI, self).__init__()
-        self.arg = arg    
-        # Draw an UI for my_device
-        self.device_view = DeviceView(device=my_device, width='auto', height='auto')
-        # assign this device to the mainwindow
-        self.setCentralWidget(self.panel)
-
+    def selection_changed(self, truc):
+        print('GO ---', truc.text(), type(truc))
 
 
 if __name__ == "__main__":
