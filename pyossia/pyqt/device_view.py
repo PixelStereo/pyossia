@@ -24,7 +24,7 @@ class DeviceView(Panel):
         self.setup(args, kwargs)
         self.resize(args, kwargs)
 
-    def setup(self, *args, **kwargs):
+    def setup(self, args, kwargs):
         """
         create a Remote for each parameter
         """
