@@ -97,7 +97,8 @@ class Vec2fUI(AbstractValue):
         def parameter_push():
             value_1 = self.value1.value()/32768
             value_2 = self.value2.value()/32768
-            self.parameter.push_value([value_1, value_2])
+            print()
+            self.parameter.push_value((value_1, value_2))
         self.value1.valueChanged.connect(parameter_push)
         self.value2.valueChanged.connect(parameter_push)
         self.layout.addWidget(self.value1)
@@ -105,6 +106,7 @@ class Vec2fUI(AbstractValue):
         self.parameter.add_callback(self.parameter_update)
 
     def parameter_update(self, value):
+        print('oo', type(value))
         value1 = value[0]*32768
         value2 = value[1]*32768
         self.value1.setValue(value1)
