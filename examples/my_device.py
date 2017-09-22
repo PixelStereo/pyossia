@@ -38,14 +38,11 @@ for node in my_device.get_nodes():
             print(str(child.parameter.access_mode))
             print(str(child.parameter.repetition_filter))
             print('callbacks : ' + str(child.parameter.callback_count))
-            ### TODO : remove this test
-            # displaying the domain bounds for the float parameter crashes ... ???
-            if not (child.parameter.value_type == ossia.ValueType.Float) or (child.parameter.value_type == ossia.ValueType.Vec2f) or (child.parameter.value_type == ossia.ValueType.Vec3f) or (child.parameter.value_type == ossia.ValueType.Vec4f) or (child.parameter.value_type == ossia.ValueType.String) or (child.parameter.value_type == ossia.ValueType.List):
-                print('--- -bug on have_domain for float- ---')
-            else:
-                if child.parameter.have_domain():
-                    print(str(child.parameter.bounding_mode))
-                    print(str(child.parameter.domain.min))
-                    print('min : ' + str(child.parameter.domain.min) + ' / max : ' + str(child.parameter.domain.max))
-                    print('------ -parameter : ' + str(child) + ' : ' + str(child.parameter.clone_value()))
+            if child.parameter.have_domain():
+                print(child.parameter.value_type)
+                print(str(child.parameter.bounding_mode))
+                print(dir(child.parameter.domain))
+                print(str(child.parameter.domain.min))
+                print('min : ' + str(child.parameter.domain.min) + ' / max : ' + str(child.parameter.domain.max))
+                print('------ -parameter : ' + str(child) + ' : ' + str(child.parameter.clone_value()))
     print()
