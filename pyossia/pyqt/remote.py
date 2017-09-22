@@ -97,8 +97,7 @@ class Vec2fUI(AbstractValue):
         def parameter_push():
             value_1 = self.value1.value()/32768
             value_2 = self.value2.value()/32768
-            print()
-            self.parameter.push_value((value_1, value_2))
+            self.parameter.push_value([value_1, value_2])
         self.value1.valueChanged.connect(parameter_push)
         self.value2.valueChanged.connect(parameter_push)
         self.layout.addWidget(self.value1)
