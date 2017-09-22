@@ -1,18 +1,24 @@
 #!/bin/bash
 
 case "${TOXENV}" in
-    py2)
+    py27)
         sudo apt-get install python
         pip install -ve .
-        pandoc --from=markdown --to=rst --output=README README.md
+
         ;;
-    py3)
+    py34)
         sudo apt-get install python3
         pip3 install -ve .
-        pandoc --from=markdown --to=rst --output=README README.md
+        ;;
+    py35)
+        sudo apt-get install python3
+        pip3 install -ve .
+        ;;
+    py36)
+        sudo apt-get install python3
+        pip3 install -ve .
+        ;;
 esac
-
-
 
 echo ''
 echo ''
@@ -22,12 +28,17 @@ echo ''
 echo ''
 
 case "${TOXENV}" in
-    py2)
+    py27)
         python setup.py sdist
         ;;
-    py3)
+    py34)
         python3 setup.py sdist
         ;;
+    py35)
+        python3 setup.py sdist
+        ;;
+    py36)
+        python3 setup.py sdist
 esac
 
 

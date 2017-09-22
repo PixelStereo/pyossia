@@ -19,9 +19,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 # get current version
 import versioneer
-
 __version__ = versioneer.get_version()
-
 
 setup(
   name = 'pyossia',
@@ -30,7 +28,6 @@ setup(
   long_description=long_description,
   url='https://github.com/PixelStereo/pyossia',
   author = 'Pixel Stereo',
-  author_email = 'contact@pixelstereo.com',
   license='GPLv3+',
   classifiers = [
     'Development Status :: 2 - Pre-Alpha',
@@ -47,9 +44,11 @@ setup(
   # You can just specify the packages manually here if your project is
   # simple. Or you can use find_packages().
   packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
+  # useless ?? package_data={'ossia_python': ['ossia_python/*']},
+  install_requires=['zeroconf', 'pybind11>=1.7', 'Cython', 'pyqt5'],
   extras_require={
     'test': ['coverage']
     },
   download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
-  zip_safe=True,
+  zip_safe=False,
 )

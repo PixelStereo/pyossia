@@ -16,56 +16,35 @@ matrix:
   include:
   - os: linux
     python: 2.7
-    env: TOXENV=py2
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py27
   - os: linux
     python: 3.4
-    env: TOXENV=py3
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py34
   - os: linux
     python: 3.5
-    env: TOXENV=py3
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py35
   - os: linux
     python: 3.6
-    env: TOXENV=py3
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
   - os: osx
-    python: 2.7
-    env: TOXENV=py2
+    language: generic
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py27
   - os: osx
-    python: 3.4
-    env: TOXENV=py3
-  - os: osx
-    python: 3.5
-    env: TOXENV=py3
-  - os: osx
-    python: 3.6
-    env: TOXENV=py3
+    language: generic
+    env: BUILD_TYPE=Debug OSSIA_STATIC=1 TOXENV=py36
 
 before_install:
 - source ./scripts/split_repo_slug.sh
 
-install: ./scripts/deps.sh
+install: echo 'nothing to de now !'
 
-script:
-  - ./scripts/build.sh
-  - cd tests
-  # codacy
-  - coverage run --omit ../pyossia/_version.py --omit ../versioneer.py  --include=../pyossia/"*" test_.py
-  - coverage xml
-  - coverage report -m
-  - python-codacy-coverage -r coverage.xml
-  # build the documentation
-  - cd ../
-  - travis-sphinx -s docs/source build
-
-after_success: 
-  - travis-sphinx deploy
-  - cd tests
-  - coveralls
+script: ./scripts/build.sh
 
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: $SECURE_KEY
+    secure: N+MxeB2hREjSaWaEZbIpHnFZWb8UgV2HaZHVdY6Fe9j4TSutRRZy6WJN2QPb4UNkZs2B2MonVzHH2Y49olcKgFh9fAXsoMGQPJqAc53hxbuSwsCzdMDY71lK68zrET32VlH5HfCb3nhNkZnSqGilKeaySF2BRS316yoCDReMdY7pLqZc37zuMUCQQSr6mTZlYeyZmEwlhtBOemHFzjmVEykaEbaGRIZgUY8TIQ2Seao6xGDbddrL31d60wFUpf7YGett3BatBEHUVujc4tyL3nN25mel1lI5w/EcqQKcvD8ECW+YkRnM9dk3GKIHnd4wfORy/cAzolWSJ31gX8jf6yOBdPwcP+vseLKSpVSAFDQbCrBIAv7ln/zsVgFIQOl/iFtyfIKVXbrEVYUbef1ruy5A23ffq5qiQIQJLnKu86yYGJjSd3XGvMbdK26Dh8Ha2BY7nxeir8ZDToAz5ouLvXGx1/WJVW1zcXRysvF39o+MQGpoKE8xKnOUkoCgJmE1Vd6pluvk8FIYID3fAPOFlIHMvanG+dVLVJ01vCxVOFGJ9e7SAXmw5EqIt1QR1zltuDX2c9plYpbrt7KvOjUiQ78A1LYk6S42mIPCPh0cu639DE770UE4089M1/N12PiUV/04AML92gEteXlBxyHdezxHJCGm5A/ezoN0LMmpxrI=
   file: ./dist/${REPO}-${TRAVIS_TAG}_${TOXENV}_${TRAVIS_OS_NAME}.tar.gz
   on:
     tags: true
