@@ -128,7 +128,7 @@ setup(
     'test': ['coverage']
     },
   download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
-  ext_package='/usr/local/lib',
+  ext_package='/usr/local/lib/python3.6/site-packages/',
   ext_modules=[CMakeExtension('ossia_python', sourcedir='./3rdParty/libossia')],
   cmdclass={
     'build_ext': CMakeBuild,
