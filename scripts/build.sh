@@ -7,11 +7,11 @@ echo ''
 
 case "${TOXENV}" in
     py2)
-        pip install -ve .
+        pip install -e .
         python setup.py sdist
         ;;
     py3)
-        pip3 install -ve .
+        pip3 install -e .
         python3 setup.py sdist
         ;;
 esac
