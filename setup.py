@@ -105,7 +105,7 @@ setup(
   long_description=long_description,
   url='https://github.com/PixelStereo/pyossia',
   author = 'Pixel Stereo',
-  author_email='contact@pixelstereo.org'
+  author_email='contact@pixelstereo.org',
   license='GPLv3+',
   classifiers = [
     'Development Status :: 2 - Pre-Alpha',
