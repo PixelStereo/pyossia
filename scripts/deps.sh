@@ -13,7 +13,7 @@ case "$TRAVIS_OS_NAME" in
           ./bootstrap
           make -j4
           sudo make install
-          sudo apt-get -y install python python-setuptools
+          sudo apt-get -y install python python-setuptools qt5 boost
           cd ..
             ;;
         py3)
@@ -24,7 +24,7 @@ case "$TRAVIS_OS_NAME" in
           ./bootstrap
           make -j4
           sudo make install
-          sudo apt-get -y install python3 python3-setuptools
+          sudo apt-get -y install python3 python3-setuptools qt5 boost
           cd ..
             ;;
     esac
@@ -32,11 +32,11 @@ case "$TRAVIS_OS_NAME" in
   osx)
     case "${TOXENV}" in
         py2)
-          brew install python
+          brew install python qt5 boost wget
           brew link --overwrite python
             ;;
         py3)
-          brew install python3
+          brew install python3 qt5 boost wget
           brew link --overwrite python3
             ;;
     esac
