@@ -6,13 +6,23 @@ case "$TRAVIS_OS_NAME" in
   linux)
     case "${TOXENV}" in
         py2)
-          sudo apt-get update
-          sudo apt-get -y upgrade
+          sudo apt-get purge cmake
+          wget https://cmake.org/files/v3.9/cmake-3.9.3.tar.gz
+          tar -xzvf cmake-3.9.3.tar.gz
+          cd cmake-3.9.3/
+          ./bootstrap
+          make -j4
+          sudo make install
           sudo apt-get -y install python python-setuptools
             ;;
         py3)
-          sudo apt-get update
-          sudo apt-get -y upgrade
+          sudo apt-get purge cmake
+          wget https://cmake.org/files/v3.9/cmake-3.9.3.tar.gz
+          tar -xzvf cmake-3.9.3.tar.gz
+          cd cmake-3.9.3/
+          ./bootstrap
+          make -j4
+          sudo make install
           sudo apt-get -y install python3 python3-setuptools
             ;;
     esac
