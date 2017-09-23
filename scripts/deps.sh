@@ -14,6 +14,7 @@ case "$TRAVIS_OS_NAME" in
           make -j4
           sudo make install
           sudo apt-get -y install python python-setuptools
+          cd ..
             ;;
         py3)
           sudo apt-get purge cmake
@@ -24,6 +25,7 @@ case "$TRAVIS_OS_NAME" in
           make -j4
           sudo make install
           sudo apt-get -y install python3 python3-setuptools
+          cd ..
             ;;
     esac
   ;;
