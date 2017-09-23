@@ -6,9 +6,13 @@ case "$TRAVIS_OS_NAME" in
   linux)
     case "${TOXENV}" in
         py2)
+          sudo apt-get update
+          sudo apt-get -y upgrade
           sudo apt-get -y install python python-setuptools
             ;;
         py3)
+          sudo apt-get update
+          sudo apt-get -y upgrade
           sudo apt-get -y install python3 python3-setuptools
             ;;
     esac
