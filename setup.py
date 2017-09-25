@@ -49,8 +49,10 @@ class CMakeBuild(build_ext):
 
     def build_extension(self, ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
+        extdir = "/usr/local/lib/python3.6/site-packages/pyossia/"
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
                       '-DPYTHON_EXECUTABLE=' + sys.executable, 
+                      '-DOSSIA_PYTHON=1'
                       '-DOSSIA_PD=0',
                       '-DOSSIA_Qt=0',
                       '-DOSSIA_C=0',]
@@ -72,7 +74,6 @@ class CMakeBuild(build_ext):
                                                               self.distribution.get_version())
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
-        print(['cmake', ext.sourcedir] + cmake_args)
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
@@ -81,11 +82,13 @@ from setuptools.command.develop import develop as _develop
 
 
 def _post_install(dir):
+    """
     from shutil import move as movefile
     if sys.version_info < (3, 0):
       movefile('/usr/local/lib/ossia_python.so', here+'/pyossia/ossia_python.so' )
     else:
-      movefile('/usr/local/lib/ossia_python.cpython-36m-darwin.so', here+'/pyossia/ossia_python.cpython-36m-darwin.so' )
+      movefile('/usr/local/lib/python3.6/site-packages/pyossia/*', here+'/usr/local/lib/python3.6/site-packages/pyossia' )
+    """
 
 class install(_install):
     def run(self):
