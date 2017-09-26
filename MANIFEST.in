@@ -1,6 +1,3 @@
 include versioneer.py
-include pyossia/*
-include pyossia/pyqt/*
-include pyossia/*.so
-include pyossia/*.dylib
+recursive-include . *.py
 include README.md

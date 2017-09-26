@@ -81,26 +81,13 @@ from setuptools.command.install import install as _install
 from setuptools.command.develop import develop as _develop
 
 
-def _post_install(dir):
-    """
-    from shutil import move as movefile
-    if sys.version_info < (3, 0):
-      movefile('/usr/local/lib/ossia_python.so', here+'/pyossia/ossia_python.so' )
-    else:
-      movefile('/usr/local/lib/python3.6/site-packages/pyossia/*', here+'/usr/local/lib/python3.6/site-packages/pyossia' )
-    """
-
 class install(_install):
     def run(self):
         _install.run(self)
         self.execute(_post_install, (self.install_lib,),
-                          msg="Running post install task")
+                          msg="Running install task")
 
-class develop(_develop):
-    def run(self):
-        _develop.run(self)
-        self.execute(_post_install, (self.install_lib,),
-                          msg="Running post install task")
+
 setup(
   name = 'pyossia',
   version=__version__,
@@ -136,7 +123,6 @@ setup(
   cmdclass={
     'build_ext': CMakeBuild,
     'install': install,
-    'develop': develop,
     },
   zip_safe=False,
 )
