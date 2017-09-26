@@ -52,7 +52,7 @@ class CMakeBuild(build_ext):
         extdir = "/usr/local/lib/python3.6/site-packages/pyossia/"
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
                       '-DPYTHON_EXECUTABLE=' + sys.executable, 
-                      '-DOSSIA_PYTHON=1'
+                      '-DOSSIA_PYTHON=1',
                       '-DOSSIA_PD=0',
                       '-DOSSIA_Qt=0',
                       '-DOSSIA_C=0',]
@@ -125,7 +125,7 @@ setup(
   # You can just specify the packages manually here if your project is
   # simple. Or you can use find_packages().
   packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
-  # useless ?? package_data={'ossia_python': ['ossia_python/*']},
+  #package_data={'ossia_python': ['ossia_python/*']},
   install_requires=['zeroconf', 'pybind11>=1.7'],
   extras_require={
     'test': ['coverage']
