@@ -4,7 +4,6 @@ branches:
   except:
     - gh-pages
 
-osx_image: xcode9
 dist: trusty
 sudo: required
 
@@ -22,9 +21,11 @@ matrix:
     env: TOXENV=py3
   - os: osx
     language: generic
+    osx_image: xcode9
     env: TOXENV=py2
   - os: osx
     language: generic
+    osx_image: xcode9
     env: TOXENV=py3
 
 before_install:
