@@ -41,10 +41,9 @@ setup(
     'Programming Language :: Python :: 3.6',
     'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-  keywords='sample setuptools development',
-  # You can just specify the packages manually here if your project is
-  # simple. Or you can use find_packages().
-  packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
+  keywords=['creative', 'controls', 'osc', 'oscquery', 'websocket', 'libossia'],
+  packages          = ['pyossia'],
+  package_data      = {'pyossia': ['ossia_python.cpython-36m-darwin.so']},
   extras_require={
     'test': ['coverage']
     },
