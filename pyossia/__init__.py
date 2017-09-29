@@ -87,7 +87,7 @@ def devices(device_type='local'):
 def expose(self, protocol='oscquery', host='localhost', listening_port=3456, sending_port=5678, logger=False):
     """
     expose the device to the given <protocol>
-    
+
     # TODO : Implement other protocol (serial, midi, osc, etc…)
     """
     if protocol == 'oscquery':

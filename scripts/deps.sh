@@ -59,3 +59,9 @@ case "${TOXENV}" in
       mv "ossia-python/ossia_python.cpython-36m-darwin.so" "pyossia/"
         ;;
 esac
+
+echo ''
+echo 'WHO IS THERE'
+ls
+ls pyossia
+echo ''
