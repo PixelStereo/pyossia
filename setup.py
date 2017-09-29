@@ -21,73 +21,6 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 import versioneer
 __version__ = versioneer.get_version()
 
-
-import os
-import re
-import sys
-import platform
-import subprocess
-
-from setuptools.command.build_ext import build_ext
-
-
-class CMakeExtension(Extension):
-    def __init__(self, name, sourcedir=''):
-        Extension.__init__(self, name, sources=[])
-        self.sourcedir = os.path.abspath(sourcedir)
-
-class CMakeBuild(build_ext):
-    def run(self):
-        try:
-            out = subprocess.check_output(['cmake', '--version'])
-        except OSError:
-            raise RuntimeError("CMake must be installed to build the following extensions: " +
-                               ", ".join(e.name for e in self.extensions))
-
-        for ext in self.extensions:
-            self.build_extension(ext)
-
-    def build_extension(self, ext):
-        extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
-        extdir = "/usr/local/lib/python3.6/site-packages/pyossia/"
-        cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
-                      '-DPYTHON_EXECUTABLE=' + sys.executable, 
-                      '-DOSSIA_PYTHON=1',
-                      '-DOSSIA_PD=0',
-                      '-DOSSIA_Qt=0',
-                      '-DOSSIA_C=0',]
-
-        cfg = 'Debug' if self.debug else 'Release'
-        build_args = ['--config', cfg]
-
-        if platform.system() == "Windows":
-            cmake_args += ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{}={}'.format(cfg.upper(), extdir)]
-            if sys.maxsize > 2**32:
-                cmake_args += ['-A', 'x64']
-            build_args += ['--', '/m']
-        else:
-            cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
-            build_args += ['--', '-j16', ]
-
-        env = os.environ.copy()
-        env['CXXFLAGS'] = '{} -DVERSION_INFO=\\"{}\\"'.format(env.get('CXXFLAGS', ''),
-                                                              self.distribution.get_version())
-        if not os.path.exists(self.build_temp):
-            os.makedirs(self.build_temp)
-        subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp)
-        subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
-
-from setuptools.command.install import install as _install
-from setuptools.command.develop import develop as _develop
-
-
-class install(_install):
-    def run(self):
-        _install.run(self)
-        self.execute(_post_install, (self.install_lib,),
-                          msg="Running install task")
-
-
 setup(
   name = 'pyossia',
   version=__version__,
@@ -98,7 +31,7 @@ setup(
   author_email='contact@pixelstereo.org',
   license='GPLv3+',
   classifiers = [
-    'Development Status :: 2 - Pre-Alpha',
+    'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
     'Natural Language :: English',
@@ -112,17 +45,8 @@ setup(
   # You can just specify the packages manually here if your project is
   # simple. Or you can use find_packages().
   packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
-  #package_data={'ossia_python': ['ossia_python/*']},
-  install_requires=['zeroconf', 'pybind11>=1.7'],
   extras_require={
     'test': ['coverage']
-    },
-  download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
-  ext_package='/usr/local/lib/python3.6/site-packages/',
-  ext_modules=[CMakeExtension('ossia_python', sourcedir='./3rdParty/libossia')],
-  cmdclass={
-    'build_ext': CMakeBuild,
-    'install': install,
     },
   zip_safe=False,
 )

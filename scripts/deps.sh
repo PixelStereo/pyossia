@@ -6,38 +6,22 @@ case "$TRAVIS_OS_NAME" in
   linux)
     case "${TOXENV}" in
         py2)
-          sudo apt-get purge cmake
-          wget https://cmake.org/files/v3.9/cmake-3.9.3.tar.gz
-          tar -xzvf cmake-3.9.3.tar.gz
-          cd cmake-3.9.3/
-          ./bootstrap
-          make -j4
-          sudo make install
-          sudo apt-get -y install python python-setuptools qt5 boost
-          cd ..
+          sudo apt-get -y install python python-setuptools
             ;;
         py3)
-          sudo apt-get purge cmake
-          wget https://cmake.org/files/v3.9/cmake-3.9.3.tar.gz
-          tar -xzvf cmake-3.9.3.tar.gz
-          cd cmake-3.9.3/
-          ./bootstrap
-          make -j4
-          sudo make install
-          sudo apt-get -y install python3 python3-setuptools qt5 boost
-          cd ..
+          sudo apt-get -y install python3 python3-setuptools
             ;;
     esac
   ;;
   osx)
     case "${TOXENV}" in
         py2)
-          brew install python qt5 boost wget
-          brew link --overwrite python
+          brew install python
+          brew link --overwrite python wget unzip
             ;;
         py3)
-          brew install python3 qt5 boost wget
-          brew link --overwrite python3
+          brew install python3
+          brew link --overwrite python3 wget unzip
             ;;
     esac
   ;;
@@ -63,4 +47,15 @@ case "${TOXENV}" in
         pip3 install travis-sphinx
         pip3 install -ve .
     ;;
+esac
+
+wget "https://github.com/OSSIA/libossia/releases/download/v1.0.0-b3/ossia-python-macos.zip"
+unzip "ossia-python-macos.zip"
+case "${TOXENV}" in
+    py2)
+      mv "ossia-python/ossia_python.so" "pyossia/"
+        ;;
+    py3)
+      mv "ossia-python/ossia_python.cpython-36m-darwin.so" "pyossia/"
+        ;;
 esac
