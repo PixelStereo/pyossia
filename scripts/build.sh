@@ -5,6 +5,14 @@ echo '-------------------------------------'
 echo ' ----- MAKE THE WHEEL !!!!!!!! ------'
 echo ''
 
+
+echo ' WHO IS THERE NOW ??????'
+echo ''
+ls
+echo ''
+ls pyossia
+echo ''
+
 case "${TOXENV}" in
     py2)
         pip install -ve .
