@@ -16,9 +16,6 @@ case "${TOXENV}" in
         ;;
 esac
 
-
-ls -lisah ./dist
-
-mv ./dist/${REPO}-${TRAVIS_TAG}.tar.gz ./dist/${REPO}-${TRAVIS_TAG}_${TOXENV}_${TRAVIS_OS_NAME}.tar.gz
-
-ls -lisah ./dist
+if [ -n "$TRAVIS_TAG" ];
+	mv ./dist/${REPO}-${TRAVIS_TAG}.tar.gz ./dist/${REPO}-${TRAVIS_TAG}_${TOXENV}_${TRAVIS_OS_NAME}.tar.gz;
+fi

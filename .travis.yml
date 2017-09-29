@@ -35,6 +35,23 @@ install: ./scripts/deps.sh
 script:
   - ./scripts/build.sh
   - cd tests
+  - echo ''
+  - echo ''
+  - echo ''
+  - echo ''
+  - echo ''
+  - ls
+  - echo ''
+  - echo ''
+  - echo ''
+  - echo ''
+  - echo ''
+  - ls pyossia
+  - echo ''
+  - echo ''
+  - echo ''
+  - echo ''
+  - echo ''
   # codacy
   - coverage run --omit ../pyossia/_version.py --omit ../versioneer.py  --include=../pyossia/"*" test_.py
   - coverage xml
