@@ -36,7 +36,6 @@ case "${TOXENV}" in
         pip install codacy-coverage
         # install to publish documentation from push or tag
         pip install travis-sphinx
-        pip install -ve .
         ;;
     py3)
         pip3 install sphinx_rtd_theme
@@ -45,7 +44,6 @@ case "${TOXENV}" in
         pip3 install codacy-coverage
         # install to publish documentation from push or tag
         pip3 install travis-sphinx
-        pip3 install -ve .
     ;;
 esac
 
