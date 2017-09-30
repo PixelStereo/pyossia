@@ -28,7 +28,7 @@ script:
   - ./scripts/build.sh
   - cd tests
   # codacy
-  - coverage run test_.py
+  - coverage run --omit ../pyossia/_version.py --omit ../versioneer.py  --include ../pyossia/* test_.py
   - coverage xml
   - coverage report -m
   - python-codacy-coverage -r coverage.xml
