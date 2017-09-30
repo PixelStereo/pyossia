@@ -41,8 +41,13 @@ for node in my_device.get_nodes():
             if child.parameter.have_domain():
                 print(child.parameter.value_type)
                 print(str(child.parameter.bounding_mode))
-                print(dir(child.parameter.domain))
-                print(str(child.parameter.domain.min))
-                print('min : ' + str(child.parameter.domain.min) + ' / max : ' + str(child.parameter.domain.max))
+                if child.parameter.value_type not in [ossia.ValueType.Float, ossia.ValueType.Vec2f, ossia.ValueType.Vec3f, ossia.ValueType.Vec4f, ossia.ValueType.String]:
+                    print(str(child.parameter.domain.min))
+                    print('min : ' + str(child.parameter.domain.min) + ' / max : ' + str(child.parameter.domain.max))
                 print('------ -parameter : ' + str(child) + ' : ' + str(child.parameter.clone_value()))
     print()
+
+from time import sleep
+
+while True:
+    sleep(0.1)
