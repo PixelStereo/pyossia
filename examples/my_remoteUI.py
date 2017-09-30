@@ -6,7 +6,6 @@ This file is an example of a device
 with I/O communication provided by libossia
 """
 
-
 from pyossia import ossia, add_param
 from pyossia.pyqt.panel import Panel
 import sys

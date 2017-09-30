@@ -7,8 +7,6 @@ A Panel is a Group of widget designed to add Parameter remotes
 
 from PyQt5.QtWidgets import QGroupBox, QVBoxLayout
 
-# Import libossia python bindings
-from pyossia import ossia_python as ossia
 from pyossia.pyqt.remote import FloatUI, BoolUI, IntUI, StringUI, Vec2fUI, Vec3fUI, Vec4fUI, ListUI, CharUI
 
 
