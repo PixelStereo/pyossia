@@ -1,3 +1,10 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+This file is a loader for ossia_python bindingq
+"""
+
 def __bootstrap__():
    global __bootstrap__, __loader__, __file__
    import sys, pkg_resources, imp
