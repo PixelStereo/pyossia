@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-This file is a loader for ossia_python bindingq
+This file is a loader for ossia_python.so file
 """
 
 def __bootstrap__():
