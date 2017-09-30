@@ -11,6 +11,3 @@ Index
    :maxdepth: 2
 
    errors
-   pyqt/panel
-   pyqt/remote
-   pyqt/device_view
