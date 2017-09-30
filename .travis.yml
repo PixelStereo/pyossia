@@ -35,11 +35,7 @@ script:
   # build the documentation
   - cd ../
   - travis-sphinx -s docs/source build
-
-after_success: 
   - travis-sphinx deploy
-  - cd tests
-  - coveralls
 
 deploy:
   provider: releases
