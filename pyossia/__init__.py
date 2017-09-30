@@ -6,19 +6,16 @@ Introduction
 ============
 pyossia module will add usefull access for end users to C++ binded objects of libossia
 
-It is currently broken, due to last changes in ossia_python.cpp binding file
-that introduce some bugs related to get and set parameter values
 
 Change log
 ==========
 0.0.* aka the first
 *******************
 First version of pyossia, still in alpha develeopment.
-Not available for now
 
 
-pyossia usefull functions
-=========================
+pyossia methods
+===============
 """
 
 
@@ -62,7 +59,10 @@ __devices__ = {'local':[], 'mirror':[]}
 
 def add_device(name, **kwargs):
     """
-    create a local device a node and make a create_parameter on the node
+    create a local device
+    The local device might be a local device or a mirror (remote) device
+    depending on the "mode" argument
+    mode = local / mirror
     """
     # TODO :  raise an exception if mode is not provided as kwargs
     mode = kwargs['mode']
@@ -79,7 +79,7 @@ def add_device(name, **kwargs):
 
 def devices(device_type='local'):
     """
-    return a list of device
+    return a list of devices
     """
     return __devices__[device_type]
 
@@ -117,20 +117,24 @@ def add_param(self, name, **kwargs):
 
 def get_nodes(self, node=None, depth=0):
     """
-    return a list of all nodes attached to the given <node>
+    return a list of all nodes attached to the given <node>.
+
     <depth> argument allows a depth-specific list
+
     depth=0 means explore all the three
+
     depth=1 means explore only the first level
+
     (only the children of the given <node>)
+
     TODO : make depth levels in the code / it does not work for the moment
     # check the required depth
     #counter += 1
     #if depth == counter and depth != 0:
     #    break
     """
-    node = self.root_node
     if not node:
-        node = self.root_node
+        node = self
     # create an empty list to return
     children = []
     # counter is used to follow depth-leveled exploration
@@ -157,7 +161,7 @@ def get_parameters(self, node=None):
     return a list of all params for the device
     """
     if not node:
-        node = self.root_node
+        node = self
     children = []
     # a function to iterate on node's tree recursively
     def iterate_parameters(node):
@@ -183,13 +187,12 @@ def get_parameters(self, node=None):
 # with kwargs as desired (optional)
 ossia.LocalDevice.add_param = add_param
 ossia.LocalDevice.expose = expose
-ossia.LocalDevice.get_nodes = get_nodes
-ossia.LocalDevice.get_parameters = get_parameters
 
 # OSCQueryDevice is a mirror
 # your cannot create nodes and parameters
 ossia.OSCQueryDevice.get_nodes = get_nodes
 ossia.OSCQueryDevice.get_parameters = get_parameters
 
+# A Node has nodes and parameters
 ossia.Node.get_nodes = get_nodes
 ossia.Node.get_parameters = get_parameters

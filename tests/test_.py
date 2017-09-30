@@ -13,7 +13,7 @@ import pyossia
 
 # create the OSSIA Device with the name provided
 # here for test purpose
-my_device = ossia.LocalDevice('PyOssia Device')
+my_device = ossia.LocalDevice('PyOssia Test Device')
 my_device.expose(protocol='oscquery', listening_port=3456, sending_port=5678, logger=False)
 my_device.expose(protocol='osc', listening_port=9996, sending_port=9997, logger=False)
 my_int = my_device.add_param('test/value/int', value_type='int', default=66, domain=[-100, 100])
@@ -56,12 +56,18 @@ class TestAll(unittest.TestCase):
         """
         test a device
         """
+        # Test the class of the device
         self.assertEqual(my_device.__class__.__name__, 'LocalDevice')
-        # TODO : How to test the name of the device? Next one is node, but it might be Ossia Test Device
-        # self.assertEqual(str(my_device.root_node), 'Python Test Device')
+        # Test the string representation of the device's root node
+        self.assertEqual(str(my_device.root_node), '/')
+        # Grab the name of the device
+        self.assertEqual(my_device.name, 'PyOssia Test Device')
+        # How many children this device have?
         self.assertEqual(len(my_device.root_node.children()), 1)
-        self.assertEqual(len(my_device.get_nodes()), 2)
-        self.assertEqual(len(my_device.get_parameters()), 7)
+        # How many nodes are under this device?
+        self.assertEqual(len(my_device.root_node.get_nodes()), 2)
+        # How many parameters under this device?
+        self.assertEqual(len(my_device.root_node.get_parameters()), 7)
 
 
 if __name__ == '__main__':

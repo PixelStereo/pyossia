@@ -27,7 +27,7 @@ my_char = my_device.add_param('test/value/char', value_type='char', default=chr(
 
 
 print('--- -EXPLORE PYOSSIA Test DEVICE- ---')
-for node in my_device.get_nodes():
+for node in my_device.root_node.get_nodes():
     print('-------------------------------------')
     print('\nNODE -> ' + str(node))
     for child in node.children():
