@@ -24,7 +24,7 @@ pyossia usefull functions
 
 # Import libossia python bindings
 # the ossia_python.so file must be in the pyossia module
-from .import ossia_python as ossia
+from . import ossia_python as ossia
 
 # these few lines are used to get versionning from git
 from ._version import get_versions
