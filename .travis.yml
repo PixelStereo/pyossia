@@ -35,8 +35,8 @@ deploy:
     file: ${REPO}-${TRAVIS_TAG}-py3-none-${TRAVIS_OS_NAME}.whl
     on:
       tags: true
-      all_branches: true
-      repo: PixelStereo/pyossia
+      branch: master
+      repo: ${OWNER}/${REPO}
   - provider: pypi
     user: $PyPiUser
     password: $PyPiPsswd
@@ -45,4 +45,4 @@ deploy:
     on:
       tags: true
       branch: master
-      repo: PixelStereo/pyossia
+      repo: ${OWNER}/${REPO}
