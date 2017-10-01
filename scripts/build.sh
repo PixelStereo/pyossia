@@ -10,10 +10,7 @@ echo '------- WHERE IS THE WHEEL ?? ------'
 ls
 echo ''
 
-if [ -n "$TRAVIS_TAG" ]
-then
-    pip3 install ${REPO}-${TRAVIS_TAG}
-fi
+pip3 install ${REPO}-${TRAVIS_TAG}*
 
 
 case "$BUILD_TYPE" in
