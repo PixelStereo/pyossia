@@ -42,6 +42,7 @@ deploy:
   provider: pypi
   user: $PyPiUser
   password: $PyPiPsswd
+  distributions: bdist_wheel
   on:
     tags: true
     all_branches: true
