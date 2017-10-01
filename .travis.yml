@@ -42,7 +42,7 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: ${GH_RELEASES}
-  file: ./dist/${REPO}-${TRAVIS_TAG}_${TOXENV}_${TRAVIS_OS_NAME}.tar.gz
+  file: ${REPO}-${TRAVIS_TAG}-py3-none-any.whl
   on:
     tags: true
     all_branches: true

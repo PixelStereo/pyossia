@@ -24,7 +24,7 @@ __version__ = versioneer.get_version()
 
 import platform
 if platform.system() == 'Linux':
-  url = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/ossia-python-3.6-linux.tar.gz'
+  url = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/ossia-python-3.6-linux_x86_64.tar.gz'
 elif platform.system() == 'Darwin':
   url = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/ossia-python-3.6-osx.tar.gz'
 
@@ -96,7 +96,10 @@ setup(
     ],
   keywords=['creative', 'controls', 'osc', 'oscquery', 'websocket', 'libossia'],
   packages = find_packages(),
-  package_data = {'pyossia': ['ossia_python.cpython-36m-darwin.so']},
+  install_requires=[
+    'sys_platform=="Linux"',
+    'ed25519ll; extra=="faster-signatures"'
+]
   zip_safe=False,
   cmdclass={
     # Command class instantiated and run during pip install scenarios.

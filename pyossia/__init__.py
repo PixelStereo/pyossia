@@ -166,8 +166,8 @@ def get_parameters(self, node=None):
     # a function to iterate on node's tree recursively
     def iterate_parameters(node):
         """
-    	recursive function to explore the whole three
-    	"""
+        recursive function to explore the whole three
+        """
         # check if there is children
         for child in node.children():
             # if the node is a param, it has an parameter

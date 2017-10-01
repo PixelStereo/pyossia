@@ -12,6 +12,5 @@ echo ''
 
 if [ -n "$TRAVIS_TAG" ]
 then
-	pip3 install ${REPO}-${TRAVIS_TAG}
-	mv ./dist/${REPO}-${TRAVIS_TAG}.tar.gz ./dist/${REPO}-${TRAVIS_TAG}_${TOXENV}_${TRAVIS_OS_NAME}.tar.gz
+    pip3 install ${REPO}-${TRAVIS_TAG}
 fi
