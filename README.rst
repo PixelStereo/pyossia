@@ -10,29 +10,19 @@ PyOssia
 Installation
 ============
 
-You need to copy manually ``ossia_python.cpython-36m-darwin.so`` into
-``pyossia/pyossia`` folder
-
 latest stable
 -------------
-
-pyossia does not have yet a stable version
+```
+pip install pyossia
+```
 
 latest unstable (git master branch)
 -----------------------------------
 
-``pip install git+https://github.com/PixelStereo/pyossia.git@master``
+```
+pip install git+https://github.com/PixelStereo/pyossia.git@master
+```
 
-git repo (for pyossia contribution)
------------------------------------
-
-``git clone https://github.com/PixelStereo/pyossia.git``
-
-``cd pyossia``
-
-``pip install -ve .``
-
-``-e`` option will just add the git repo to your python path
 
 Credits
 =======

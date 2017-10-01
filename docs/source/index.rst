@@ -1,5 +1,5 @@
 pyossia
-=========
+=======
 .. automodule:: pyossia
     :members:
     :undoc-members:
@@ -9,5 +9,3 @@ Index
 =====
 .. toctree::
    :maxdepth: 2
-
-   errors
