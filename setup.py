@@ -96,10 +96,6 @@ setup(
     ],
   keywords=['creative', 'controls', 'osc', 'oscquery', 'websocket', 'libossia'],
   packages = find_packages(),
-  install_requires=[
-    'sys_platform=="Linux"',
-    'ed25519ll; extra=="faster-signatures"'
-]
   zip_safe=False,
   cmdclass={
     # Command class instantiated and run during pip install scenarios.
