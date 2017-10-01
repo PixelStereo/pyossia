@@ -25,10 +25,10 @@ __version__ = versioneer.get_version()
 import platform
 if platform.system() == 'Linux':
     FILE = 'ossia-python-3.6-linux_x86_64.tar.gz'
-    URL = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/' + file
+    URL = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/' + FILE
 elif platform.system() == 'Darwin':
     FILE = 'ossia-python-3.6-osx.tar.gz'
-    URL = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/' + file
+    URL = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/' + FILE
 
 class CustomBuild(_build):
     """
@@ -37,12 +37,12 @@ class CustomBuild(_build):
     sub_commands = _build.sub_commands + [('CustomCommands', None)]
 
 CUSTOM_COMMANDS = [
-    ['wget', url],
-    ['tar', 'xzf', file],
+    ['wget', URL],
+    ['tar', 'xzf', FILE],
     ['ls'],
     ['cp', 'ossia_python.so', 'build/lib/pyossia/'],
     ['mv', 'ossia_python.so', 'pyossia/'],
-    ['rm', file]
+    ['rm', FILE]
     ]
 
 class CustomCommands(Command):
