@@ -42,7 +42,7 @@ CUSTOM_COMMANDS = [
     ['ls'],
     ['cp', 'ossia_python.so', 'build/lib/pyossia/'],
     ['mv', 'ossia_python.so', 'pyossia/'],
-    ['rm', 'file']
+    ['rm', file]
     ]
 
 class CustomCommands(setuptools.Command):
