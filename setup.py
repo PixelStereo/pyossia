@@ -6,7 +6,7 @@ setup for the pyossia project
 """
 
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Command
 # To use a consistent encoding
 from codecs import open
 from os import path
@@ -45,7 +45,7 @@ CUSTOM_COMMANDS = [
     ['rm', file]
     ]
 
-class CustomCommands(setuptools.Command):
+class CustomCommands(Command):
     """A setuptools Command class able to run arbitrary commands."""
 
     def initialize_options(self):
