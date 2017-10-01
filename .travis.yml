@@ -26,6 +26,7 @@ install: ./scripts/deps.sh
 script: ./scripts/build.sh
 
 deploy:
+  - skip_cleanup: true
   - provider: pypi
     skip_cleanup: true
     user: $PyPiUser

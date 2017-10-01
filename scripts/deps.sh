@@ -17,8 +17,6 @@ case "$BUILD_TYPE" in
         pip3 install sphinx_rtd_theme
         # install to publish documentation from push or tag
         pip3 install travis-sphinx
-    ;;
-    COVERAGE)
         pip3 install coverage
         # install codacy tools
         pip3 install codacy-coverage
