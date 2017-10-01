@@ -12,7 +12,6 @@ from codecs import open
 from os import path
 import subprocess
 from distutils.command.build import build as _build
-import setuptools
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
@@ -23,6 +22,11 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 import versioneer
 __version__ = versioneer.get_version()
 
+import platform
+if platform.system() == 'Linux':
+  url = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/ossia-python-3.6-linux.tar.gz'
+elif platform.system() == 'Darwin':
+  url = 'https://github.com/OSSIA/libossia/releases/download/deploy_test-06/ossia-python-3.6-osx.tar.gz'
 
 class build(_build):
   """
@@ -31,11 +35,12 @@ class build(_build):
   sub_commands = _build.sub_commands + [('CustomCommands', None)]
 
 CUSTOM_COMMANDS = [
-    ['echo', 'Custom command worked!'],
-    ['echo', 'Custom command worked!'],
-    ['echo', 'Custom command worked!'],
-    ['echo', 'Custom command worked!'],
-    ['echo', 'Custom command worked!'],
+    ['wget', url],
+    ['tar', 'xJf', 'ossia-python-3.6-osx.tar.gz'],
+    ['ls'],
+    #['cp', 'ossia_python.so', 'build/lib/pyossia/'],
+    ['mv', 'ossia_python.so', 'pyossia/'],
+    ['rm', 'ossia-python-3.6-osx.tar.gz']
     ]
 
 class CustomCommands(setuptools.Command):
@@ -43,23 +48,16 @@ class CustomCommands(setuptools.Command):
 
   def initialize_options(self):
     print()
-    print()
-    print()
-    print()
+    print('INIT')
     print()
 
   def finalize_options(self):
     print()
-    print()
-    print()
-    print()
+    print('END')
     print()
 
   def RunCustomCommand(self, command_list):
-    print('Running command: %s' % command_list)
-    print()
-    print()
-    print()
+    print('-------> Running command: %s' % command_list)
     p = subprocess.Popen(
         command_list,
         stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
