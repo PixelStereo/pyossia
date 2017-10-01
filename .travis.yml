@@ -28,23 +28,21 @@ install: ./scripts/deps.sh
 script: ./scripts/build.sh
 
 deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key:
-    secure: ${GH_RELEASES}
-  file: ${REPO}-${TRAVIS_TAG}-py3-none-${TRAVIS_OS_NAME}.whl
-  on:
-    tags: true
-    all_branches: true
-    repo: PixelStereo/pyossia
-
-deploy:
-  provider: pypi
-  user: $PyPiUser
-  password: $PyPiPsswd
-  file: *.whl
-  distributions: bdist_wheel
-  on:
-    tags: true
-    branch: master
-    repo: PixelStereo/pyossia
+  - provider: releases
+    skip_cleanup: true
+    api_key:
+      secure: ${GH_RELEASES}
+    file: ${REPO}-${TRAVIS_TAG}-py3-none-${TRAVIS_OS_NAME}.whl
+    on:
+      tags: true
+      all_branches: true
+      repo: PixelStereo/pyossia
+  - provider: pypi
+    user: $PyPiUser
+    password: $PyPiPsswd
+    file: ./*.whl
+    distributions: bdist_wheel
+    on:
+      tags: true
+      branch: master
+      repo: PixelStereo/pyossia
