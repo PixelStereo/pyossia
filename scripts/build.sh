@@ -18,8 +18,6 @@ case "$BUILD_TYPE" in
 		# build the documentation
 		travis-sphinx -s docs/source build
 		travis-sphinx deploy
-    ;;
-    COVERAGE)
         cd tests
 		# codacy
 		coverage run --omit ../pyossia/_version.py --omit ../versioneer.py  --include ../pyossia/* test_.py
