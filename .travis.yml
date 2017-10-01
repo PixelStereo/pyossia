@@ -42,9 +42,9 @@ deploy:
   provider: pypi
   user: $PyPiUser
   password: $PyPiPsswd
+  file: *.whl
   distributions: bdist_wheel
   on:
     tags: true
-    all_branches: true
+    branch: master
     repo: PixelStereo/pyossia
-    condition: $TRAVIS_OS_NAME = linux

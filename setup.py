@@ -15,7 +15,7 @@ from distutils.command.build import build as _build
 HERE = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
+with open(path.join(HERE, 'README.rst'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 
 # get current version
@@ -88,6 +88,14 @@ class CustomCommands(Command):
         for command in CUSTOM_COMMANDS:
             self.RunCustomCommand(command)
 
+try:
+    from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
+    class bdist_wheel(_bdist_wheel):
+        def finalize_options(self):
+            _bdist_wheel.finalize_options(self)
+            self.root_is_pure = False
+except ImportError:
+    bdist_wheel = None
 
 setup(
     name = 'pyossia',
@@ -102,19 +110,22 @@ setup(
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-    keywords=['creative', 'controls', 'osc', 'oscquery', 'websocket', 'libossia'],
+    platforms=['any'],
+    keywords = ['creative', 'controls', 'osc', 'oscquery', 'websocket', 'libossia'],
     packages = find_packages(),
+    package_data={
+        'pyossia': ['ossia_python.so'],
+    },
     zip_safe=False,
     cmdclass={
         # Command class instantiated and run during pip install scenarios.
         'build': CustomBuild,
         'CustomCommands': CustomCommands,
+        'bdist_wheel': bdist_wheel,
     }
 )
