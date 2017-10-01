@@ -40,7 +40,7 @@ CUSTOM_COMMANDS = [
     ['wget', url],
     ['tar', 'xJf', file],
     ['ls'],
-    #['cp', 'ossia_python.so', 'build/lib/pyossia/'],
+    ['cp', 'ossia_python.so', 'build/lib/pyossia/'],
     ['mv', 'ossia_python.so', 'pyossia/'],
     ['rm', 'ossia-python-3.6-osx.tar.gz']
     ]

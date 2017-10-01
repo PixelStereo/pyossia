@@ -24,15 +24,15 @@ class TestAll(unittest.TestCase):
     # then through OSC
     my_device.expose(protocol='osc', listening_port=9996, sending_port=9997, logger=False)
     # create a bunch of parameters under different nodes
-    my_int = my_device.add_param('test/numeric/int', value_type='int', default=66, domain=[-100, 100])
-    my_float = my_device.add_param('test/numeric/float', value_type='float', default=0.123456789, domain=[-2, 2])
-    my_bool = my_device.add_param('test/special/bool', value_type='bool', default=True)
-    my_string = my_device.add_param('test/misc/string', value_type='string', default='Hello world !', domain=['once', 'loop'])
-    my_vec2f = my_device.add_param('test/numeric/vec2f', value_type='vec2f', default=(0.5, 0.5),  domain=[0, 1])
-    my_vec3f = my_device.add_param('test/numeric/vec3f', value_type='vec3f', default=(0, 0.57, 0.81),  domain=[0, 360])
-    my_vec4f = my_device.add_param('test/numeric/vec4f', value_type='vec4f', default=(0, 146, 207),  domain=[0, 255])
-    my_list = my_device.add_param('test/misc/list', value_type='list', default=[44100, "my_track.wav", 0.6])
-    my_char = my_device.add_param('test/special/char', value_type='char', default=chr(97))
+    my_int = my_device.add_param('int', value_type='int', default=66, domain=[-100, 100])
+    my_float = my_device.add_param('float', value_type='float', default=0.123456789, domain=[-2, 2])
+    my_bool = my_device.add_param('special/bool', value_type='bool', default=True)
+    my_string = my_device.add_param('string',value_type='string', default='Hello world !', domain=['once', 'loop'])
+    my_vec2f = my_device.add_param('list/vec2f', value_type='vec2f', default=(0.5, 0.5),  domain=[0, 1])
+    my_vec3f = my_device.add_param('list/vec3f', value_type='vec3f', default=(0, 0.57, 0.81),  domain=[0, 360])
+    my_vec4f = my_device.add_param('list/vec4f', value_type='vec4f', default=(0, 146, 207),  domain=[0, 255])
+    my_list = my_device.add_param('list/list', value_type='list', default=[44100, "my_track.wav", 0.6])
+    my_char = my_device.add_param('special/char', value_type='char', default=chr(97))
 
     def test_version(self):
         """
@@ -87,9 +87,9 @@ class TestAll(unittest.TestCase):
         # Grab the name of the device
         self.assertEqual(self.my_device.name, 'PyOssia Test Device')
         # How many children this device have?
-        self.assertEqual(len(self.my_device.root_node.children()), 1)
+        self.assertEqual(len(self.my_device.root_node.children()), 5)
         # How many nodes are under this device?
-        self.assertEqual(len(self.my_device.root_node.get_nodes()), 4)
+        self.assertEqual(len(self.my_device.root_node.get_nodes()), 2)
         # How many parameters under this device?
         self.assertEqual(len(self.my_device.root_node.get_parameters()), 9)
 
