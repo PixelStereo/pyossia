@@ -28,8 +28,7 @@ script: ./scripts/build.sh
 deploy:
   - provider: releases
     skip_cleanup: true
-    api_key:
-      secure: ${GH_RELEASES}
+    secure: ${GH_RELEASES}
     file: ${REPO}-${TRAVIS_TAG}-py3-none-${TRAVIS_OS_NAME}.whl
     on:
       tags: true
