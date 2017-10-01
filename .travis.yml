@@ -19,23 +19,11 @@ matrix:
     language: generic
     osx_image: xcode9
 
-before_install:
-- source ./scripts/split_repo_slug.sh
+before_install: source ./scripts/split_repo_slug.sh
 
 install: ./scripts/deps.sh
 
-script:
-  - ./scripts/build.sh
-  - cd tests
-  # codacy
-  - coverage run --omit ../pyossia/_version.py --omit ../versioneer.py  --include ../pyossia/* test_.py
-  - coverage xml
-  - coverage report -m
-  - python-codacy-coverage -r coverage.xml
-  # build the documentation
-  - cd ../
-  - travis-sphinx -s docs/source build
-  - travis-sphinx deploy
+script: ./scripts/build.sh
 
 deploy:
   provider: releases
