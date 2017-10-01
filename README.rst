@@ -12,16 +12,12 @@ Installation
 
 latest stable
 -------------
-``
-pip install pyossia
-``
+``pip install pyossia``
 
 latest unstable (git master branch)
 -----------------------------------
 
-``
-pip install git+https://github.com/PixelStereo/pyossia.git@master
-``
+``pip install git+https://github.com/PixelStereo/pyossia.git@master``
 
 
 Credits
