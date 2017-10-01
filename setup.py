@@ -115,7 +115,6 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-    platforms=['any'],
     keywords = ['creative', 'controls', 'osc', 'oscquery', 'websocket', 'libossia'],
     packages = find_packages(),
     package_data={

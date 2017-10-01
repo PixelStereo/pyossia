@@ -28,6 +28,7 @@ script: ./scripts/build.sh
 
 deploy:
   - provider: pypi
+    skip_cleanup: true
     user: $PyPiUser
     password: $PyPiPsswd
     file: ./*.whl
