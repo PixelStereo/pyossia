@@ -38,7 +38,7 @@ class build(_build):
 
 CUSTOM_COMMANDS = [
     ['wget', url],
-    ['tar', 'xJf', file],
+    ['tar', 'xzf', file],
     ['ls'],
     ['cp', 'ossia_python.so', 'build/lib/pyossia/'],
     ['mv', 'ossia_python.so', 'pyossia/'],
