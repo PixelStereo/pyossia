@@ -42,7 +42,7 @@ CUSTOM_COMMANDS = [
     ['ls'],
     ['cp', 'ossia_python.so', 'build/lib/pyossia/'],
     ['mv', 'ossia_python.so', 'pyossia/'],
-    ['rm', 'ossia-python-3.6-osx.tar.gz']
+    ['rm', 'file']
     ]
 
 class CustomCommands(setuptools.Command):
