@@ -1,22 +1,13 @@
-.. pyossia documentation master file, created by
-   sphinx-quickstart on Sat Mar  4 13:17:34 2017.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+pyossia
+=========
+.. automodule:: pyossia
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
-Welcome to pyossia's documentation!
-===================================
-
-Contents:
-
+Index
+=====
 .. toctree::
    :maxdepth: 2
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   errors

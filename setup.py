@@ -6,11 +6,13 @@ setup for the pyossia project
 """
 
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages, Extension
+from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
 from os import path
-
+import subprocess
+from distutils.command.build import build as _build
+import setuptools
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
@@ -19,21 +21,72 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 # get current version
 import versioneer
-
 __version__ = versioneer.get_version()
+
+
+class build(_build):
+  """
+  A build command class that will be invoked during package install.
+  """
+  sub_commands = _build.sub_commands + [('CustomCommands', None)]
+
+CUSTOM_COMMANDS = [
+    ['echo', 'Custom command worked!'],
+    ['echo', 'Custom command worked!'],
+    ['echo', 'Custom command worked!'],
+    ['echo', 'Custom command worked!'],
+    ['echo', 'Custom command worked!'],
+    ]
+
+class CustomCommands(setuptools.Command):
+  """A setuptools Command class able to run arbitrary commands."""
+
+  def initialize_options(self):
+    print()
+    print()
+    print()
+    print()
+    print()
+
+  def finalize_options(self):
+    print()
+    print()
+    print()
+    print()
+    print()
+
+  def RunCustomCommand(self, command_list):
+    print('Running command: %s' % command_list)
+    print()
+    print()
+    print()
+    p = subprocess.Popen(
+        command_list,
+        stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    # Can use communicate(input='y\n'.encode()) if the command run requires
+    # some confirmation.
+    stdout_data, _ = p.communicate()
+    print('Command output: %s' % stdout_data)
+    if p.returncode != 0:
+      raise RuntimeError(
+          'Command %s failed: exit code: %s' % (command_list, p.returncode))
+
+  def run(self):
+    for command in CUSTOM_COMMANDS:
+      self.RunCustomCommand(command)
 
 
 setup(
   name = 'pyossia',
-  version=__version__,
+  version =__version__,
   description = 'libossia usefull Classes',
-  long_description=long_description,
-  url='https://github.com/PixelStereo/pyossia',
+  long_description = long_description,
+  url = 'https://github.com/PixelStereo/pyossia',
   author = 'Pixel Stereo',
-  author_email = 'contact@pixelstereo.com',
-  license='GPLv3+',
+  author_email = 'contact@pixelstereo.org',
+  license ='GPLv3+',
   classifiers = [
-    'Development Status :: 2 - Pre-Alpha',
+    'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
     'Natural Language :: English',
@@ -43,13 +96,13 @@ setup(
     'Programming Language :: Python :: 3.6',
     'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-  keywords='sample setuptools development',
-  # You can just specify the packages manually here if your project is
-  # simple. Or you can use find_packages().
-  packages=find_packages(exclude=['3rdParty', 'examples', 'docs', 'tests']),
-  extras_require={
-    'test': ['coverage']
-    },
-  download_url = 'https://github.com/PixelStereo/pyossia/tarball/' + __version__,
-  zip_safe=True,
+  keywords=['creative', 'controls', 'osc', 'oscquery', 'websocket', 'libossia'],
+  packages = find_packages(),
+  package_data = {'pyossia': ['ossia_python.cpython-36m-darwin.so']},
+  zip_safe=False,
+  cmdclass={
+    # Command class instantiated and run during pip install scenarios.
+    'build': build,
+    'CustomCommands': CustomCommands,
+    }
 )
