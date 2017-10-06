@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyossia &mdash; pyossia 0.0.33+1.gccb9309 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="pyossia 0.0.33+1.gccb9309 documentation" href="#"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> pyossia
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.33+1.gccb9309
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">pyossia</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#change-log">Change log</a><ul>
+<li><a class="reference internal" href="#aka-the-first">0.0.* aka the first</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pyossia-methods">pyossia methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#index">Index</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">pyossia</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>pyossia</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyossia">
+<span id="pyossia"></span><h1>pyossia<a class="headerlink" href="#module-pyossia" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>pyossia module will add usefull access for end users to C++ binded objects of libossia</p>
+</div>
+<div class="section" id="change-log">
+<h2>Change log<a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="aka-the-first">
+<h3>0.0.* aka the first<a class="headerlink" href="#aka-the-first" title="Permalink to this headline">¶</a></h3>
+<p>First version of pyossia, still in alpha develeopment.</p>
+</div>
+</div>
+<div class="section" id="pyossia-methods">
+<h2>pyossia methods<a class="headerlink" href="#pyossia-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyossia.add_device">
+<code class="descclassname">pyossia.</code><code class="descname">add_device</code><span class="sig-paren">(</span><em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyossia.add_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>create a local device
+The local device might be a local device or a mirror (remote) device
+depending on the “mode” argument
+mode = local / mirror</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyossia.devices">
+<code class="descclassname">pyossia.</code><code class="descname">devices</code><span class="sig-paren">(</span><em>device_type='local'</em><span class="sig-paren">)</span><a class="headerlink" href="#pyossia.devices" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a list of devices</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyossia.expose">
+<code class="descclassname">pyossia.</code><code class="descname">expose</code><span class="sig-paren">(</span><em>self</em>, <em>protocol='oscquery'</em>, <em>host='localhost'</em>, <em>listening_port=3456</em>, <em>sending_port=5678</em>, <em>logger=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyossia.expose" title="Permalink to this definition">¶</a></dt>
+<dd><p>expose the device to the given &lt;protocol&gt;</p>
+<p># TODO : Implement other protocol (serial, midi, osc, etc…)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyossia.add_param">
+<code class="descclassname">pyossia.</code><code class="descname">add_param</code><span class="sig-paren">(</span><em>self</em>, <em>name</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyossia.add_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>create a node and make a create_parameter on the node</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyossia.get_nodes">
+<code class="descclassname">pyossia.</code><code class="descname">get_nodes</code><span class="sig-paren">(</span><em>self</em>, <em>node=None</em>, <em>depth=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pyossia.get_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a list of all nodes attached to the given &lt;node&gt;.</p>
+<p>&lt;depth&gt; argument allows a depth-specific list</p>
+<p>depth=0 means explore all the three</p>
+<p>depth=1 means explore only the first level</p>
+<p>(only the children of the given &lt;node&gt;)</p>
+<p>TODO : make depth levels in the code / it does not work for the moment
+# check the required depth
+#counter += 1
+#if depth == counter and depth != 0:
+#    break</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyossia.get_parameters">
+<code class="descclassname">pyossia.</code><code class="descname">get_parameters</code><span class="sig-paren">(</span><em>self</em>, <em>node=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyossia.get_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a list of all params for the device</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyossia.reset">
+<code class="descclassname">pyossia.</code><code class="descname">reset</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#pyossia.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>reset a parameter to its default value</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="index">
+<h1>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Pixel Stereo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.33+1.gccb9309',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
