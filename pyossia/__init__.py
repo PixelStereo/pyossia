@@ -111,8 +111,13 @@ def add_param(self, name, **kwargs):
     param = node.create_parameter(__value_types__[value_type])
     if 'domain' in kwargs.keys():
         param.make_domain(kwargs['domain'][0], kwargs['domain'][1])
+    if 'default_value' in kwargs.keys():
+        if param.node:
+            param.node.default_value = kwargs['default_value']
+    if 'clipmode' in kwargs.keys():
+        param.clipmode = kwargs['clipmode]']
     # TODO : Checks kwargs and please set value as required
-    # such as domain, clipmode, accessmode, default value etc…
+    # such as domain, clipmode, accessmode etc…
     return param
 
 def get_nodes(self, node=None, depth=0):
@@ -162,7 +167,7 @@ def get_parameters(self, node=None):
     """
     if not node:
         node = self
-    children = []
+    parameters = []
     # a function to iterate on node's tree recursively
     def iterate_parameters(node):
         """
@@ -173,13 +178,22 @@ def get_parameters(self, node=None):
             # if the node is a param, it has an parameter
             if child.parameter.__class__.__name__ == 'Parameter':
                 # add the child to the children list to return
-                children.append(child)
+                parameters.append(child.parameter)
             # do the same for each child
             iterate_parameters(child)
     # do the walk
     iterate_parameters(node)
     # return the filled list
-    return children
+    return parameters
+
+def reset(self):
+    """
+    reset a parameter to its default value
+    """
+    if self.parameter:
+        self.value = self.node.default_value
+    for param in self.get_parameters():
+        param.value = param.node.default_value
 
 
 # customize a bit LocalDevice
@@ -196,3 +210,7 @@ ossia.OSCQueryDevice.get_parameters = get_parameters
 # A Node has nodes and parameters
 ossia.Node.get_nodes = get_nodes
 ossia.Node.get_parameters = get_parameters
+ossia.Node.reset = reset
+
+# A Parameter can be reset to its default_value
+ossia.Parameter.reset = reset
