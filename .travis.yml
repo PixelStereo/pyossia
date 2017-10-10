@@ -1,4 +1,5 @@
 language: python
+python: 3.5
 
 branches:
   except:
@@ -7,23 +8,12 @@ branches:
 dist: trusty
 sudo: required
 
-matrix:
-  exclude:
-    - os: linux
-    - os: osx
-
-  include:
-  - os: linux
-    python: 3.6
-  - os: osx
-    language: generic
-    env: BUILD_TYPE=DOCS
-
 before_install: source ./scripts/split_repo_slug.sh
 
-install: ./scripts/deps.sh
-
-script: ./scripts/build.sh
+install:
+  - sudo apt-get -y install python3 python3-setuptools
+  - pip3 wheel -ve .
+  - pip3 install pyossia-${TRAVIS_TAG}*
 
 deploy:
   - provider: pypi
@@ -35,4 +25,3 @@ deploy:
     on:
       tags: true
       branch: master
-      repo: ${OWNER}/${REPO}
